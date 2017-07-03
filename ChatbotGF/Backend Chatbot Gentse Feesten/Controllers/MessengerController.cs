@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using static Chatbot_GF.BotData.MessengerData;
 using System.Net;
-
-
+using Chatbot_GF.BotData;
+using System.Diagnostics;
 
 namespace Chatbot_GF.Controllers
 {
     [Route("api/[controller]")]
     public class MessengerController : Controller
     {
-        // GET: api/values
+       
         [HttpGet]
         public ActionResult Get()
         {
@@ -28,11 +28,14 @@ namespace Chatbot_GF.Controllers
         }
 
 
-        [ActionName("Receive")]
         [HttpPost]
-        public ActionResult ReceivePost(BotRequest data)
+        public ActionResult Post([FromBody] MessengerData data)
         {
-            Task.Factory.StartNew(async () =>
+
+            Console.Write("Post Received: " + data.Object + " " + data.entry[0].messaging[0].sender.id + 
+               " " + data.entry[0].messaging[0].message.text +" \n");
+
+            Task.Factory.StartNew(() =>
             {
                 foreach (var entry in data.entry)
                 {
@@ -43,7 +46,8 @@ namespace Chatbot_GF.Controllers
 
                         var msg = "You said: " + message.message.text;
                         var json = $@" {{recipient: {{  id: {message.sender.id}}},message: {{text: ""{msg}"" }}}}";
-                        await PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_tokenEAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json);
+                        Console.Write("Message: " + msg + " to id: " + message.sender.id +"\n");
+                        String res = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json).Result;
                     }
                 }
             });
@@ -51,7 +55,7 @@ namespace Chatbot_GF.Controllers
             return Ok();
         }
 
-        private async Task<string> PostRawAsync(string url, string data)
+        private async Task<String> PostRawAsync(string url, string data)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = "application/json";
