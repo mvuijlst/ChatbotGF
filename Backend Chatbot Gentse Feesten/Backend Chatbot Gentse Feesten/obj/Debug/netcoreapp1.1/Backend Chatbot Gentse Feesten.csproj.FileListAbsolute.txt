@@ -1,0 +1,9 @@
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.deps.json
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.runtimeconfig.json
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.runtimeconfig.dev.json
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.dll
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.pdb
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.csprojResolveAssemblyReference.cache
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.AssemblyInfo.cs
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.dll
+c:\users\ruben\documents\visual studio 2017\Projects\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.pdb
