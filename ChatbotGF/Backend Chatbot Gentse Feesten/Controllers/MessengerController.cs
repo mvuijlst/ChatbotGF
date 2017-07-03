@@ -32,9 +32,6 @@ namespace Chatbot_GF.Controllers
         public ActionResult Post([FromBody] MessengerData data)
         {
 
-            Console.Write("Post Received: " + data.Object + " " + data.entry[0].messaging[0].sender.id + 
-               " " + data.entry[0].messaging[0].message.text +" \n");
-
             Task.Factory.StartNew(() =>
             {
                 foreach (var entry in data.entry)
