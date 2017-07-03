@@ -21,3 +21,8 @@ D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Back
 D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.dll
 D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.pdb
 D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\obj\Debug\netcoreapp1.1\Backend Chatbot Gentse Feesten.csprojResolveAssemblyReference.cache
+D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\netcoreapp1.1\netcoreapp1.1\Backend Chatbot Gentse Feesten.deps.json
+D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\netcoreapp1.1\netcoreapp1.1\Backend Chatbot Gentse Feesten.runtimeconfig.json
+D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\netcoreapp1.1\netcoreapp1.1\Backend Chatbot Gentse Feesten.runtimeconfig.dev.json
+D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\netcoreapp1.1\netcoreapp1.1\Backend Chatbot Gentse Feesten.dll
+D:\Users\Gebruiker\Documents\Lab9K\ChatbotGF\Backend Chatbot Gentse Feesten\Backend Chatbot Gentse Feesten\bin\Debug\netcoreapp1.1\netcoreapp1.1\netcoreapp1.1\Backend Chatbot Gentse Feesten.pdb
