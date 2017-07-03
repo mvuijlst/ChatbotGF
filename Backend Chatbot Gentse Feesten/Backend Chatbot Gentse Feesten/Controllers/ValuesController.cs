@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Backend_Chatbot_Gentse_Feesten.Model;
 
 namespace Backend_Chatbot_Gentse_Feesten.Controllers
 {
@@ -11,11 +12,11 @@ namespace Backend_Chatbot_Gentse_Feesten.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Event> Get()
         {
-            RequestManager manager = new RequestManager();
+            RequestManager<List<Event>> manager = new RequestManager<List<Event>>();
 
-            return new string[] { "value1", "value2" };
+            return manager.getResultAsObject("https://gentsefeesten.stad.gent/api/v1/event");
         }
 
         // GET api/values/5
