@@ -9904,15 +9904,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gebruiker\\.nuget\\packages\\": {}
+    "C:\\Users\\ruben\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\Gebruiker\\Documents\\Lab9K\\ChatbotGF\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten.csproj",
+      "projectUniqueName": "C:\\Users\\ruben\\Documents\\GitHub\\ChatbotGF\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten.csproj",
       "projectName": "Backend Chatbot Gentse Feesten",
-      "projectPath": "D:\\Users\\Gebruiker\\Documents\\Lab9K\\ChatbotGF\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten.csproj",
-      "outputPath": "D:\\Users\\Gebruiker\\Documents\\Lab9K\\ChatbotGF\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten\\obj\\",
+      "projectPath": "C:\\Users\\ruben\\Documents\\GitHub\\ChatbotGF\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten.csproj",
+      "outputPath": "C:\\Users\\ruben\\Documents\\GitHub\\ChatbotGF\\Backend Chatbot Gentse Feesten\\Backend Chatbot Gentse Feesten\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"

@@ -33,12 +33,12 @@ public class Event
         public Contributor contributor { get; set; }
         public Description description { get; set; }
         public string duration { get; set; }
-        public DateTime endDate { get; set; }
+        public string endDate { get; set; }
         public Image image { get; set; }
         public IList<string> inLanguage { get; set; }
-        public bool isAccessibleForFree { get; set; }
+        public Boolean? isAccessibleForFree { get; set; }
         public IList<string> isPartOf { get; set; }
-        public bool isWheelchairUnfriendly { get; set; }
+        public Boolean? isWheelchairUnfriendly { get; set; }
         public IList<string> keywords { get; set; }
         public string location { get; set; }
         public Name name { get; set; }
@@ -51,7 +51,7 @@ public class Event
         public object typicalAgeRange { get; set; }
         public string url { get; set; }
         public IList<object> video { get; set; }
-        public DateTime? changed { get; set; }
+        public string changed { get; set; }
         public string @id { get; set; }
     }
 }

@@ -5,27 +5,34 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Diagnostics;
+using Backend_Chatbot_Gentse_Feesten.Model;
+using System.Runtime.Serialization.Json;
 
 namespace Backend_Chatbot_Gentse_Feesten
 {
-    public class RequestManager
+    public class RequestManager<T>
     {
 
         public RequestManager()
         {
-            ProcessRepositories().Wait();
+            
+                        
         }
 
 
-        private static async Task ProcessRepositories()
+        public T getResultAsObject(String url)
+        {
+            return ProcessRepositories(url).Result;
+        }
+
+        private static async Task<T> ProcessRepositories(String url)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
-
-            var stringTask = client.GetStringAsync("https://datatank.stad.gent/4/cultuursportvrijetijd/gentsefeestenlocaties.json");
-
-            var msg = await stringTask;
-            Debug.Write(msg);
+            var serializer = new DataContractJsonSerializer(typeof(List<Event>));
+            var streamTask = client.GetStreamAsync(url);
+            var events = serializer.ReadObject(await streamTask);
+            return (T) events;
         }
 
     }
