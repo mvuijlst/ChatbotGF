@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Backend_Chatbot_Gentse_Feesten.Model
+namespace Chatbot_GF.Model
 {
     public class Address
     {
@@ -18,14 +18,14 @@ namespace Backend_Chatbot_Gentse_Feesten.Model
     public class Location
     {
         public Address address { get; set; }
-        public DateTime changed { get; set; }
+        public String changed { get; set; }
         public object containedInPlace { get; set; }
         public IList<object> containsPlace { get; set; }
-        public DateTime created { get; set; }
+        public String created { get; set; }
         public string email { get; set; }
-        public bool isWheelchairUnfriendly { get; set; }
+        public Boolean? isWheelchairUnfriendly { get; set; }
         public Name name { get; set; }
-        public bool outDoors { get; set; }
+        public Boolean? outDoors { get; set; }
         public string telephone { get; set; }
         public string url { get; set; }
     }

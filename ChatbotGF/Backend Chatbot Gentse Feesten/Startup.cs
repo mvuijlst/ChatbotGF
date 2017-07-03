@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Backend_Chatbot_Gentse_Feesten
+namespace Chatbot_GF
 {
     public class Startup
     {

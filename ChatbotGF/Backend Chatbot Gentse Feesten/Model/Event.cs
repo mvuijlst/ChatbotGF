@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Backend_Chatbot_Gentse_Feesten.Model
+namespace Chatbot_GF.Model
 {
     public class Name
     {

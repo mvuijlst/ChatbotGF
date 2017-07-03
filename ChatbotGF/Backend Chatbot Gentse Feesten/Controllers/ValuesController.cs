@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Backend_Chatbot_Gentse_Feesten.Model;
+using Chatbot_GF.Model;
 
-namespace Backend_Chatbot_Gentse_Feesten.Controllers
+namespace Chatbot_GF.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<Event> Get()
+        public IEnumerable<Location> Get()
         {
-            RequestManager<List<Event>> manager = new RequestManager<List<Event>>();
+            RequestManager<List<Location>> manager = new RequestManager<List<Location>>();
 
-            return manager.getResultAsObject("https://gentsefeesten.stad.gent/api/v1/event");
+            return manager.getResultAsObject("https://gentsefeesten.stad.gent/api/v1/location");
         }
 
         // GET api/values/5
