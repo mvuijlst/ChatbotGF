@@ -16,12 +16,12 @@ namespace Chatbot_GF.Controllers
         public ActionResult Get()
         {
             var allUrlKeyValues = Request.Query;
-            if (allUrlKeyValues["hub.mode"] == "Subscribe" && allUrlKeyValues["hub.verify_token"] == "test123")
+            if (allUrlKeyValues["hub.mode"] == "subscribe" && allUrlKeyValues["hub.verify_token"] == "test123")
             {
                 var returnVal = allUrlKeyValues["hub.challenge"];
-                return Json(returnVal);
+                return Json(int.Parse(returnVal));
             }
-            return null;
+            return NotFound();
         }
 
        
