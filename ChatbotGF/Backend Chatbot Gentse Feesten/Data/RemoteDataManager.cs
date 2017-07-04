@@ -59,7 +59,7 @@ namespace Chatbot_GF.Data
             SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("https://stad.gent/sparql"), "http://stad.gent/gentse-feesten/");
             
             String query = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:location ?location. ?sub schema:keywords ?keywords. filter(" + filterString + ") }";
-            System.Console.WriteLine(query);
+            
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), "test");
 
 

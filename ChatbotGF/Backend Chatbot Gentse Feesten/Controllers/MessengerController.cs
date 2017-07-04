@@ -8,16 +8,18 @@ using static Chatbot_GF.BotData.MessengerData;
 using System.Net;
 using Chatbot_GF.BotData;
 using System.Diagnostics;
+using Chatbot_GF.MessengerManager;
 
 namespace Chatbot_GF.Controllers
 {
     [Route("api/[controller]")]
     public class MessengerController : Controller
     {
-       
+
         [HttpGet]
         public ActionResult Get()
         {
+
             var allUrlKeyValues = Request.Query;
             if (allUrlKeyValues["hub.mode"] == "subscribe" && allUrlKeyValues["hub.verify_token"] == "test123")
             {
@@ -36,13 +38,25 @@ namespace Chatbot_GF.Controllers
             {
                 foreach (var entry in data.entry)
                 {
+
                     foreach (var message in entry.messaging)
                     {
-                        if (string.IsNullOrWhiteSpace(message?.message?.text))
-                            continue;
-                       
-                        var json = new JsonBuilder(message);
-                        String res = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json.Json).Result;
+                        if (message.postback != null && message.postback.payload == "GET_STARTED_PAYLOAD")
+                        {
+                            var jsn = new JsonBuilder(message);
+                            //String es = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", jsn.Json()).Result;
+                            Manager manager = new Manager();
+                            manager.changeUserState(long.Parse(message.sender.id), message.postback.payload);
+                        }
+                        else
+                        {
+                            if (string.IsNullOrWhiteSpace(message?.message?.text))
+                                continue;
+
+                            var json = new JsonBuilder(message);
+                            Console.Write(json);
+                            String res = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json.Json()).Result;
+                        }
                     }
                 }
             });
@@ -60,7 +74,7 @@ namespace Chatbot_GF.Controllers
                 requestWriter.Write(data);
             }
 
-            var response = (HttpWebResponse) await request.GetResponseAsync();
+            var response = (HttpWebResponse)await request.GetResponseAsync();
             if (response == null)
                 throw new InvalidOperationException("GetResponse returns null");
 

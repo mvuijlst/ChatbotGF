@@ -29,6 +29,8 @@ namespace Chatbot_GF.BotData
             public Sender sender { get; set; }
             public Recipient recipient { get; set; }
             public Message message { get; set; }
+            public Postback postback { get; set; }
+
 
             public class QuickReply
             {
@@ -49,5 +51,11 @@ namespace Chatbot_GF.BotData
             public long time { get; set; }
             public List<Messaging> messaging { get; set; }
         }
+        public class Postback
+        {
+            public string payload { get; set; }
+        }
     }
+
+
 }

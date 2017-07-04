@@ -9,12 +9,19 @@ namespace Chatbot_GF.Controllers
     public class JsonBuilder
     {
         private string json;
+        private Messaging message;
         public JsonBuilder(Messaging message)
         {
-            json = $@" {{recipient: {{  id: {message.sender.id}}},message: {{text: ""{message.message.text}"" }}}}";
+            this.message = message;
+            //Console.Write(message);
         }
 
-        public string Json {get;}
+        public string Json()
+        {
+            return $@" {{recipient: {{  id: {message.sender.id}}},message: {{text: ""{message.message.text}"" }}}}";
+        }
+
+
     }
 }
 
