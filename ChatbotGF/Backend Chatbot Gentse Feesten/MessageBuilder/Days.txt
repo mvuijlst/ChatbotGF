@@ -1,0 +1,65 @@
+﻿{
+  "recipient":{
+    "id":"user_id"
+  },
+  "message":{
+    "text":"Welke dag:",
+    "quick_replies":[
+	  {
+		"content_type":"text",
+        "title":"Nu",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_THIS_DAY"
+      },
+      {
+        "content_type":"text",
+        "title":"Vr 14",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FR_14"
+      },
+      {
+        "content_type":"text",
+        "title":"Za 15",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SA_15"
+      },
+      {
+        "content_type":"text",
+        "title":"Zo 16",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SU_16"
+      },
+      {
+        "content_type":"text",
+        "title":"Ma 17",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_MO_17"
+      },
+      {
+        "content_type":"text",
+        "title":"Di 18",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_TU_18"
+      },
+      {
+        "content_type":"text",
+        "title":"Wo 19",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_WE_19"
+      },
+      {
+        "content_type":"text",
+        "title":"Do 20",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_TH_20"
+      },
+      {
+        "content_type":"text",
+        "title":"Vr 21",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_FR_21"
+      },
+      {
+        "content_type":"text",
+        "title":"Za 22",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SA_22"
+      },
+      {
+        "content_type":"text",
+        "title":"Zo 23",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_SU_23"
+      }
+    ]
+  }
+}

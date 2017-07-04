@@ -1,0 +1,45 @@
+﻿{
+  "recipient":{
+    "id":"user_id"
+  },
+  "message":{
+    "text":"Welk uur:",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Nu",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_THIS_HOUR"
+      },
+      {
+        "content_type":"text",
+        "title":"0:00 - 3:59",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_0_4"
+      },
+      {
+        "content_type":"text",
+        "title":"4:00 - 7:59",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_4_8"
+      },
+      {
+        "content_type":"text",
+        "title":"8:00 - 11:59",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_8_12"
+      },
+      {
+        "content_type":"text",
+        "title":"12:00 - 15:59",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_12_16"
+      },
+      {
+        "content_type":"text",
+        "title":"16:00 - 19:59",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_16_20"
+      },
+      {
+        "content_type":"text",
+        "title":"20:00 - 23:59",
+		"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_20_24"
+      }
+    ]
+  }
+}
