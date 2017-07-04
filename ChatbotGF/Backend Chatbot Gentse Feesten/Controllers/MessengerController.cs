@@ -41,7 +41,7 @@ namespace Chatbot_GF.Controllers
                         if (string.IsNullOrWhiteSpace(message?.message?.text))
                             continue;
                        
-                        var json = new JsonBuilder(message.sender.id, "You said: " + message.message.text);
+                        var json = new JsonBuilder(message);
                         String res = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json.Json).Result;
                     }
                 }
