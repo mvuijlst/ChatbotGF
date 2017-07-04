@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VDS.RDF.Query;
 
 namespace Chatbot_GF.Model
 {
@@ -28,8 +29,14 @@ namespace Chatbot_GF.Model
         public string caption { get; set; }
     }
 
-public class Event
+    public class Event
     {
+        public Event()
+        {
+            name = new Name();
+            description = new Description();
+        }
+
         public Contributor contributor { get; set; }
         public Description description { get; set; }
         public string duration { get; set; }
