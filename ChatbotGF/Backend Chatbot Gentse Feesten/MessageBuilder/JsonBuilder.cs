@@ -14,6 +14,11 @@ namespace Chatbot_GF.Controllers
             json = $@" {{recipient: {{  id: {message.sender.id}}},message: {{text: ""{message.message.text}"" }}}}";
         }
 
+        public JsonBuilder(long id, string s)
+        {
+            json = $@" {{recipient: {{  id: {id}}},message: {{text: ""{s}"" }}}}";
+        }
+
         public string Json {get;}
     }
 }
