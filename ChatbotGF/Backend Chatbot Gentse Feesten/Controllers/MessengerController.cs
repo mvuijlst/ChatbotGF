@@ -64,7 +64,7 @@ namespace Chatbot_GF.Controllers
             return Ok();
         }
 
-        private async Task<String> PostRawAsync(string url, string data)
+        public static async Task<String> PostRawAsync(string url, string data)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.ContentType = "application/json";

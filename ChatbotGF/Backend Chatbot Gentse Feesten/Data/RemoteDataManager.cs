@@ -1,4 +1,5 @@
-﻿using Chatbot_GF.Model;
+﻿using Chatbot_GF.Controllers;
+using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +25,12 @@ namespace Chatbot_GF.Data
         {
             SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("https://stad.gent/sparql"), "http://stad.gent/gentse-feesten/");
             System.Console.WriteLine("Starting query");
-            endpoint.QueryWithResultSet("PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:location ?location. filter(str(?location) = \"https://gentsefeesten.stad.gent/api/v1/location/f2e7a735-7632-486c-b70d-7e7340bfd340\") }", new SparqlResultsCallback(callback),"test");            
+            endpoint.QueryWithResultSet("PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:location ?location. filter(str(?location) = \"https://gentsefeesten.stad.gent/api/v1/location/f2e7a735-7632-486c-b70d-7e7340bfd340\") }", new SparqlResultsCallback(callbackAsync),"test");            
 
 
         }
 
-        public void GetEventsHereNow(String location, DateTime time) 
+        public void GetEventsHereNow(User user, String location, DateTime time) 
         {
             string formattedTime = time.ToString("yyyy-MM-ddTHH:mm:sszzz");
             string locationfilter = "str(?location) = \""+ location + "\"";
@@ -38,7 +39,7 @@ namespace Chatbot_GF.Data
 
             string query = BASE_QUERY + " FILTER(" + locationfilter + " && " + startdatefilter + " && " + enddatefilter + ") }";
             System.Console.WriteLine(query);
-            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), "test");
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callbackAsync), user);
         }
 
         public void GetEventsByKeywords(List<String> keywords)
@@ -65,12 +66,13 @@ namespace Chatbot_GF.Data
 
         }
 
-        public void callback(SparqlResultSet results,Object state)
+        public async Task callback(SparqlResultSet results, Object u)
         {
+            User user = (User)u;
             foreach (SparqlResult result in results)
             {
                 System.Console.WriteLine(result.Variables.ToString());
-                foreach( string s in result.Variables)
+                foreach (string s in result.Variables)
                 {
                     System.Console.WriteLine(s);
                 }
@@ -80,7 +82,11 @@ namespace Chatbot_GF.Data
                 e.endDate = result["enddate"].ToString();
                 e.description.nl = result["description"].ToString();
                 e.organizer = result["organizer"].ToString();
-                e.image = (Image) result["image"];
+                e.image = (Image)result["image"];
+
+                var json = new JsonBuilder(user.id,e.name.nl);
+                await MessengerController.PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json.Json);
+
 
             }
         }

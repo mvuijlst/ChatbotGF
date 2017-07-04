@@ -1,4 +1,5 @@
-﻿using Chatbot_GF.Model;
+﻿using Chatbot_GF.Data;
+using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,7 @@ namespace Chatbot_GF.MessengerManager
     public class Manager
     {
         public Dictionary<long, User> activeUsers = new Dictionary<long, User>();
-
+        private RemoteDataManager dataDAO = new RemoteDataManager();
         /// <summary>
         /// Method to be called when user pushes on "get Started" --> makes a new user in the list + saves his id and timestamp
         /// </summary>
@@ -56,6 +57,7 @@ namespace Chatbot_GF.MessengerManager
                 currentUser = activeUsers[id];
             }
 
+            dataDAO.GetEventsHereNow(currentUser,"https://gentsefeesten.stad.gent/api/v1/location/0d5f41fa-c8bc-47e3-aac2-c88fcdb29352", DateTime.Now.AddDays(10).AddHours(8));
 
 
         }
