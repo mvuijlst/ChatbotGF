@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Chatbot_GF.Data;
 
 namespace Chatbot_GF
 {
@@ -17,11 +18,13 @@ namespace Chatbot_GF
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://*:5000")
+                .UseUrls("http://*:50000")
                 .UseApplicationInsights()
                 .Build();
 
             host.Run();
+
+            RemoteDataManager rdm = new RemoteDataManager();
         }
     }
 }
