@@ -24,7 +24,7 @@ namespace Chatbot_GF
 
             host.Run();
 
-            RemoteDataManager rdm = new RemoteDataManager();
+            
         }
     }
 }
