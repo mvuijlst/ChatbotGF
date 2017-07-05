@@ -53,6 +53,7 @@ namespace Chatbot_GF.Controllers
                             Manager manager = new Manager();
                             manager.startUser(message.sender.id);
                             startSearch(message.sender.id);
+
                         }
                         else
                         {
@@ -96,7 +97,7 @@ namespace Chatbot_GF.Controllers
         {
             // welcome message, hardcode in GenericMessage
             GenericMessage welcomeMessage = new GenericMessage(id);
-            GenericMessage welcomeImage = new GenericMessage(id, new Attachment("image", new Payload("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
+            GenericMessage welcomeImage = new GenericMessage(id, new Attachment("image", new PayloadImage("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
             IMessengerApi api = RestClientBuilder.GetMessengerApi();
             try
             {

@@ -18,20 +18,9 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            List<Element> lijst = new List<Element>();
-            DefaultAction def = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
-            List<Button> buttons = new List<Button>();
-            for (var i = 0; i < 3; i++)
-            {
-                buttons.Add(new Button("Knop " + i, "web_url", "https://gentsefeesten.stad.gent", null, true));
-            }
-            for (var i = 0; i < 5; i++) {
-                lijst.Add(new Element("Event " + i, "", "Uitleg " + i, buttons, def));
-            }
-            Payload pay = new Payload("generic", lijst, false, null);
-            Attachment at = new Attachment("template", pay);
-            GenericMessage mes = new GenericMessage(1333062916810232, at);
-            return Ok(mes);
+            GenericMessage welcomeImage = new GenericMessage(1333062916810232, new Attachment("image", new PayloadImage("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
+
+            return Ok(welcomeImage);
         }
     }
 }
