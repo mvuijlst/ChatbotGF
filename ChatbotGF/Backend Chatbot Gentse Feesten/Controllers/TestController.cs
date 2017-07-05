@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Chatbot_GF.Data;
+using Chatbot_GF.MessageBuilder.Model;
+using static Chatbot_GF.MessageBuilder.Model.GenericMessage;
 
 namespace Chatbot_GF.Controllers
 {
@@ -16,11 +18,20 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            RemoteDataManager rdm = new RemoteDataManager();
-            DateTime time = DateTime.Now.AddDays(14).AddHours(-3);
-            //rdm.GetEventsHereNow("https://gentsefeesten.stad.gent/api/v1/location/f2e7a735-7632-486c-b70d-7e7340bfd340", time);
-            Console.WriteLine(time.ToString("yyyy-MM-ddTHH:mm:sszzz"));
-            return Ok();
+            List<Element> lijst = new List<Element>();
+            DefaultAction def = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
+            List<Button> buttons = new List<Button>();
+            for (var i = 0; i < 3; i++)
+            {
+                buttons.Add(new Button("Knop " + i, "web_url", "https://gentsefeesten.stad.gent", null, true));
+            }
+            for (var i = 0; i < 5; i++) {
+                lijst.Add(new Element("Event " + i, "", "Uitleg " + i, buttons, def));
+            }
+            Payload pay = new Payload("generic", lijst, false, null);
+            Attachment at = new Attachment("template", pay);
+            GenericMessage mes = new GenericMessage(1333062916810232, at);
+            return Ok(mes);
         }
     }
 }
