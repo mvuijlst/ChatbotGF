@@ -12,7 +12,7 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            string[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM",  "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
+            string[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
 
             {
                 List<QuickReply> reply = new List<QuickReply>();
@@ -25,5 +25,6 @@ namespace Chatbot_GF.Controllers
                 GenericMessage message = new GenericMessage(1333062916810232, "Welke locatie wil je bezoeken?", reply);
                 return Ok(message);
             }
+        }
     }
 }

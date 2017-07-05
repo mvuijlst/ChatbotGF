@@ -46,12 +46,14 @@ namespace Chatbot_GF.MessengerManager
             switch (category)
             {
                 case "DEVELOPER_DEFINED_LOCATION":
-                    umanager.setLocationChoice(id, value);
+                    umanager.setUserLocation(id, value);
                     break;
-                case "GET_EVENT_HERE_NOW":
-                    
+                case "DEVELOPER_DEFINED_TIME":
+                    umanager.setUserTime(id, value);
                     break;
-
+                case "DEVELOPER_DEFINED_SEARCH":
+                    umanager.searchResults(id);
+                    break;
                 default:
                    //do nothing
                     break;
