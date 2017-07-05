@@ -7,7 +7,7 @@ namespace Chatbot_GF.MessageBuilder.Model
 {
     public class GenericMessage
     {
-        public GenericMessage(long id, string text, List<QuickReply> quick_replies)
+        public GenericMessage(long id, string text, List<SimpleQuickReply> quick_replies)
         {
             this.recipient = new Recipient(id);
             this.message = new MessageQuickReply(text, quick_replies);
