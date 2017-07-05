@@ -21,13 +21,26 @@ namespace Chatbot_GF.MessengerManager
             activeUsers = new Dictionary<long, User>();
         }
         /// <summary>
-        /// Method to be called when user pushes on "get Started" --> makes a new user in the list + saves his id and timestamp
+        /// Method to be called when user pushes on "get Started" or after
+        /// --> makes a new user in the list + saves his id and timestamp + gives a welcom message
         /// </summary>
         /// <param name="id"></param>
         public void startUser(long id)
         {
             activeUsers.Add(id, new User(id));
             saveUsers(id, DateTime.Now);
+            startSearchingProcedure();
+        }
+
+        private void startSearchingProcedure()
+        {
+            //Jorg hier start je zoekprocedure
+            /*
+             * 1. Welkomsbericht + afbeelding
+             * 2. Vragen of hij wil weten wat er nu bezig is en waar --> alle locaties of 1 locatie of eigen locatie
+            */
+
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -54,9 +67,9 @@ namespace Chatbot_GF.MessengerManager
         public void changeUserState(long id, string payload)
         {
             Console.WriteLine("Stap 1.5");
-            User currentUser = new User(id);   //contains the user object linked to the messengerperson who sends an event
+            User currentUser; ;   //contains the user object linked to the messengerperson who sends an event
 
-            /*if (!activeUsers.ContainsKey(id))
+            if (!activeUsers.ContainsKey(id))
             {
                 currentUser = new User(id);
                 Console.WriteLine("Stap 2");
@@ -64,9 +77,9 @@ namespace Chatbot_GF.MessengerManager
             }
             else{
                 currentUser = activeUsers[id];
-            }*/
+            }
+      
 
-            Console.WriteLine("Stap 3");
             dataDAO.GetEventsHereNow(currentUser,"https://gentsefeesten.stad.gent/api/v1/location/0d5f41fa-c8bc-47e3-aac2-c88fcdb29352", DateTime.Now.AddDays(10).AddHours(14));
 
 
