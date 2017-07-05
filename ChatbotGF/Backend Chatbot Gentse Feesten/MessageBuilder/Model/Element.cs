@@ -7,7 +7,7 @@ namespace Chatbot_GF.MessageBuilder.Model
 {
     public class Element
     {
-        public Element(string title, string image_url, string subtitle, List<Button> buttons, DefaultAction default_action)
+        public Element(string title, string image_url, string subtitle, List<IButton> buttons, DefaultAction default_action)
         {
             this.title = title; // required
             this.image_url = image_url; // not required
@@ -19,6 +19,6 @@ namespace Chatbot_GF.MessageBuilder.Model
         public string image_url { get; set; }
         public string subtitle { get; set; }
         public DefaultAction default_action { get; set; }
-        public List<Button> buttons { get; set; }
+        public List<IButton> buttons { get; set; }
     }
 }
