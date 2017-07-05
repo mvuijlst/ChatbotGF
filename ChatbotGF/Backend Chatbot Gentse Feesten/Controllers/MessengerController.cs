@@ -51,6 +51,7 @@ namespace Chatbot_GF.Controllers
                             */
                             Manager manager = new Manager();
                             manager.startUser(message.sender.id);
+                            //
                         }
                         else
                         {
