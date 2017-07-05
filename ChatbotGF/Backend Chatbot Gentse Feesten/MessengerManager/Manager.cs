@@ -29,20 +29,9 @@ namespace Chatbot_GF.MessengerManager
         {
             activeUsers.Add(id, new User(id));
             saveUsers(id, DateTime.Now);
-            startSearchingProcedure();
         }
 
-        private void startSearchingProcedure()
-        {
-            //Jorg hier start je zoekprocedure
-            /*
-             * 1. Welkomsbericht + afbeelding
-             * 2. Vragen of hij wil weten wat er nu bezig is en waar --> alle locaties of 1 locatie of eigen locatie
-            */
-
-            throw new NotImplementedException();
-        }
-
+        
         /// <summary>
         /// Saves all the users + timestamps for case of emergency + knowing how many users
         /// </summary>
