@@ -19,8 +19,8 @@ namespace Chatbot_GF.MessengerManager
         public void SendWelcomeMessage(long id)
         {
             List<QuickReply> reply = new List<QuickReply>();
-            reply.Add(new QuickReply("text", "Wat gebeurd hier?", "GET_EVENT_HERE_NOW"));
-            GenericMessage message = new GenericMessage(id,"Hallo, mijn naam is Cubje. Wat kan ik voor je doen?",reply);
+            reply.Add(new QuickReply("text", "Wat gebeurt hier?", "GET_EVENT_HERE_NOW"));
+            GenericMessage message = new GenericMessage(id,"Hallo, mijn naam is Cubje. Onderaan zie je een aantal suggesties. Je kan ook altijd opnieuw beginnen door op de knop te drukken.",reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
