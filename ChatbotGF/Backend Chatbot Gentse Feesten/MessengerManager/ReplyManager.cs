@@ -24,5 +24,11 @@ namespace Chatbot_GF.MessengerManager
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
+        public void SendTextMessage(long id, string text)
+        {
+            GenericMessage message = new GenericMessage(id, text);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
+        }
+
     }
 }
