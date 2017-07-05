@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Chatbot_GF.MessengerManager;
 using Chatbot_GF.MessageBuilder.Model;
 using Chatbot_GF.Client;
+using static Chatbot_GF.MessageBuilder.Model.GenericMessage;
 
 namespace Chatbot_GF.Controllers
 {
@@ -95,8 +96,10 @@ namespace Chatbot_GF.Controllers
         {
             // welcome message, hardcode in GenericMessage
             GenericMessage welcomeMessage = new GenericMessage(id);
+            GenericMessage welcomeImage = new GenericMessage(id, new Attachment("image", new Payload("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
             IMessengerApi api = RestClientBuilder.GetMessengerApi();
-            String result = api.SendMessageToUser(welcomeMessage).Result;
+            String resultWelcomeMessage = api.SendMessageToUser(welcomeMessage).Result;
+            String resultWecomeImage = api.SendMessageToUser(welcomeImage).Result;
         }
     }
 }
