@@ -1,4 +1,6 @@
-﻿using Chatbot_GF.Controllers;
+﻿using Chatbot_GF.Client;
+using Chatbot_GF.Controllers;
+using Chatbot_GF.MessageBuilder.Model;
 using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace Chatbot_GF.Data
 {
     public class RemoteDataManager
     {
-        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image ?image. } ";
+        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?url schema:image ?image. } ";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()
         {
@@ -69,29 +71,54 @@ namespace Chatbot_GF.Data
 
         public void callback(SparqlResultSet results, Object u)
         {
+            System.Console.WriteLine("stap 4.1");
             User user = (User)u;
-            foreach (SparqlResult result in results)
+            System.Console.WriteLine("stap 4.2");
+            int teller = 0;
+            System.Console.WriteLine(results.ToList().Count);
+            /*
+            foreach (SparqlResult res in results)
             {
-                System.Console.WriteLine(result.Variables.ToString());
-                foreach (string s in result.Variables)
+                teller++;
+                //System.Console.WriteLine(teller);
+                try
+                {
+                    System.Console.WriteLine(res.Variables.ToString());
+                    
+                foreach (string s in res.Variables)
                 {
                     System.Console.WriteLine(s);
                 }
-                Event e = new Event();
-                e.name.nl = result["name"].ToString();
-                e.startDate = result["startdate"].ToString();
-                e.endDate = result["enddate"].ToString();
-                e.description.nl = result["description"].ToString();
-                e.organizer = result["organizer"].ToString();
-                e.image = (Image)result["image"];
-
-                var json = new JsonBuilder(user.id,e.name.nl);
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-                MessengerController.PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json.Json);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-
-
-            }
+                 Event e = new Event();
+                 e.name.nl = res["name"].ToString();
+                 e.startDate = res["startdate"].ToString();
+                 e.endDate = res["enddate"].ToString();
+                 e.description.nl = res["description"].ToString();
+                 e.organizer = res["organizer"].ToString();
+                if (res["image"] != null)
+                {
+                    e.image = new Image { url = res["image"].ToString() };
+                }
+                else
+                {
+                    e.image = new Image { url = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017" };
+                }
+                 
+               
+                System.Console.WriteLine("stap 5");
+                System.Console.WriteLine(user.id);
+                GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
+                IMessengerApi api = RestClientBuilder.GetMessengerApi();
+                System.Console.WriteLine("stap 6");
+                String result = api.SendMessageToUser(toSend).Result;
+                System.Console.WriteLine("stap 7");
+                System.Console.WriteLine(result);
+                } catch(Exception ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
+                
+            }*/
         }
 
 

@@ -17,7 +17,7 @@ namespace Chatbot_GF.Model
         public User(long messId)
         {
             state = SearchState.START;
-            messId = id;
+            id = messId;
             dates = new List<DateTime>();
             dates.Add(DateTime.Now);
             locations = new List<string>();
