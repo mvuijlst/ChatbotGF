@@ -14,9 +14,10 @@ namespace Chatbot_GF.MessengerManager
     public class Manager
     {
         public static Dictionary<String, String> locations_WithURL;
+        private ReplyManager reply;
         public Dictionary<long, User> activeUsers;
         private RemoteDataManager dataDAO;
-        private string[] locaties = { "BAUDELOHOF", "BEVERHOUTPLEIN/PLACE MUSETTE", "SINTJACOBS", "CENTRUM", "STADSHAL", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG"};
+        private string[] locaties = { "BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS", "CENTRUM", "STADSHAL", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG"};
         private string[] urls =
         {
             "https://gentsefeesten.stad.gent/api/v1/location/ffc36b40-f30a-4f4c-9512-ee1367c45fc3",
@@ -43,9 +44,9 @@ namespace Chatbot_GF.MessengerManager
             dataDAO = new RemoteDataManager();
             activeUsers = new Dictionary<long, User>();
             locations_WithURL = new Dictionary<String, String>();
-           
+            reply = new ReplyManager();
             //nog te verplaatsen naar propertiesbestand!
-            for(int i=0; i<locaties.Count(); i++)
+            for (int i=0; i<locaties.Count(); i++)
             {
                 locations_WithURL.Add(locaties[i], urls[i]);
             }
@@ -59,7 +60,7 @@ namespace Chatbot_GF.MessengerManager
         {
             activeUsers.Add(id, new User(id));
             saveUsers(id, DateTime.Now);
-            ReplyManager reply = new ReplyManager();
+
             reply.SendWelcomeMessage(id);
         }
 
@@ -87,7 +88,7 @@ namespace Chatbot_GF.MessengerManager
         /// <param name="id"></param>
         public void changeUserState(long id, string payload)
         {
-            User currentUser; ;   //contains the user object linked to the messengerperson who sends an event
+            User currentUser;  //contains the user object linked to the messengerperson who sends an event
 
             if (!activeUsers.ContainsKey(id))
             {
@@ -125,7 +126,7 @@ namespace Chatbot_GF.MessengerManager
         private void searchResults(User user)
         {
             //hier effectieve zoekmethode uitvoeren + gebruiker verwijderen uit active lijst           
-            dataDAO.GetEventsHereNow(user, user.location, DateTime.Now.AddDays(10).AddHours(12));
+            dataDAO.GetEventsHereNow(user);
             activeUsers.Remove(user.id);
            
         }

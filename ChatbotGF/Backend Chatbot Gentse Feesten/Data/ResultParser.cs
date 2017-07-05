@@ -20,6 +20,12 @@ namespace Chatbot_GF.Data
                 {
                     switch (key)
                     {
+                        case "sub":
+                            e.id = res[key].ToString();
+                            break;
+                        case "url":
+                            e.url = res[key].ToString();
+                            break;
                         case "name":
                             e.name.nl = normalizeString(res[key].ToString());
                             break;

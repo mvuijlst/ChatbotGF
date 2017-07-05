@@ -14,7 +14,7 @@ namespace Chatbot_GF.Data
 {
     public class RemoteDataManager
     {
-        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image/schema:url ?image. } ";
+        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:url ?url. ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image/schema:url ?image. } ";
         private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()
@@ -33,11 +33,10 @@ namespace Chatbot_GF.Data
 
         }
 
-        public void GetEventsHereNow(User user, String location, DateTime time)
+        public void GetEventsHereNow(User user)
         {
-            System.Console.WriteLine("Stap 4");
-            string formattedTime = time.ToString("yyyy-MM-ddTHH:mm:sszzz");
-            string locationfilter = "str(?location) = \""+ location + "\"";
+            string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
+            string locationfilter = "str(?location) = \""+ user.location + "\"";
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
 

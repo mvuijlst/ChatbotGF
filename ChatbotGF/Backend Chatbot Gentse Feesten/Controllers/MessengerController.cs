@@ -18,6 +18,14 @@ namespace Chatbot_GF.Controllers
     [Route("api/[controller]")]
     public class MessengerController : Controller
     {
+        private MessageHandler mhandler;
+        private PayloadHandler phandler;
+
+        public MessengerController()
+        {
+            mhandler = new MessageHandler();
+            phandler = new PayloadHandler();
+        }
 
         [HttpGet]
         public ActionResult Get()
@@ -44,25 +52,14 @@ namespace Chatbot_GF.Controllers
 
                     foreach (var message in entry.messaging)
                     {
-                        if (message.postback != null && message.postback.payload == "GET_STARTED_PAYLOAD")
+                        if (message.postback != null)
                         {
-                            /*
-                            Manager manager = new Manager();
-                            manager.changeUserState(message.sender.id, message.postback.payload);
-                            */
-                            Manager manager = new Manager();
-                            manager.startUser(message.sender.id);
+                            phandler.handle(message);
 
                         }
                         else
                         {
-                            if (string.IsNullOrWhiteSpace(message?.message?.text))
-                                continue;
-                            GenericMessage toSend = new GenericMessage(message.sender.id, message.message.text);
-                            IMessengerApi api = RestClientBuilder.GetMessengerApi();
-
-                            String result = api.SendMessageToUser(toSend).Result;
-                            System.Console.WriteLine(result);
+                            mhandler.ReplyRecieved(message);
                         }
                     }
                 }
