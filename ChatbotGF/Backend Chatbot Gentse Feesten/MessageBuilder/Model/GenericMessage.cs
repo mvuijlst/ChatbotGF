@@ -27,7 +27,7 @@ namespace Chatbot_GF.MessageBuilder.Model
         public GenericMessage(long id)
         {
             this.recipient = new Recipient(id);
-            this.message = new Message("Welkom!");
+            this.message = new Message("Test bericht");
         }
 
         public class Recipient
@@ -88,6 +88,11 @@ namespace Chatbot_GF.MessageBuilder.Model
                 this.sharable = sharable; // not required
                 this.image_aspect_ratio = image_aspect_ratio; // not required
             }
+            public Payload(string url)
+            {
+                this.url = url;
+            }
+            public string url { get; set; }
             public string template_type { get; set; }
             public List<Element> elements { get; set; }
             public bool sharable { get; set; }

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Chatbot_GF.MessengerManager;
 using Chatbot_GF.MessageBuilder.Model;
 using Chatbot_GF.Client;
+using static Chatbot_GF.MessageBuilder.Model.GenericMessage;
 
 namespace Chatbot_GF.Controllers
 {
@@ -51,7 +52,8 @@ namespace Chatbot_GF.Controllers
                             */
                             Manager manager = new Manager();
                             manager.startUser(message.sender.id);
-                            //
+                            startSearch(message.sender.id);
+
                         }
                         else
                         {
@@ -89,6 +91,16 @@ namespace Chatbot_GF.Controllers
                 return sr.ReadToEnd();
             }
         }
+        
 
+        public void startSearch(long id)
+        {
+            // welcome message, hardcode in GenericMessage
+            GenericMessage welcomeMessage = new GenericMessage(id);
+            GenericMessage welcomeImage = new GenericMessage(id, new Attachment("image", new Payload("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
+            IMessengerApi api = RestClientBuilder.GetMessengerApi();
+            String resultWelcomeMessage = api.SendMessageToUser(welcomeMessage).Result;
+            String resultWecomeImage = api.SendMessageToUser(welcomeImage).Result;
+        }
     }
 }

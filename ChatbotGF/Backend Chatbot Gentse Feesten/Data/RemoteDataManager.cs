@@ -14,7 +14,7 @@ namespace Chatbot_GF.Data
 {
     public class RemoteDataManager
     {
-        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?url schema:image ?image. } ";
+        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image ?image. } ";
         private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()
@@ -75,29 +75,11 @@ namespace Chatbot_GF.Data
             User user = (User)u;
    
             System.Console.WriteLine(results.ToList().Count);
-            /*
+            
             foreach (SparqlResult res in results)
             {
-                
-                try
-                {
-                    System.Console.WriteLine(res.Variables.ToString());
-                    
-               
-                 Event e = new Event();
-                 e.name.nl = res["name"].ToString();
-                 e.startDate = res["startdate"].ToString();
-                 e.endDate = res["enddate"].ToString();
-                 e.description.nl = res["description"].ToString();
-                 e.organizer = res["organizer"].ToString();
-                if (res["image"] != null)
-                {
-                    e.image = new Image { url = res["image"].ToString() };
-                }
-                else
-                {
-                    e.image = new Image { url = BASE_IMG  };
-                }
+
+                Event e = ResultParser.GetEvent(res);
                  
                 GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
                 IMessengerApi api = RestClientBuilder.GetMessengerApi();
@@ -105,12 +87,8 @@ namespace Chatbot_GF.Data
                 String result = api.SendMessageToUser(toSend).Result;
                 System.Console.WriteLine("stap 7");
                 System.Console.WriteLine(result);
-                } catch(Exception ex)
-                {
-                    System.Console.WriteLine(ex.Message);
-                }
-                
-            }*/
+                                
+            }
         }
 
 
