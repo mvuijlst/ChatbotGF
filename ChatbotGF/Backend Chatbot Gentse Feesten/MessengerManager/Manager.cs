@@ -12,8 +12,14 @@ namespace Chatbot_GF.MessengerManager
 
     public class Manager
     {
-        public Dictionary<long, User> activeUsers = new Dictionary<long, User>();
-        private RemoteDataManager dataDAO = new RemoteDataManager();
+        public Dictionary<long, User> activeUsers;
+        private RemoteDataManager dataDAO;
+
+        public Manager()
+        {
+            dataDAO = new RemoteDataManager();
+            activeUsers = new Dictionary<long, User>();
+        }
         /// <summary>
         /// Method to be called when user pushes on "get Started" --> makes a new user in the list + saves his id and timestamp
         /// </summary>
@@ -47,16 +53,20 @@ namespace Chatbot_GF.MessengerManager
         /// <param name="id"></param>
         public void changeUserState(long id, string payload)
         {
-            User currentUser;   //contains the user object linked to the messengerperson who sends an event
-            if (!activeUsers.ContainsKey(id))
+            Console.WriteLine("Stap 1.5");
+            User currentUser = new User(id);   //contains the user object linked to the messengerperson who sends an event
+
+            /*if (!activeUsers.ContainsKey(id))
             {
                 currentUser = new User(id);
+                Console.WriteLine("Stap 2");
                 activeUsers.Add(id, currentUser);
             }
             else{
                 currentUser = activeUsers[id];
-            }
+            }*/
 
+            Console.WriteLine("Stap 3");
             dataDAO.GetEventsHereNow(currentUser,"https://gentsefeesten.stad.gent/api/v1/location/0d5f41fa-c8bc-47e3-aac2-c88fcdb29352", DateTime.Now.AddDays(10).AddHours(8));
 
 
