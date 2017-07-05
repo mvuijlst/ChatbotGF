@@ -9,6 +9,8 @@ using System.Net;
 using Chatbot_GF.BotData;
 using System.Diagnostics;
 using Chatbot_GF.MessengerManager;
+using Chatbot_GF.MessageBuilder.Model;
+using Chatbot_GF.Client;
 
 namespace Chatbot_GF.Controllers
 {
@@ -48,16 +50,17 @@ namespace Chatbot_GF.Controllers
                             //String es = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", jsn.Json).Result;
                             Manager manager = new Manager();
                             Console.WriteLine("Stap 1");
-                            manager.changeUserState(long.Parse(message.sender.id), message.postback.payload);
+                            manager.changeUserState(message.sender.id, message.postback.payload);
                         }
                         else
                         {
                             if (string.IsNullOrWhiteSpace(message?.message?.text))
                                 continue;
+                            GenericMessage toSend = new GenericMessage(message.sender.id, message.message.text);
+                            IMessengerApi api = RestClientBuilder.GetMessengerApi();
 
-                            var json = new JsonBuilder(message);
-                            Console.Write(json);
-                            String res = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", json.Json).Result;
+                            String result = api.SendMessageToUser(toSend).Result;
+                            System.Console.WriteLine(result);
                         }
                     }
                 }

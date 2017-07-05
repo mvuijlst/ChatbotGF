@@ -15,12 +15,12 @@ namespace Chatbot_GF.BotData
 
         public class Sender
         {
-            public string id { get; set; }
+            public long id { get; set; }
         }
 
         public class Recipient
         {
-            public string id { get; set; }
+            public long id { get; set; }
         }
 
         public class Messaging
