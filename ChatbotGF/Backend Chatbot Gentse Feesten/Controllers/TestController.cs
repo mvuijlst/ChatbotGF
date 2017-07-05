@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+
+
+using Chatbot_GF.MessageBuilder.Factories;
+
+using Chatbot_GF.Model;
 using Microsoft.AspNetCore.Mvc;
-using Chatbot_GF.Data;
-using Chatbot_GF.MessageBuilder.Model;
-using static Chatbot_GF.MessageBuilder.Model.GenericMessage;
+using System.Collections.Generic;
 
 namespace Chatbot_GF.Controllers
 {
@@ -18,9 +16,19 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            GenericMessage welcomeImage = new GenericMessage(1333062916810232, new Attachment("image", new PayloadImage("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
-
-            return Ok(welcomeImage);
+            var name = new Name();
+            var des = new Description();
+            name.nl = "Zuid";
+            des.nl = "Wow";
+            Event event1 = new Event
+            {
+                name = name,
+                description = des
+            };
+            event1.organizer = "iemand";
+            List<Event> events = new List<Event>();
+            events.Add(event1);
+            return Ok(CarouselFactory.makeCarousel(1333062916810232, events));
         }
     }
 }
