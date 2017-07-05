@@ -53,6 +53,7 @@ namespace Chatbot_GF.BotData
         }
         public class Postback
         {
+
             public string payload { get; set; }
         }
     }

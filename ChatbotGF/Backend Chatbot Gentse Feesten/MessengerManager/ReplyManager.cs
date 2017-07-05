@@ -32,17 +32,24 @@ namespace Chatbot_GF.MessengerManager
 
         public void SendLocationQuery(long id)
         {
-             string[] locaties = { "BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS", "CENTRUM", "STADSHAL", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
-
-        List<QuickReply> reply = new List<QuickReply>();
-            foreach(string loc in locaties)
+            string[] locaties = {/* "BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS", "CENTRUM", */"STADSHAL", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
+            try
             {
-                string l = loc.ToLowerInvariant();
-                reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + loc));
+                List<QuickReply> reply = new List<QuickReply>();
+                foreach (string loc in locaties)
+                {
+                    string l = loc.ToLowerInvariant();
+                    reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + loc));
+
+                }
                 GenericMessage message = new GenericMessage(id, "Welke locatie wil je bezoeken?", reply);
+
                 Console.WriteLine(api.SendMessageToUser(message).Result);
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
             }
-            
+
         }
 
     }

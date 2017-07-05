@@ -57,6 +57,12 @@ namespace Chatbot_GF.Controllers
                             phandler.handle(message);
 
                         }
+                        else if (!string.IsNullOrWhiteSpace(message?.message?.quick_reply?.payload))
+                        {
+                            //set the quick reply payload as the message payload
+                            message.postback = new Postback { payload = message.message.quick_reply.payload };
+                            phandler.handle(message);
+                        }
                         else
                         {
                             mhandler.ReplyRecieved(message);

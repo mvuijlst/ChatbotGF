@@ -18,9 +18,19 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            GenericMessage welcomeImage = new GenericMessage(1333062916810232, new Attachment("image", new PayloadImage("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
+            string[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM",  "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
 
-            return Ok(welcomeImage);
+            {
+                List<QuickReply> reply = new List<QuickReply>();
+                foreach (string loc in locaties)
+                {
+                    string l = loc.ToLowerInvariant();
+                    reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + loc));
+
+                }
+                GenericMessage message = new GenericMessage(1333062916810232, "Welke locatie wil je bezoeken?", reply);
+                return Ok(message);
+            }
         }
     }
 }
