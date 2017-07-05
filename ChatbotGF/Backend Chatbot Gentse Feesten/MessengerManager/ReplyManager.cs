@@ -18,7 +18,7 @@ namespace Chatbot_GF.MessengerManager
 
         public void SendWelcomeMessage(long id)
         {
-            List<QuickReply> reply = new List<QuickReply>();
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Wat gebeurt hier?", "GET_EVENT_HERE_NOW"));
             GenericMessage message = new GenericMessage(id,"Hallo, mijn naam is Cubje. Onderaan zie je een aantal suggesties. Je kan ook altijd opnieuw beginnen door op de knop te drukken.",reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
@@ -35,7 +35,7 @@ namespace Chatbot_GF.MessengerManager
             string[] locaties = {"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS", "CENTRUM","STADSHAL", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
             try
             {
-                List<QuickReply> reply = new List<QuickReply>();
+                List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
                 for (int i = page * 10; i < (page * 10 + 10); i++)
                 {
                     string l = locaties[i].ToLowerInvariant();

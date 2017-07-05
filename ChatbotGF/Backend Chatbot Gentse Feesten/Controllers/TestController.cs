@@ -1,3 +1,4 @@
+using Chatbot_GF.MessageBuilder.Factories;
 using Chatbot_GF.MessageBuilder.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -12,9 +13,8 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            string[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
-
-            {
+            //tring[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM",  "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
+            /*{
                 List<QuickReply> reply = new List<QuickReply>();
                 foreach (string loc in locaties)
                 {
@@ -24,6 +24,8 @@ namespace Chatbot_GF.Controllers
                 }
                 GenericMessage message = new GenericMessage(1333062916810232, "Welke locatie wil je bezoeken?", reply);
                 return Ok(message);
+            }*/
+            return Ok(LocationFactory.makeLocationButton(1333062916810232));
             }
         }
     }

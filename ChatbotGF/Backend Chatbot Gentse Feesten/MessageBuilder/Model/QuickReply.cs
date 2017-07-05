@@ -5,16 +5,25 @@ using System.Threading.Tasks;
 
 namespace Chatbot_GF.MessageBuilder.Model
 {
-    public class QuickReply
+    public class QuickReply : SimpleQuickReply
     {
-        public QuickReply(string content, string title, string payload)
+        public QuickReply(string content_type, string title, string payload) : base(content_type)
         {
-            this.content_type = content;
             this.title = title;
             this.payload = payload;
         }
-        public string content_type { get; set; }
         public string title { get; set; }
         public string payload { get; set; }
     }
+
+    public class SimpleQuickReply
+    {
+        public SimpleQuickReply(string content_type)
+        {
+            this.content_type = content_type;
+        }
+        public string content_type { get; set; }
+
+    }
+
 }

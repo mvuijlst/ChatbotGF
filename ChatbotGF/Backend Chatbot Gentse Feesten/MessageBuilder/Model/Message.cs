@@ -31,7 +31,7 @@ namespace Chatbot_GF.MessageBuilder.Model
 
     public class MessageQuickReply : IMessage
     {
-        public MessageQuickReply(string text, List<QuickReply> quick_replies)
+        public MessageQuickReply(string text, List<SimpleQuickReply> quick_replies)
         {
             // message with text and buttons
 
@@ -39,6 +39,6 @@ namespace Chatbot_GF.MessageBuilder.Model
             this.quick_replies = quick_replies;
         }
         public string text { get; set; }
-        public List<QuickReply> quick_replies { get; set; }
+        public List<SimpleQuickReply> quick_replies { get; set; }
     }
 }
