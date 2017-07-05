@@ -20,10 +20,27 @@ namespace Chatbot_GF.MessengerManager
 
         public void handle(Messaging message)
         {
+            //payload indicates which category data in messengers has been given
+            int pos = message.postback.payload.IndexOf("-");
+            String category, value;
+            if (pos != -1)
+            {
+                category = message.postback.payload.Substring(0, pos);
+                value = message.postback.payload.Substring(pos + 1);
+            }
+            else
+            {
+                category = message.postback.payload;
+            }
+
+            Console.WriteLine(category);
+
             switch (message.postback.payload)
             {
                 case "GET_STARTED_PAYLOAD":
                     manager.startUser(message.sender.id);
+                    break;
+                case "DEVELOPER_DEFINED_LOCATION":
                     break;
                 default:
                     //do nothing
