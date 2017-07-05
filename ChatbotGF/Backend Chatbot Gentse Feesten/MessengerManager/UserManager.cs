@@ -11,7 +11,7 @@ namespace Chatbot_GF.MessengerManager
     public enum SearchState { START, PROGRESS, READYTO}
    
 
-    public class Manager
+    public class UserManager
     {
         public static Dictionary<String, String> locations_WithURL;
         private ReplyManager reply;
@@ -39,7 +39,7 @@ namespace Chatbot_GF.MessengerManager
 
 
 
-        public Manager()
+        public UserManager()
         {
             dataDAO = new RemoteDataManager();
             activeUsers = new Dictionary<long, User>();
@@ -51,6 +51,8 @@ namespace Chatbot_GF.MessengerManager
                 locations_WithURL.Add(locaties[i], urls[i]);
             }
         }
+
+
         /// <summary>
         /// Method to be called when user pushes on "get Started" or after
         /// --> makes a new user in the list + saves his id and timestamp + gives a welcom message etc
@@ -66,7 +68,7 @@ namespace Chatbot_GF.MessengerManager
 
         
         /// <summary>
-        /// Saves all the users + timestamps for case of emergency + knowing how many users
+        /// Saves all the userid's (app specific) + timestamps for case of emergency + knowing how many users
         /// </summary>
         /// <param name="id"></param>
         /// <param name="stamp"></param>
@@ -74,65 +76,42 @@ namespace Chatbot_GF.MessengerManager
         {
             string path = Path.GetTempFileName();
             string line = "" + id + "\t" + stamp;
-            // This text is a1lways added, making the file longer over time
+            // This text is always added, making the file longer over time
             using (StreamWriter sw = File.AppendText(path))
             {
-                sw.WriteLine("This");
+                sw.WriteLine(line);
             }
 
         }
 
-        /// <summary>
-        /// Method for each event call from messenger
-        /// </summary>
-        /// <param name="id"></param>
-        public void changeUserState(long id, string payload)
+        public void setUserTime(long id, string value)
         {
-            User currentUser;  //contains the user object linked to the messengerperson who sends an event
-
-            if (!activeUsers.ContainsKey(id))
+            User user = activeUsers[id];
+            try
             {
-                currentUser = new User(id);
-                activeUsers.Add(id, currentUser);
-            }
-            else{
-                currentUser = activeUsers[id];
-            }
-
-            //payload indicates which category data in messengers has been given
-            int pos = payload.IndexOf("-");
-            String category = payload.Substring(0,pos);
-            String value = payload.Substring(pos + 1);
-
-            if (category.Equals("DEVELOPER_DEFINED_LOCATION"))
-            { //location button choosed
-                setLocationChoice(currentUser,value);
-                //standaard enkel nu
-            } else if (category.Equals("DEVELOPER_DEFINED_SEARCH")){
-                searchResults(currentUser);
-            } else if (category.Equals("DEVELOPER_DEFINED_TIME"))
+                DateTime dt = DateTime.ParseExact(value, "yyyy-MM-ddTHH:mm:sszzz", null);
+                user.date = DateTime.Now.AddDays(10).AddHours(9);
+            } catch(Exception e)
             {
-                setTimeChoice(currentUser,value);
+                Console.WriteLine(e);
             }
-            
         }
 
-        private void setTimeChoice(User user, string value)
+        public void searchResults(long id)
         {
-            //hier tijd invoeren, voorlopig nog basisuur
-            user.date = DateTime.Now.AddDays(10).AddHours(9);
-        }
-
-        private void searchResults(User user)
-        {
+            //contains the user object linked to the messengerperson who sends an event
+            User user = activeUsers[id];
             //hier effectieve zoekmethode uitvoeren + gebruiker verwijderen uit active lijst           
             dataDAO.GetEventsHereNow(user);
-            activeUsers.Remove(user.id);
+            activeUsers.Remove(id);
            
         }
 
-        private void setLocationChoice(User user,String value)
+        public void setUserLocation(long id,String value)
         {
+            //contains the user object linked to the messengerperson who sends an event
+            User user = activeUsers[id];
+
             // user has clicked on location button: three possibilities
             if (value.Equals("MY_LOCATION"))
             {
@@ -144,6 +123,7 @@ namespace Chatbot_GF.MessengerManager
             {
                 //specific location: use hashmap to get link for request
                 user.location = locations_WithURL[value];
+                dataDAO.GetEventsHereNow(user);
             }
         }
         
