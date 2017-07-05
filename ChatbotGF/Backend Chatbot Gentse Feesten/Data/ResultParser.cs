@@ -35,6 +35,9 @@ namespace Chatbot_GF.Data
                         case "organizer":
                             e.organizer = res[key].ToString();
                             break;
+                        case "image":
+                            e.image = res[key].ToString();
+                            break;
                     }
                 }catch(Exception ex)
                 {
