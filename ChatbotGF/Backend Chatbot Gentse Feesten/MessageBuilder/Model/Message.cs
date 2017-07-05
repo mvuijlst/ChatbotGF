@@ -5,30 +5,39 @@ using System.Threading.Tasks;
 
 namespace Chatbot_GF.MessageBuilder.Model
 {
-    public class Message
+    public interface Message
+    {       
+    }
+
+    public class MessageAttachment
     {
-        public Message(string text, List<QuickReply> quick_replies)
+        public MessageAttachment(Attachment attachment)
         {
-            // message with text and buttons
-            this.text = text;
-            this.quick_replies = quick_replies;
-            this.attachment = null;
+            // for a carousel message
+            this.attachment = attachment;
         }
-        public Message(string text)
+        public Attachment attachment { get; set; }
+    }
+
+    public class MessageText
+    {
+        public MessageText(string text)
         {
             // message with only text
             this.text = text;
-            this.attachment = null;
-            this.quick_replies = null;
         }
-        public Message(Attachment attachment)
+        public string text { get; set; }
+    }
+
+    public class MessageQuickReply
+    {
+        public MessageQuickReply(string text, List<QuickReply> quick_replies)
         {
-            // for a carousel message
-            this.text = null;
-            this.attachment = attachment;
-            this.quick_replies = null;
+            // message with text and buttons
+
+            this.text = text;
+            this.quick_replies = quick_replies;
         }
-        public Attachment attachment { get; set; }
         public string text { get; set; }
         public List<QuickReply> quick_replies { get; set; }
     }
