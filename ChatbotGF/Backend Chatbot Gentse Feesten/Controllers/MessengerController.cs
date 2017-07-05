@@ -45,7 +45,7 @@ namespace Chatbot_GF.Controllers
                     {
                         if (message.postback != null && message.postback.payload == "GET_STARTED_PAYLOAD")
                         {
-                            Console.WriteLine("Stap 0");
+                            //Console.WriteLine("Stap 0");
                             //var jsn = new JsonBuilder(message);
                             //String es = PostRawAsync("https://graph.facebook.com/v2.6/me/messages?access_token=EAADbmmTTQZBkBAGCYtymjKzMGGTr817rNVgsqNMAFxxVZCkrvKN5dkJfj88rhy3onuVwCAziCWPB1sBl3Jf5C6FujRZC1g6lRaRk1yW0M5EQvSQiKLFtkbNAYSqFpRZAsuBDqUXYpQz2K5PwZCopyzC5skFa1e7LOUhEZAdelk2QZDZD", jsn.Json).Result;
                             Manager manager = new Manager();
