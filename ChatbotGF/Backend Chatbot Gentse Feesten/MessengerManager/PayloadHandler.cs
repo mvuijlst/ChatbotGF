@@ -43,7 +43,7 @@ namespace Chatbot_GF.MessengerManager
                 case "DEVELOPER_DEFINED_LOCATION":
                     break;
                 case "GET_EVENT_HERE_NOW":
-                    rmanager.SendLocationQuery(message.sender.id);
+                    rmanager.SendLocationQuery(message.sender.id,0);
                     break;
 
                 default:
