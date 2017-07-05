@@ -98,8 +98,17 @@ namespace Chatbot_GF.Controllers
             GenericMessage welcomeMessage = new GenericMessage(id);
             GenericMessage welcomeImage = new GenericMessage(id, new Attachment("image", new Payload("https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217")));
             IMessengerApi api = RestClientBuilder.GetMessengerApi();
-            String resultWelcomeMessage = api.SendMessageToUser(welcomeMessage).Result;
-            String resultWecomeImage = api.SendMessageToUser(welcomeImage).Result;
+            try
+            {
+                String resultWelcomeMessage = api.SendMessageToUser(welcomeMessage).Result;
+
+                System.Console.WriteLine(api.SendMessageToUser(welcomeImage).Result);
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
         }
     }
 }

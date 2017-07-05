@@ -14,7 +14,7 @@ namespace Chatbot_GF.Data
 {
     public class RemoteDataManager
     {
-        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image ?image. } ";
+        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image/schema:url ?image. } ";
         private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()

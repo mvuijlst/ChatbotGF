@@ -22,12 +22,7 @@ namespace Chatbot_GF.Model
         public string nl { get; set; }
     }
 
-    public class Image
-    {
-        public string url { get; set; }
-        public string thumbnailUrl { get; set; }
-        public string caption { get; set; }
-    }
+   
 
     public class Event
     {
@@ -41,7 +36,7 @@ namespace Chatbot_GF.Model
         public Description description { get; set; }
         public string duration { get; set; }
         public string endDate { get; set; }
-        public Image image { get; set; }
+        public String image { get; set; }
         public IList<string> inLanguage { get; set; }
         public Boolean? isAccessibleForFree { get; set; }
         public IList<string> isPartOf { get; set; }
