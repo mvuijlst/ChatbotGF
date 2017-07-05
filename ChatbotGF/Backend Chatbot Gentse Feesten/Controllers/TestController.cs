@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Chatbot_GF.Data;
 using Chatbot_GF.MessageBuilder.Model;
-using static Chatbot_GF.MessageBuilder.Model.GenericMessage;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Chatbot_GF.Controllers
 {
@@ -31,6 +25,5 @@ namespace Chatbot_GF.Controllers
                 GenericMessage message = new GenericMessage(1333062916810232, "Welke locatie wil je bezoeken?", reply);
                 return Ok(message);
             }
-        }
     }
 }
