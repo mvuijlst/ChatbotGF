@@ -10,39 +10,25 @@ namespace Chatbot_GF.MessageBuilder.Model
         public GenericMessage(long id, string text, List<QuickReply> quick_replies)
         {
             this.recipient = new Recipient(id);
-            this.message = new Message(text, quick_replies);
+            this.message = new MessageQuickReply(text, quick_replies);
         }
 
         public GenericMessage(long id, string text)
         {
             this.recipient = new Recipient(id);
-            this.message = new Message(text);
+            this.message = new MessageText(text);
         }
         public GenericMessage(long id, Attachment attachment)
         {
             this.recipient = new Recipient(id);
-            this.message = new Message(attachment);
+            this.message = new MessageAttachment(attachment);
         }
 
         public GenericMessage(long id)
         {
             this.recipient = new Recipient(id);
             this.message = new Message("Test bericht");
-        }
-
-        
-
-        
-
-        
-
-        
-        
-
-        
-
-        
-
+        }   
         
 
         public Recipient recipient { get; set; }
