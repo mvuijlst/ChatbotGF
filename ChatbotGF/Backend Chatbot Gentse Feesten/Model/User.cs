@@ -9,16 +9,15 @@ namespace Chatbot_GF.Model
     public class User
     {
         public long id { get; set; }                    //Messenger id from user
-        public SearchState state { get; set; }
+        
         public DateTime date { get; set; }
         public string location { get; set; }    //needs to be URL's of the locations
         public IList<string> keywords { get; set; }
 
         public User(long messId)
         {
-            state = SearchState.START;
             id = messId;
-            date = DateTime.Now.AddDays(10).AddHours(3);
+            date = DateTime.Now.AddDays(10).AddHours(7);
             keywords = new List<string>();
         }
 

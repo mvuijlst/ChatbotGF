@@ -13,7 +13,7 @@ namespace Chatbot_GF.MessengerManager
 
         public PayloadHandler()
         {
-            umanager = new UserManager();
+            umanager = UserManager.GetInstance();
             rmanager = new ReplyManager();
             
         }
@@ -43,6 +43,7 @@ namespace Chatbot_GF.MessengerManager
             int pos = payload.IndexOf("-");
             string category = payload.Substring(0, pos);
             string value = payload.Substring(pos + 1);
+            Console.WriteLine(category + " " + value);
             switch (category)
             {
                 case "DEVELOPER_DEFINED_LOCATION":

@@ -71,24 +71,30 @@ namespace Chatbot_GF.Data
 
         public void callback(SparqlResultSet results, Object u)
         {
-            User user = (User)u;
-   
-            System.Console.WriteLine(results.ToList().Count);
-            
-            foreach (SparqlResult res in results)
+            try
             {
+                User user = (User)u;
 
-                Event e = ResultParser.GetEvent(res);
-                 
+                System.Console.WriteLine(results.ToList().Count);
+
+                foreach (SparqlResult res in results)
+                {
+
+                    Event e = ResultParser.GetEvent(res);
 
 
-                GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
-                IMessengerApi api = RestClientBuilder.GetMessengerApi();
-                System.Console.WriteLine("stap 6");
-                String result = api.SendMessageToUser(toSend).Result;
-                System.Console.WriteLine("stap 7");
-                System.Console.WriteLine(result);
-                                
+
+                    GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
+                    IMessengerApi api = RestClientBuilder.GetMessengerApi();
+                    System.Console.WriteLine("stap 6");
+                    String result = api.SendMessageToUser(toSend).Result;
+                    System.Console.WriteLine("stap 7");
+                    System.Console.WriteLine(result);
+
+                }
+            }catch(Exception ex)
+            {
+                System.Console.WriteLine(ex);
             }
         }
 

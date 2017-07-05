@@ -8,11 +8,9 @@ using System.Threading.Tasks;
 
 namespace Chatbot_GF.MessengerManager
 {
-    public enum SearchState { START, PROGRESS, READYTO}
-   
-
     public class UserManager
     {
+        private static UserManager instance;
         public static Dictionary<String, String> locations_WithURL;
         private ReplyManager reply;
         public Dictionary<long, User> activeUsers;
@@ -52,6 +50,15 @@ namespace Chatbot_GF.MessengerManager
             }
         }
 
+        public static UserManager GetInstance()
+        {
+            if(instance == null)
+            {
+                instance = new UserManager();
+            }
+            return instance;
+        }
+
 
         /// <summary>
         /// Method to be called when user pushes on "get Started" or after
@@ -62,7 +69,7 @@ namespace Chatbot_GF.MessengerManager
         {
             activeUsers.Add(id, new User(id));
             saveUsers(id, DateTime.Now);
-
+            Console.WriteLine("Stap 50");
             reply.SendWelcomeMessage(id);
         }
 
@@ -109,21 +116,30 @@ namespace Chatbot_GF.MessengerManager
 
         public void setUserLocation(long id,String value)
         {
-            //contains the user object linked to the messengerperson who sends an event
-            User user = activeUsers[id];
-
-            // user has clicked on location button: three possibilities
-            if (value.Equals("MY_LOCATION"))
+            try
             {
-                //eigen locatie bepalen en toevoegen met afstandsformule enzovoort
-                //voorlopig hardcodering vlasmarkt als locatie
-                user.location = locations_WithURL["VLASMARKT"];
-            }
-            else
+                Console.WriteLine("stap 98");
+                //contains the user object linked to the messengerperson who sends an event
+                User user = activeUsers[id];
+                Console.WriteLine("stap 98.5");
+                // user has clicked on location button: three possibilities
+                if (value.Equals("MY_LOCATION"))
+                {
+                    //eigen locatie bepalen en toevoegen met afstandsformule enzovoort
+                    //voorlopig hardcodering vlasmarkt als locatie
+                    user.location = locations_WithURL["VLASMARKT"];
+                }
+                else
+                {
+                    Console.WriteLine("stap 99");
+                    //specific location: use hashmap to get link for request
+                    user.location = locations_WithURL[value];
+                    Console.WriteLine("stap 100");
+                    dataDAO.GetEventsHereNow(user);
+                }
+            }catch(Exception ex)
             {
-                //specific location: use hashmap to get link for request
-                user.location = locations_WithURL[value];
-                dataDAO.GetEventsHereNow(user);
+                Console.WriteLine(ex);
             }
         }
         
