@@ -26,7 +26,7 @@ namespace Chatbot_GF.MessengerManager
                     umanager.startUser(message.sender.id);
                     break;
                 case "GET_EVENT_HERE_NOW":
-                    rmanager.SendLocationQuery(message.sender.id);
+                    rmanager.SendLocationQuery(message.sender.id,0);
                     break;
 
                 default:
