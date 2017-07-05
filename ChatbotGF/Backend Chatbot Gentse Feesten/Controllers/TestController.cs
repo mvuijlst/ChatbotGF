@@ -14,7 +14,6 @@ namespace Chatbot_GF.Controllers
         public ActionResult Get()
         {
             //tring[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM",  "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
-
             /*{
                 List<QuickReply> reply = new List<QuickReply>();
                 foreach (string loc in locaties)
@@ -25,8 +24,12 @@ namespace Chatbot_GF.Controllers
                 }
                 GenericMessage message = new GenericMessage(1333062916810232, "Welke locatie wil je bezoeken?", reply);
                 return Ok(message);
+<<<<<<< HEAD
             }*/
             return Ok(LocationFactory.makeLocationButton(1333062916810232));
+=======
+            }
+>>>>>>> b580c6c290f14f050b6c0027ee9019945f09fdb6
         }
     }
 }
