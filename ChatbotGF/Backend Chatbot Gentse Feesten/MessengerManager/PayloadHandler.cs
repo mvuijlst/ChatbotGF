@@ -8,46 +8,52 @@ namespace Chatbot_GF.MessengerManager
 {
     public class PayloadHandler
     {
-        private Manager manager;
+        private UserManager umanager;
         private ReplyManager rmanager;
 
         public PayloadHandler()
         {
-            manager = new Manager();
+            umanager = new UserManager();
             rmanager = new ReplyManager();
             
         }
 
         public void handle(Messaging message)
         {
-            //payload indicates which category data in messengers has been given
-            int pos = message.postback.payload.IndexOf("-");
-            String category, value;
-            if (pos != -1)
-            {
-                category = message.postback.payload.Substring(0, pos);
-                value = message.postback.payload.Substring(pos + 1);
-            }
-            else
-            {
-                category = message.postback.payload;
-            }
-
-            Console.WriteLine(category);
-
             switch (message.postback.payload)
             {
                 case "GET_STARTED_PAYLOAD":
-                    manager.startUser(message.sender.id);
-                    break;
-                case "DEVELOPER_DEFINED_LOCATION":
+                    umanager.startUser(message.sender.id);
                     break;
                 case "GET_EVENT_HERE_NOW":
                     rmanager.SendLocationQuery(message.sender.id);
                     break;
 
                 default:
-                    //do nothing
+                    //contains information for user
+                    handleInformation(message.sender.id, message.postback.payload);
+                    break;
+            }
+
+        }
+
+        private void handleInformation(long id, string payload)
+        {
+            //payload indicates which category data in messengers has been given
+            int pos = payload.IndexOf("-");
+            string category = payload.Substring(0, pos);
+            string value = payload.Substring(pos + 1);
+            switch (category)
+            {
+                case "DEVELOPER_DEFINED_LOCATION":
+                    umanager.setLocationChoice(id, value);
+                    break;
+                case "GET_EVENT_HERE_NOW":
+                    
+                    break;
+
+                default:
+                   //do nothing
                     break;
             }
 
