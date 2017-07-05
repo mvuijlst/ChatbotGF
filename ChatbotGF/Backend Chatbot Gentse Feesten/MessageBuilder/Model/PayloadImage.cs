@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Chatbot_GF.MessageBuilder.Model
 {
-    public class PayloadImage : Payload
+    public class PayloadImage : IPayload
     {
         public PayloadImage(string url)
         {

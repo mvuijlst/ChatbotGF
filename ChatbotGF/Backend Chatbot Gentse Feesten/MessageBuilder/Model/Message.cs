@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Chatbot_GF.MessageBuilder.Model
 {
-    public interface Message
+    public interface IMessage
     {       
     }
 
-    public class MessageAttachment
+    public class MessageAttachment :IMessage
     {
         public MessageAttachment(Attachment attachment)
         {
@@ -19,7 +19,7 @@ namespace Chatbot_GF.MessageBuilder.Model
         public Attachment attachment { get; set; }
     }
 
-    public class MessageText
+    public class MessageText : IMessage
     {
         public MessageText(string text)
         {
@@ -29,7 +29,7 @@ namespace Chatbot_GF.MessageBuilder.Model
         public string text { get; set; }
     }
 
-    public class MessageQuickReply
+    public class MessageQuickReply : IMessage
     {
         public MessageQuickReply(string text, List<QuickReply> quick_replies)
         {
