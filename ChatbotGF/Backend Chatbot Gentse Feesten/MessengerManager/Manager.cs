@@ -33,6 +33,8 @@ namespace Chatbot_GF.MessengerManager
         {
             activeUsers.Add(id, new User(id));
             saveUsers(id, DateTime.Now);
+            ReplyManager reply = new ReplyManager();
+            reply.SendWelcomeMessage(id);
         }
 
         
