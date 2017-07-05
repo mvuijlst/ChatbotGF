@@ -18,7 +18,7 @@ namespace Chatbot_GF.Model
         {
             state = SearchState.START;
             id = messId;
-            date = DateTime.Now.AddDays(10).AddHours(9);
+            date = DateTime.Now.AddDays(10).AddHours(3);
             keywords = new List<string>();
         }
 
