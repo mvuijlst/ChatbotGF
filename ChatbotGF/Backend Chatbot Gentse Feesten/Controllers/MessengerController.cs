@@ -45,9 +45,12 @@ namespace Chatbot_GF.Controllers
                     {
                         if (message.postback != null && message.postback.payload == "GET_STARTED_PAYLOAD")
                         {
+                            /*
                             Manager manager = new Manager();
-                            Console.WriteLine("Stap 1");
                             manager.changeUserState(message.sender.id, message.postback.payload);
+                            */
+                            Manager manager = new Manager();
+                            manager.startUser(message.sender.id);
                         }
                         else
                         {
