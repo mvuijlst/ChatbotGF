@@ -24,13 +24,6 @@ namespace Chatbot_GF.MessageBuilder.Model
             this.message = new MessageAttachment(attachment);
         }
 
-        public GenericMessage(long id)
-        {
-            this.recipient = new Recipient(id);
-            this.message = new Message("Test bericht");
-        }   
-        
-
         public Recipient recipient { get; set; }
         public IMessage message { get; set; }
 

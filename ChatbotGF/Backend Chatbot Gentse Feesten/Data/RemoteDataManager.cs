@@ -81,6 +81,8 @@ namespace Chatbot_GF.Data
 
                 Event e = ResultParser.GetEvent(res);
                  
+
+
                 GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
                 IMessengerApi api = RestClientBuilder.GetMessengerApi();
                 System.Console.WriteLine("stap 6");
