@@ -39,33 +39,7 @@ namespace Chatbot_GF.MessageBuilder.Model
             public long id { get; set; }
         }
 
-        public class Message
-        {   
-            public Message(string text, List<QuickReply> quick_replies)
-            {
-                // message with text and buttons
-                this.text = text;
-                this.quick_replies = quick_replies;
-                this.attachment = null;
-            }
-            public Message(string text)
-            {
-                // message with only text
-                this.text = text;
-                this.attachment = null;
-                this.quick_replies = null;
-            }
-            public Message(Attachment attachment)
-            {
-                // for a carousel message
-                this.text = null;
-                this.attachment = attachment;
-                this.quick_replies = null;
-            }
-            public Attachment attachment { get; set; }
-            public string text { get; set; }
-            public List<QuickReply> quick_replies { get; set; }
-        }
+        
 
         public class Attachment
         {
@@ -81,22 +55,30 @@ namespace Chatbot_GF.MessageBuilder.Model
 
         public class Payload
         {
-            public Payload(string template_type, List<Element> elements, bool sharable, string image_aspect_ratio)
-            {
-                this.template_type = template_type; // required
-                this.elements = elements; // required
-                this.sharable = sharable; // not required
-                this.image_aspect_ratio = image_aspect_ratio; // not required
-            }
-            public Payload(string url)
-            {
-                this.url = url;
-            }
-            public string url { get; set; }
+        }
+
+        public class PayloadMessage : Payload
+        {
+            public PayloadMessage(string template_type, List<Element> elements, bool sharable, string image_aspect_ratio)
+                {
+                    this.template_type = template_type; // required
+                    this.elements = elements; // required
+                    this.sharable = sharable; // not required
+                    this.image_aspect_ratio = image_aspect_ratio; // not required
+                }
             public string template_type { get; set; }
             public List<Element> elements { get; set; }
             public bool sharable { get; set; }
             public string image_aspect_ratio { get; set; }
+        }
+        
+        public class PayloadImage : Payload
+        {
+            public PayloadImage(string url)
+            {
+                this.url = url;
+            }
+            public string url { get; set; }
         }
 
         public class Element
