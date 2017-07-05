@@ -15,6 +15,7 @@ namespace Chatbot_GF.Data
     public class RemoteDataManager
     {
         private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?url schema:image ?image. } ";
+        private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()
         {
@@ -71,24 +72,18 @@ namespace Chatbot_GF.Data
 
         public void callback(SparqlResultSet results, Object u)
         {
-            System.Console.WriteLine("stap 4.1");
             User user = (User)u;
-            System.Console.WriteLine("stap 4.2");
-            int teller = 0;
+   
             System.Console.WriteLine(results.ToList().Count);
             /*
             foreach (SparqlResult res in results)
             {
-                teller++;
-                //System.Console.WriteLine(teller);
+                
                 try
                 {
                     System.Console.WriteLine(res.Variables.ToString());
                     
-                foreach (string s in res.Variables)
-                {
-                    System.Console.WriteLine(s);
-                }
+               
                  Event e = new Event();
                  e.name.nl = res["name"].ToString();
                  e.startDate = res["startdate"].ToString();
@@ -101,12 +96,9 @@ namespace Chatbot_GF.Data
                 }
                 else
                 {
-                    e.image = new Image { url = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017" };
+                    e.image = new Image { url = BASE_IMG  };
                 }
                  
-               
-                System.Console.WriteLine("stap 5");
-                System.Console.WriteLine(user.id);
                 GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
                 IMessengerApi api = RestClientBuilder.GetMessengerApi();
                 System.Console.WriteLine("stap 6");
