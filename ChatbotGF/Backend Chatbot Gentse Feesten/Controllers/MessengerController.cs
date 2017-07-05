@@ -51,6 +51,7 @@ namespace Chatbot_GF.Controllers
                             */
                             Manager manager = new Manager();
                             manager.startUser(message.sender.id);
+                            startSearch(message.sender.id);
                         }
                         else
                         {
@@ -88,6 +89,14 @@ namespace Chatbot_GF.Controllers
                 return sr.ReadToEnd();
             }
         }
+        
 
+        public void startSearch(long id)
+        {
+            // welcome message, hardcode in GenericMessage
+            GenericMessage welcomeMessage = new GenericMessage(id);
+            IMessengerApi api = RestClientBuilder.GetMessengerApi();
+            String result = api.SendMessageToUser(welcomeMessage).Result;
+        }
     }
 }
