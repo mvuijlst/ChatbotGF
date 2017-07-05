@@ -20,6 +20,8 @@ namespace Chatbot_GF.Model
             messId = id;
             dates = new List<DateTime>();
             dates.Add(DateTime.Now);
+            locations = new List<string>();
+            keywords = new List<string>();
         }
 
 
