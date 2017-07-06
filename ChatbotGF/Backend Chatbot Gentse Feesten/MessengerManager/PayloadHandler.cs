@@ -26,7 +26,7 @@ namespace Chatbot_GF.MessengerManager
                     umanager.startUser(message.sender.id);
                     break;
                 case "GET_EVENT_HERE_NOW":
-                    rmanager.SendLocationQuery(message.sender.id,0);
+                    
                     break;
                 case "DEVELOPER_DEFINED_SEARCHFALSE":
                     rmanager.SendInfoForEnding(message.sender.id);
@@ -48,6 +48,9 @@ namespace Chatbot_GF.MessengerManager
             Console.WriteLine(category + " " + value);
             switch (category)
             {
+                case "GET_EVENT_HERE_NOW":
+                    rmanager.SendLocationQuery(id, int.Parse(value));
+                    break;
                 case "DEVELOPER_DEFINED_LOCATION":
                     umanager.setUserLocation(id, value);
                     break;

@@ -55,26 +55,26 @@ namespace Chatbot_GF.Controllers
                         //Check current message if text is recognized and sets corresponding payload
                         Messaging currentMessage = mhandler.MessageRecognized(message);
 
-                        if (message.postback != null)
+                        if (currentMessage.postback != null)
                         {
                             phandler.handle(message);
 
                         }
-                        else if (!string.IsNullOrWhiteSpace(message?.message?.quick_reply?.payload))
+                        else if (!string.IsNullOrWhiteSpace(currentMessage?.message?.quick_reply?.payload))
                         {
                             //set the quick reply payload as the message payload
-                            message.postback = new Postback { payload = message.message.quick_reply.payload };
+                            currentMessage.postback = new Postback { payload = message.message.quick_reply.payload };
                             phandler.handle(message);
                         }
-                        else if(message?.message?.attachments != null)
+                        else if(currentMessage?.message?.attachments != null)
                         {
-                            MessengerData.Attachment locationAtt = message?.message?.attachments[0];
+                            MessengerData.Attachment locationAtt = currentMessage?.message?.attachments[0];
                             Coordinates coords = locationAtt.payload?.coordinates;
                             
                         }
                         else
                         {
-                            mhandler.ReplyRecieved(message);
+                            mhandler.ReplyRecieved(currentMessage);
                         }
                     }
                 }

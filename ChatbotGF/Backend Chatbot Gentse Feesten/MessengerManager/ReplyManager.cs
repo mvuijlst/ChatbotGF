@@ -1,4 +1,5 @@
 ﻿using Chatbot_GF.Client;
+using Chatbot_GF.Data;
 using Chatbot_GF.MessageBuilder.Model;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Chatbot_GF.MessengerManager
         public void SendWelcomeMessage(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", "Wat gebeurt hier?", "GET_EVENT_HERE_NOW"));
+            reply.Add(new QuickReply("text", "Wat gebeurt hier?", "GET_EVENT_HERE_NOW-0"));
             reply.Add(new QuickReply("text", "Wat gebeurt nu?", "DEVELOPER_DEFINED_LOCATION-ALL"));
             GenericMessage message = new GenericMessage(id,"Hallo. Onderaan zie je een aantal suggesties. Je kan ook altijd opnieuw beginnen door op de knop te drukken.",reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
@@ -33,15 +34,21 @@ namespace Chatbot_GF.MessengerManager
 
         public void SendLocationQuery(long id, int page)
         {
-            string[] locaties = {"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS", "CENTRUM","STADSHAL", "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
             try
             {
-                List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-                for (int i = page * 10; i < (page * 10 + 10); i++)
-                {
-                    string l = locaties[i].ToLowerInvariant();
-                    reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + locaties[i]));
 
+                List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+                int lastindex = (page * 9 + 9) > DataConstants.Locations.Count ? DataConstants.Locations.Count : (page * 9 + 9);
+                for (int i = page * 9; i < lastindex; i++)
+                {
+                    string l = DataConstants.Locations[i].PrettyName;
+                    reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + l));
+
+                }
+                //Max 10 quickreplies, we got more locations. When at first page, add extra button to show second page
+                if(page == 0)
+                {
+                    reply.Add(new QuickReply("text", "Meer", "GET_EVENT_HERE_NOW-" + 1));
                 }
                 GenericMessage message = new GenericMessage(id, "Welke locatie wil je bezoeken?", reply);
 
