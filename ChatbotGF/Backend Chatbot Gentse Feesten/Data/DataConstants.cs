@@ -63,7 +63,7 @@ namespace Chatbot_GF.Data
             foreach(SearchableLocation loc in locations)
             { 
             
-                if (loc.Name.Contains(name) || loc.PrettyName.Contains(name))
+                if (loc.Name.ToLower().Contains(name) || loc.PrettyName.ToLower().Contains(name))
                 {
                     return loc;
                 }
