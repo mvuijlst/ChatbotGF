@@ -20,6 +20,7 @@ namespace Chatbot_GF.MessengerManager
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Wat gebeurt hier?", "GET_EVENT_HERE_NOW"));
+            reply.Add(new QuickReply("text", "Wat gebeurt nu?", "DEVELOPER_DEFINED_LOCATION-ALL"));
             GenericMessage message = new GenericMessage(id,"Hallo. Onderaan zie je een aantal suggesties. Je kan ook altijd opnieuw beginnen door op de knop te drukken.",reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
@@ -42,9 +43,6 @@ namespace Chatbot_GF.MessengerManager
                     reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + locaties[i]));
 
                 }
-                {
-                    
-                }
                 GenericMessage message = new GenericMessage(id, "Welke locatie wil je bezoeken?", reply);
 
                 Console.WriteLine(api.SendMessageToUser(message).Result);
@@ -54,6 +52,20 @@ namespace Chatbot_GF.MessengerManager
             }
 
         }
+        public void SendConfirmation(long id)
+        {
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            reply.Add(new QuickReply("text", "Ja", "GET_EVENT_HERE_NOW"));
+            reply.Add(new QuickReply("text", "Nee", "DEVELOPER_DEFINED_SEARCHFALSE"));
+            GenericMessage message = new GenericMessage(id, "Wilt je een andere locatie bekijken?", reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
+        }
+        public void SendInfoForEnding(long id)
+        {
+            SendTextMessage(id, "ls je opnieuw wilt zoeken kan in het menu klikken op de knop Begin Opnieuw");
+            // fotos voor waar de knop is
+        }
+
 
         public void SendNoEventFound(long id)
         {

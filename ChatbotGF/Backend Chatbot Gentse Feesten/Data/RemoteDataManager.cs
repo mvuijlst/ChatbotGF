@@ -40,6 +40,17 @@ namespace Chatbot_GF.Data
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
 
+        public void GetEventsNow(User user)
+        {
+            string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
+            string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
+            string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
+
+            string query = BASE_QUERY + " FILTER(" + startdatefilter + " && " + enddatefilter + ") }";
+            System.Console.WriteLine(query);
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
+        }
+
 
         public void callback(SparqlResultSet results, Object u)
         {
@@ -81,6 +92,7 @@ namespace Chatbot_GF.Data
                 {
                     ReplyManager rm = new ReplyManager();
                     rm.SendNoEventFound(user.id);
+                    rm.SendConfirmation(user.id);
                 }
 
                 System.Console.WriteLine("End of query method");
