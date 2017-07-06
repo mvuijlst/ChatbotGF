@@ -1,4 +1,5 @@
-﻿using Chatbot_GF.MessageBuilder.Model;
+﻿using Chatbot_GF.Data;
+using Chatbot_GF.MessageBuilder.Model;
 using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 }*/
                 defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
                 // buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
-                buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + eve.startDate + "////****////" + eve.endDate));
+                buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + "Vanaf " + ResultParser.normalizeDate(eve.startDate.ToString()) + " tot " + ResultParser.normalizeDate(eve.endDate.ToString())));
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {
