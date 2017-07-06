@@ -4,6 +4,7 @@ using Chatbot_GF.MessageBuilder.Factories;
 using Chatbot_GF.MessageBuilder.Model;
 using Chatbot_GF.MessengerManager;
 using Chatbot_GF.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Chatbot_GF.Data
 {
     public class RemoteDataManager
     {
-        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:url ?url. ?sub schema:name ?name. ?sub schema:startDate ?startdate. ?sub schema:endDate ?enddate. ?sub schema:description ?description. ?sub schema:location ?location. ?sub schema:isAccessibleForFree ?isFree. ?sub schema:organizer ?organizer. OPTIONAL { ?sub schema:image/schema:url ?image. } ";
+        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . OPTIONAL {?sub schema:url ?url. } OPTIONAL {?sub schema:name ?name.} OPTIONAL {?sub schema:startDate ?startdate. } OPTIONAL {?sub schema:endDate ?enddate. } OPTIONAL {?sub schema:description ?description. } OPTIONAL {?sub schema:location ?location. } OPTIONAL {?sub schema:isAccessibleForFree ?isFree.} OPTIONAL {?sub schema:organizer ?organizer. } OPTIONAL { ?sub schema:image/schema:url ?image. } ";
         private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()
@@ -26,11 +27,11 @@ namespace Chatbot_GF.Data
 
         }
 
-       
+
         public void GetEventsHereNow(User user)
         {
             string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
-            string locationfilter = "str(?location) = \""+ user.location + "\"";
+            string locationfilter = "str(?location) = \"" + user.location + "\"";
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
 
@@ -39,16 +40,18 @@ namespace Chatbot_GF.Data
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
 
-        
+
         public void callback(SparqlResultSet results, Object u)
         {
-            System.Console.WriteLine("Query Callback");
-            User user = (User)u;
-            if (results.Count > 0 && u != null)
+            try
             {
-                System.Console.WriteLine("Found Results");
+                System.Console.WriteLine("Query Callback");
+                User user = (User)u;
+                if (results.Count > 0 && u != null)
+                {
+                    System.Console.WriteLine("Found Results");
 
-                    
+
 
 
                     foreach (SparqlResult res in results)
@@ -64,23 +67,28 @@ namespace Chatbot_GF.Data
                         String result = api.SendMessageToUser(toSend).Result;
                         List<Event> events = new List<Event>();
                         events.Add(e);
-                        CarouselFactory.makeCarousel(user.id, events);
+                        result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.id, events)).Result;
+
                         System.Console.WriteLine("stap 7");
                         System.Console.WriteLine(result);
-                        System.Console.WriteLine(CarouselFactory.makeCarousel(user.id, events));
+                        System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
 
                     }
-                }            
-            else
+                }
+                else
+                {
+                    ReplyManager rm = new ReplyManager();
+                    rm.SendNoEventFound(user.id);
+                }
+
+                System.Console.WriteLine("End of query method");
+
+            }
+            catch (Exception ex)
             {
-                ReplyManager rm = new ReplyManager();
-                rm.SendNoEventFound(user.id);
+                System.Console.WriteLine(ex);
             }
 
-            System.Console.WriteLine("End of query method");
         }
-
-        
-
     }
 }
