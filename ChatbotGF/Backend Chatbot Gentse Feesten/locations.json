@@ -98,13 +98,20 @@
       "Lon":3.726169,
       "Lat":51.057149
    },
-   {  
-      "Name":"WILLEM DE BEERSTEEG",
-      "PrettyName":"W. De Beersteeg",
-      "Id":"https://gentsefeesten.stad.gent/api/v1/location/c2559115-bfcb-4cf3-9d4f-a5147f99e371",
-      "Lon":3.727214,
-      "Lat":51.059811
-   }
+    {
+      "Name": "WILLEM DE BEERSTEEG",
+      "PrettyName": "W. De Beersteeg",
+      "Id": "https://gentsefeesten.stad.gent/api/v1/location/c2559115-bfcb-4cf3-9d4f-a5147f99e371",
+      "Lon": 3.727214,
+      "Lat": 51.059811
+    },
+    {
+      "Name": "WOODROW WILSONPLEIN",
+      "PrettyName": "Woodrow Wilsonplein",
+      "Id": "https://gentsefeesten.stad.gent/api/v1/location/d5a937e8-5bed-43ab-ba54-8f2d19e418a7",
+      "Lon": 3.7283689,
+      "Lat": 51.0480501
+    }
 ]
 
 }

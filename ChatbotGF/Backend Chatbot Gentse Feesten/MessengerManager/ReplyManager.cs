@@ -23,8 +23,8 @@ namespace Chatbot_GF.MessengerManager
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Zoek op locatie", "SEND_LOCATION_CHOICE"));
-            reply.Add(new QuickReply("text", "Wat is nu bezig", "DEVELOPER_DEFINED_LOCATION-ALL"));
-            GenericMessage message = new GenericMessage(id,"Hallo. Onderaan zie je een aantal suggesties. Je kan ook altijd opnieuw beginnen door op de knop te drukken.",reply);
+            reply.Add(new QuickReply("text", "Wat is nu bezig?", "DEVELOPER_DEFINED_LOCATION-ALL"));
+            GenericMessage message = new GenericMessage(id,"Hallo. Hieronder ziet u een aantal suggesties. U kunt ook altijd opnieuw beginnen door op de knop te drukken.",reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
@@ -41,7 +41,7 @@ namespace Chatbot_GF.MessengerManager
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Ja", $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
             reply.Add(new QuickReply("text", "Gebruik mijn locatie.", "DEVELOPER_DEFINED_SEARCHFALSE"));
-            GenericMessage message = new GenericMessage(id, $"Je bent het dichts bij {loc.PrettyName}. Wil je op deze locatie zoeken?", reply);
+            GenericMessage message = new GenericMessage(id, $"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?", reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 

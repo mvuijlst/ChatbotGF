@@ -81,7 +81,6 @@ namespace Chatbot_GF.MessengerManager
         {
             //contains the user object linked to the messengerperson who sends an event
             User user = activeUsers[id];
-            //hier effectieve zoekmethode uitvoeren + gebruiker verwijderen uit active lijst           
             dataDAO.GetEventsHereNow(user);
             activeUsers.Remove(id);
            
@@ -96,13 +95,7 @@ namespace Chatbot_GF.MessengerManager
                 User user = new User(id);
                 Console.WriteLine("stap 98.5");
                 // user has clicked on location button: three possibilities
-                if (value.Equals("MY_LOCATION"))
-                {
-                    //eigen locatie bepalen en toevoegen met afstandsformule enzovoort
-                    //voorlopig hardcodering vlasmarkt als locatie
-                    user.location = DataConstants.GetLocation("VLASMARKT").Id;
-                }
-                else if(value.Equals("ALL")){
+                if(value.Equals("ALL")){
                     dataDAO.GetEventsNow(user);
                     Console.Write("Alles nu");
                 }

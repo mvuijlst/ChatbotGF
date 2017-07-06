@@ -58,7 +58,6 @@ namespace Chatbot_GF.Controllers
                         if (currentMessage.postback != null)
                         {
                             phandler.handle(message);
-
                         }
                         else if (!string.IsNullOrWhiteSpace(currentMessage?.message?.quick_reply?.payload))
                         {
