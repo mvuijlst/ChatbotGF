@@ -102,8 +102,9 @@ namespace Chatbot_GF.MessengerManager
                     //voorlopig hardcodering vlasmarkt als locatie
                     user.location = DataConstants.GetLocation("VLASMARKT").Id;
                 }
-                else if(value.Equals("ALL"){
-                    
+                else if(value.Equals("ALL")){
+                    dataDAO.GetEventsNow(user);
+                    Console.Write("Alles nu");
                 }
                 else
                 {
