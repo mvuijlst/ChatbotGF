@@ -31,8 +31,8 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     buttons.Add(new ButtonUrl("Meer info", "web_url", eve.url, true));
                 }*/
                 defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
-                buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.id));
-                buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + eve.id));
+                buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
+                buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + eve.startDate + "////****////" + eve.endDate));
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {
