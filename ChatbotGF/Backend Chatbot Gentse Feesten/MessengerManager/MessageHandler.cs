@@ -40,7 +40,7 @@ namespace Chatbot_GF.MessengerManager
                 if (value.ToLower().Contains("opnieuw")){
                     SetPayload(message, "GET_STARTED_PAYLOAD");   
                 }
-                else if(DataConstants.GetLocation(value) != null) //the typed message is a valid location
+                else if(value.Length > 4 && DataConstants.GetLocation(value) != null) //the typed message is a valid location
                 {
                     SetPayload(message, "DEVELOPER_DEFINED_LOCATION-" + DataConstants.GetLocation(value).Name);
                 }
