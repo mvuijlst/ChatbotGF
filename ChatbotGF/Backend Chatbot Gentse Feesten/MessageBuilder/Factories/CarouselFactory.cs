@@ -23,7 +23,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 DefaultAction defaultAction;
                 //if (eve.url == null)
                 //{
-                    buttons.Add(new ButtonUrl("Meer info", "web_url", "https://gentsefeesten.stad.gent", true));
+                   // buttons.Add(new ButtonUrl("Meer info", "web_url", "https://gentsefeesten.stad.gent", true));
                 /*}
                 else
                 {
@@ -31,12 +31,12 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     buttons.Add(new ButtonUrl("Meer info", "web_url", eve.url, true));
                 }*/
                 defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
-                buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
+                // buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
                 buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + eve.startDate + "////****////" + eve.endDate));
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {
-                    image = /* keuze */ "https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217";
+                    image = /* keuze */ "https://gentsefeesten.stad.gent/sites/default/files/styles/large_3_2/public/2017-04/foto%20campagne%20timeline.png?itok=xs3Q9p3L";
                 }
                 
                 elements.Add(new Element(eve.name.nl, image, buttons, defaultAction));
