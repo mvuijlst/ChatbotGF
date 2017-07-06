@@ -24,7 +24,7 @@ namespace Chatbot_GF.Data
                             e.id = res[key].ToString();
                             break;
                         case "url":
-                            e.url = res[key].ToString();
+                            e.url = normalizeUrl(res[key].ToString());
                             break;
                         case "name":
                             e.name.nl = normalizeString(res[key].ToString());
@@ -42,7 +42,7 @@ namespace Chatbot_GF.Data
                             e.organizer = res[key].ToString();
                             break;
                         case "image":
-                            e.image = res[key].ToString();
+                            e.image = normalizeUrl(res[key].ToString());
                             break;
                     }
                 }catch(Exception ex)
@@ -64,6 +64,19 @@ namespace Chatbot_GF.Data
             else
             {
                 return s;
+            }
+        }
+
+        private static string normalizeUrl(string url)
+        {
+            int lastIndex = url.LastIndexOf('^') - 1 ;
+            if (lastIndex > 0)
+            {
+                return url.Substring(0, lastIndex);
+            }
+            else
+            {
+                return url;
             }
         }
     }

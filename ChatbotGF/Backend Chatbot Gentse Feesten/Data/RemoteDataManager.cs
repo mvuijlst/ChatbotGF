@@ -67,11 +67,12 @@ namespace Chatbot_GF.Data
                         String result = api.SendMessageToUser(toSend).Result;
                         List<Event> events = new List<Event>();
                         events.Add(e);
+                        System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
                         result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.id, events)).Result;
 
                         System.Console.WriteLine("stap 7");
                         System.Console.WriteLine(result);
-                        System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
+                        
 
                     }
                 }
