@@ -58,7 +58,7 @@ namespace Chatbot_GF.Data
 
         public static SearchableLocation GetLocation(string name){
             if (locations == null)
-                return null;
+                initLocations();
 
             foreach(SearchableLocation loc in locations)
             { 
