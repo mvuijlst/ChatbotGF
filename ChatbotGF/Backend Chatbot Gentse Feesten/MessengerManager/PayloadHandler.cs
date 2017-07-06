@@ -61,5 +61,10 @@ namespace Chatbot_GF.MessengerManager
             }
 
         }
+
+        public void HandleLocation(Coordinates coords)
+        {
+
+        }
     }
 }

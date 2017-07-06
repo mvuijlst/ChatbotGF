@@ -63,6 +63,12 @@ namespace Chatbot_GF.Controllers
                             message.postback = new Postback { payload = message.message.quick_reply.payload };
                             phandler.handle(message);
                         }
+                        else if(message?.message?.attachments != null)
+                        {
+                            MessengerData.Attachment locationAtt = message?.message?.attachments[0];
+                            Coordinates coords = locationAtt.payload?.coordinates;
+                            
+                        }
                         else
                         {
                             mhandler.ReplyRecieved(message);

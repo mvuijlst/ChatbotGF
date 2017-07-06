@@ -11,6 +11,7 @@ namespace Chatbot_GF.BotData
         [JsonProperty(PropertyName = "object")]
         public String Object { get; set; }
         public List<Entry> entry { get; set; }
+        
 
 
         public class Sender
@@ -42,6 +43,7 @@ namespace Chatbot_GF.BotData
                 public string mid { get; set; }
                 public string text { get; set; }
                 public QuickReply quick_reply { get; set; }
+                public List<Attachment> attachments { get; set; }
             }
         }
 
@@ -55,6 +57,26 @@ namespace Chatbot_GF.BotData
         {
 
             public string payload { get; set; }
+        }
+
+        public class Coordinates
+        {
+            public double lat { get; set; }
+            [JsonProperty(PropertyName = "long")]
+            public double lon { get; set; }
+        }
+
+        public class Payload
+        {
+            public Coordinates coordinates { get; set; }
+        }
+
+        public class Attachment
+        {
+            public string title { get; set; }
+            public string url { get; set; }
+            public string type { get; set; }
+            public Payload payload { get; set; }
         }
     }
 
