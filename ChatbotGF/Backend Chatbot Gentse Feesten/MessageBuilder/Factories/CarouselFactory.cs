@@ -33,7 +33,13 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 }
                 buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.url));
                 buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + eve.url));
-                elements.Add(new Element(eve.name.nl, /*eve.image*/"https://gentsefeesten.stad.gent/sites/default/files/activity/image/level%20six.jpg", eve.organizer, buttons, defaultAction));
+                var image = eve.image;
+                if (string.IsNullOrEmpty(image))
+                {
+                    image = /* keuze */ "https://cdn.pastemagazine.com/www/system/images/photo_albums/cuberdons/large/cuberdons-1.jpg?1384968217";
+                } else
+                
+                elements.Add(new Element(eve.name.nl, /*eve.image*/"https://gentsefeesten.stad.gent/sites/default/files/activity/image/level%20six.jpg", buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");
             Attachment attachment = new Attachment("template", payload);
