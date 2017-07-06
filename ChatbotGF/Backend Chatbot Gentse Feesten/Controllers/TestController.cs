@@ -1,7 +1,9 @@
 using Chatbot_GF.MessageBuilder.Factories;
 using Chatbot_GF.MessageBuilder.Model;
+using Chatbot_GF.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Chatbot_GF.Controllers
 {
@@ -13,20 +15,20 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            //tring[] locaties = { /*"BAUDELOHOF", "BEVERHOUTPLEINPLACEMUSETTE", "SINTJACOBS","STADSHAL",*/ "CENTRUM",  "EMILE BRAUNPLEIN", "LUISTERPLEIN", "GROENTENMARKT", "KORENLEI-GRASLEI", "KORENMARKT", "SINTBAAFSPLEIN", "STVEERLEPLEIN", "VLASMARKT", "VRIJDAGMARKT", "WILLEM DE BEERSTEEG" };
-            /*{
-                List<QuickReply> reply = new List<QuickReply>();
-                foreach (string loc in locaties)
-                {
-                    string l = loc.ToLowerInvariant();
-                    reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + loc));
-
-                }
-                GenericMessage message = new GenericMessage(1333062916810232, "Welke locatie wil je bezoeken?", reply);
-                return Ok(message);
-            }*/
-            return Ok(LocationFactory.makeLocationButton(1333062916810232));
+            Name name = new Name();
+            name.nl = "Level Six";
+            Description description = new Description();
+            description.nl = "Vanaf de eerste noten ben je gegarandeerd van een volle dansvloer!\r\nJo Hens (Niko uit Familie) \u0026 Katerine Avgoustakis (VTM, Winnares Star Acedemy, Here Come All The Boys,\u2026) zorgen samen met 4 professionele muzikanten voor interactie, top-entertainment, Non-stop hits.";
+            Event event1 = new Event
+            {
+                name = name,
+                description = description
+            };
+            
+            List<Event> events = new List<Event>();
+            events.Add(event1);
+            return Ok(CarouselFactory.makeCarousel(1333062916810232, events));
             }
         }
-    }
+    
 }
