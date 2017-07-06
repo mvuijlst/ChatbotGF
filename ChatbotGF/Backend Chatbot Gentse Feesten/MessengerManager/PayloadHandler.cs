@@ -57,6 +57,12 @@ namespace Chatbot_GF.MessengerManager
                 case "DEVELOPER_DEFINED_SEARCH":
                     umanager.searchResults(id);
                     break;
+                case "DEVELOPER_DEFINED_DESCRIPTION":
+                    rmanager.SendTextMessage(id, value);
+                    break;
+                case "DEVELOPER_DEFINED_HOURS":
+                    rmanager.SendTextMessage(id, value);
+                    break;
                 default:
                    //do nothing
                     break;
