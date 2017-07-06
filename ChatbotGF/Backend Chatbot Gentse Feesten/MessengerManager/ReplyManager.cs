@@ -62,8 +62,8 @@ namespace Chatbot_GF.MessengerManager
             try
             {
                 List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-                int lastindex = (page * 9 + 9) > DataConstants.Locations.Count ? DataConstants.Locations.Count : (page * 9 + 9);
-                for (int i = page * 9; i < lastindex; i++)
+                int lastindex = (page * 8 + 8) > DataConstants.Locations.Count ? DataConstants.Locations.Count : (page * 8 + 8);
+                for (int i = page * 8; i < lastindex; i++)
                 {
                     string l = DataConstants.Locations[i].PrettyName;
                     reply.Add(new QuickReply("text", l, "DEVELOPER_DEFINED_LOCATION-" + l));
@@ -72,6 +72,10 @@ namespace Chatbot_GF.MessengerManager
                 if(page == 0)
                 {
                     reply.Add(new QuickReply("text", "Meer", "GET_EVENT_HERE_NOW-" + 1));
+                }
+                else
+                {
+                    reply.Add(new QuickReply("text", "Vorige locaties", "GET_EVENT_HERE_NOW-" + (page - 1)));
                 }
                 GenericMessage message = new GenericMessage(id, "Welke locatie wil je bezoeken?", reply);
 
@@ -93,14 +97,14 @@ namespace Chatbot_GF.MessengerManager
 
         public void SendInfoForEnding(long id)
         {
-            SendTextMessage(id, "Type \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak als je een nieuwe zoekopdracht wil starten.");
+            SendTextMessage(id, "Typ \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak als je een nieuwe zoekopdracht wil starten.");
             // fotos voor waar de knop is
         }
 
 
         public void SendNoEventFound(long id)
         {
-            SendTextMessage(id, "Wauw! Ik kon jammer genoeg geen evenementen vinden.");
+            SendTextMessage(id, "Woeps! Ik kon jammer genoeg geen evenementen vinden.");
         }
     }
 }
