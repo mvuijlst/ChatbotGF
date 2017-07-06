@@ -55,5 +55,11 @@ namespace Chatbot_GF.MessengerManager
 
         }
 
+        public void SendNoEventFound(long id)
+        {
+            GenericMessage message = new GenericMessage(id, "Wauw! Ik kon jammergenoeg geen evenementen vinden.");
+            System.Console.WriteLine(api.SendMessageToUser(message).Result);
+        }
+
     }
 }

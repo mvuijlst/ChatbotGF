@@ -29,6 +29,7 @@ namespace Chatbot_GF.Controllers
             events.Add(event1);
             return Ok(CarouselFactory.makeCarousel(1333062916810232, events));
             }
-        }
-    
+        
+    }
 }
+
