@@ -67,8 +67,8 @@ namespace Chatbot_GF.MessengerManager
         /// <param name="id"></param>
         public void startUser(long id)
         {
-            activeUsers.Add(id, new User(id));
-            saveUsers(id, DateTime.Now);
+            //activeUsers.Add(id, new User(id));
+            //saveUsers(id, DateTime.Now);
             Console.WriteLine("Stap 50");
             reply.SendWelcomeMessage(id);
         }
@@ -120,7 +120,7 @@ namespace Chatbot_GF.MessengerManager
             {
                 Console.WriteLine("stap 98");
                 //contains the user object linked to the messengerperson who sends an event
-                User user = activeUsers[id];
+                User user = new User(id);
                 Console.WriteLine("stap 98.5");
                 // user has clicked on location button: three possibilities
                 if (value.Equals("MY_LOCATION"))

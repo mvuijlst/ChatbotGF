@@ -1,6 +1,8 @@
 ﻿using Chatbot_GF.Client;
 using Chatbot_GF.Controllers;
+using Chatbot_GF.MessageBuilder.Factories;
 using Chatbot_GF.MessageBuilder.Model;
+using Chatbot_GF.MessengerManager;
 using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
@@ -24,15 +26,7 @@ namespace Chatbot_GF.Data
 
         }
 
-        public void ReadFromOnlineStore()
-        {
-            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("https://stad.gent/sparql"), "http://stad.gent/gentse-feesten/");
-            System.Console.WriteLine("Starting query");
-            endpoint.QueryWithResultSet("PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:location ?location. filter(str(?location) = \"https://gentsefeesten.stad.gent/api/v1/location/f2e7a735-7632-486c-b70d-7e7340bfd340\") }", new SparqlResultsCallback(callback),"test");            
-
-
-        }
-
+       
         public void GetEventsHereNow(User user)
         {
             string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
@@ -45,59 +39,48 @@ namespace Chatbot_GF.Data
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
 
-        public void GetEventsByKeywords(List<String> keywords)
-        {
-
-            string filterString = "";
-            if(keywords.Count != 0)
-            {
-                filterString += "contains(lcase(STR(?keywords)), \"" + keywords[0] + "\")";
-                keywords.RemoveAt(0);
-            }
-            foreach(string keyword in keywords)
-            {
-                filterString += "&& contains(lcase(STR(?keywords)), \"" + keyword + "\")";
-            }
-
-
-            SparqlRemoteEndpoint endpoint = new SparqlRemoteEndpoint(new Uri("https://stad.gent/sparql"), "http://stad.gent/gentse-feesten/");
-            
-            String query = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . ?sub schema:name ?name. ?sub schema:location ?location. ?sub schema:keywords ?keywords. filter(" + filterString + ") }";
-            
-            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), "test");
-
-
-        }
-
+        
         public void callback(SparqlResultSet results, Object u)
         {
-            try
+            System.Console.WriteLine("Query Callback");
+            User user = (User)u;
+            if (results.Count > 0 && u != null)
             {
-                User user = (User)u;
+                System.Console.WriteLine("Found Results");
 
-                System.Console.WriteLine(results.ToList().Count);
-
-                foreach (SparqlResult res in results)
-                {
-
-                    Event e = ResultParser.GetEvent(res);
+                    
 
 
+                    foreach (SparqlResult res in results)
+                    {
 
-                    GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
-                    IMessengerApi api = RestClientBuilder.GetMessengerApi();
-                    System.Console.WriteLine("stap 6");
-                    String result = api.SendMessageToUser(toSend).Result;
-                    System.Console.WriteLine("stap 7");
-                    System.Console.WriteLine(result);
+                        Event e = ResultParser.GetEvent(res);
 
-                }
-            }catch(Exception ex)
+
+
+                        GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
+                        IMessengerApi api = RestClientBuilder.GetMessengerApi();
+                        System.Console.WriteLine("stap 6");
+                        String result = api.SendMessageToUser(toSend).Result;
+                        List<Event> events = new List<Event>();
+                        events.Add(e);
+                        CarouselFactory.makeCarousel(user.id, events);
+                        System.Console.WriteLine("stap 7");
+                        System.Console.WriteLine(result);
+                        System.Console.WriteLine(CarouselFactory.makeCarousel(user.id, events));
+
+                    }
+                }            
+            else
             {
-                System.Console.WriteLine(ex);
+                ReplyManager rm = new ReplyManager();
+                rm.SendNoEventFound(user.id);
             }
+
+            System.Console.WriteLine("End of query method");
         }
 
+        
 
     }
 }
