@@ -12,7 +12,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
         {
             List<SimpleQuickReply> quick_replies = new List<SimpleQuickReply>();
             quick_replies.Add(new SimpleQuickReply("location"));
-            return new GenericMessage(id, "please share your location", quick_replies);
+            return new GenericMessage(id, "Duid een locatie aan op de kaart.", quick_replies);
         }
     }
 }

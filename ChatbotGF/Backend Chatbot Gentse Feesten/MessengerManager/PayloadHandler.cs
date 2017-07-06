@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Chatbot_GF.Data;
+using Chatbot_GF.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,8 +27,11 @@ namespace Chatbot_GF.MessengerManager
                 case "GET_STARTED_PAYLOAD":
                     umanager.startUser(message.sender.id);
                     break;
-                case "GET_EVENT_HERE_NOW":
-                    
+                case "SEND_LOCATION_CHOICE":
+                    rmanager.SendLocationsChoice(message.sender.id);
+                    break;
+                case "GET_USER_LOCATION":
+                    rmanager.SendGetLocationButton(message.sender.id);
                     break;
                 case "DEVELOPER_DEFINED_SEARCHFALSE":
                     rmanager.SendInfoForEnding(message.sender.id);
@@ -59,6 +64,11 @@ namespace Chatbot_GF.MessengerManager
                     break;
                 case "DEVELOPER_DEFINED_SEARCH":
                     umanager.searchResults(id);
+                    break;
+                case "DEVELOPER_DEFINED_COORDINATES":
+                    string[] data = value.Split(':');
+                    SearchableLocation location = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) });
+                    rmanager.SendLocationResult(id, location);
                     break;
                 case "DEVELOPER_DEFINED_DESCRIPTION":
                     // rmanager.SendTextMessage(id, value);

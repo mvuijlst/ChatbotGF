@@ -70,7 +70,9 @@ namespace Chatbot_GF.Controllers
                         {
                             MessengerData.Attachment locationAtt = currentMessage?.message?.attachments[0];
                             Coordinates coords = locationAtt.payload?.coordinates;
-                            
+                            Console.WriteLine($"Coordinates Received: {coords.lon} {coords.lat}");
+                            currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES-{coords.lon}:{coords.lat}" };
+                            phandler.handle(message);
                         }
                         else
                         {

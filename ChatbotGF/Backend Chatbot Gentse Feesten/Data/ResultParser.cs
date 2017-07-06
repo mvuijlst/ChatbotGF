@@ -44,6 +44,9 @@ namespace Chatbot_GF.Data
                         case "image":
                             e.image = normalizeUrl(res[key].ToString());
                             break;
+                        case "location":
+                            e.location = normalizeUrl(res[key].ToString());
+                            break;
                     }
                 }catch(Exception ex)
                 {
