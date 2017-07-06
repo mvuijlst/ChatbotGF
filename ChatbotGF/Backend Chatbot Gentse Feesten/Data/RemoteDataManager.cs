@@ -18,7 +18,7 @@ namespace Chatbot_GF.Data
     public class RemoteDataManager
     {
         private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . OPTIONAL {?sub schema:url ?url. } OPTIONAL {?sub schema:name ?name.} OPTIONAL {?sub schema:startDate ?startdate. } OPTIONAL {?sub schema:endDate ?enddate. } OPTIONAL {?sub schema:description ?description. } OPTIONAL {?sub schema:location ?location. } OPTIONAL {?sub schema:isAccessibleForFree ?isFree.} OPTIONAL {?sub schema:organizer ?organizer. } OPTIONAL { ?sub schema:image/schema:url ?image. } ";
-        private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
+        //private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         public RemoteDataManager()
         {
@@ -45,6 +45,8 @@ namespace Chatbot_GF.Data
         {
             try
             {
+                List<Event> events = new List<Event>();
+                IMessengerApi api = RestClientBuilder.GetMessengerApi();
                 System.Console.WriteLine("Query Callback");
                 User user = (User)u;
                 if (results.Count > 0 && u != null)
@@ -62,19 +64,18 @@ namespace Chatbot_GF.Data
 
 
                         GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
-                        IMessengerApi api = RestClientBuilder.GetMessengerApi();
                         System.Console.WriteLine("stap 6");
-                        String result = api.SendMessageToUser(toSend).Result;
-                        List<Event> events = new List<Event>();
+                        string dresult = api.SendMessageToUser(toSend).Result;
+                        
                         events.Add(e);
-                        System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
-                        result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.id, events)).Result;
+                        
 
                         System.Console.WriteLine("stap 7");
-                        System.Console.WriteLine(result);
                         
 
                     }
+                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
+                    String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.id, events)).Result;
                 }
                 else
                 {

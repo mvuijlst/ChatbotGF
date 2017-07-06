@@ -69,6 +69,8 @@ namespace Chatbot_GF.Data
 
         private static string normalizeUrl(string url)
         {
+            url = url.Replace(" ", "%20");
+
             int lastIndex = url.LastIndexOf('^') - 1 ;
             if (lastIndex > 0)
             {
