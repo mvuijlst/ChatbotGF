@@ -28,7 +28,9 @@ namespace Chatbot_GF.MessengerManager
                 case "GET_EVENT_HERE_NOW":
                     rmanager.SendLocationQuery(message.sender.id,0);
                     break;
-
+                case "DEVELOPER_DEFINED_SEARCHFALSE":
+                    rmanager.SendInfoForEnding(message.sender.id);
+                    break;
                 default:
                     //contains information for user
                     handleInformation(message.sender.id, message.postback.payload);
