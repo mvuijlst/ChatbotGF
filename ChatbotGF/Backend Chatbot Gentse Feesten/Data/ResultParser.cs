@@ -30,10 +30,10 @@ namespace Chatbot_GF.Data
                             e.name.nl = normalizeString(res[key].ToString());
                             break;
                         case "startdate":
-                            e.startDate = res[key].ToString();
+                            e.startDate = normalizeUrl(res[key].ToString());
                             break;
-                        case "endDate":
-                            e.endDate = res[key].ToString();
+                        case "enddate":
+                            e.endDate = normalizeUrl(res[key].ToString());
                             break;
                         case "description":
                             e.description.nl = res[key].ToString();

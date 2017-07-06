@@ -27,6 +27,26 @@ namespace Chatbot_GF.MessengerManager
             }                
             
         }
+        /// <summary>
+        /// If messages corresponds to any of the alread defined payloads, set the payload
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public Messaging MessageRecognized(Messaging message)
+        {
+            if (!string.IsNullOrWhiteSpace(message?.message?.text)){
+                string value = message?.message?.text;
+                if (value.ToLower().Contains("opnieuw")){
+                    SetPayload(message, "GET_STARTED_PAYLOAD");   
+                }
+            }
+            return message;
+        }
+
+        public void SetPayload(Messaging msg, String pl)
+        {            
+            msg.postback = new Postback { payload = pl };            
+        }
 
     }
 }

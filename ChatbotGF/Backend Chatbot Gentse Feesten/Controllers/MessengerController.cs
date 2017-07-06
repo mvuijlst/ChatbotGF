@@ -51,7 +51,10 @@ namespace Chatbot_GF.Controllers
                 {
 
                     foreach (var message in entry.messaging)
-                    {
+                    { 
+                        //Check current message if text is recognized and sets corresponding payload
+                        Messaging currentMessage = mhandler.MessageRecognized(message);
+
                         if (message.postback != null)
                         {
                             phandler.handle(message);
