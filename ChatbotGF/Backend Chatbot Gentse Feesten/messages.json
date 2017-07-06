@@ -1,0 +1,17 @@
+﻿{
+  "messages": [
+    {
+      "Name": "More",
+      "NL": "Meer",
+      "GENTS": "Mier",
+      "EN": "More"
+    },
+    {
+      "Name": "Previous",
+      "NL": "Vorige locaties",
+      "GENTS": "Veurige locaties",
+      "EN": "Previous"
+    }
+  ]
+
+}

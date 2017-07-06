@@ -71,11 +71,13 @@ namespace Chatbot_GF.MessengerManager
                 //Max 10 quickreplies, we got more locations. When at first page, add extra button to show second page
                 if(page == 0)
                 {
-                    reply.Add(new QuickReply("text", "Meer", "GET_EVENT_HERE_NOW-" + 1));
+                    string mes = DataConstants.GetMessage("More").GENTS;
+                    reply.Add(new QuickReply("text", mes, "GET_EVENT_HERE_NOW-" + 1));
                 }
                 else
                 {
-                    reply.Add(new QuickReply("text", "Vorige locaties", "GET_EVENT_HERE_NOW-" + (page - 1)));
+                    string mes = DataConstants.GetMessage("Previous").GENTS;
+                    reply.Add(new QuickReply("text", mes, "GET_EVENT_HERE_NOW-" + (page - 1)));
                 }
                 GenericMessage message = new GenericMessage(id, "Welke locatie wil je bezoeken?", reply);
 

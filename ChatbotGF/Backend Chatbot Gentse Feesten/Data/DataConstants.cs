@@ -13,6 +13,7 @@ namespace Chatbot_GF.Data
     public class DataConstants
     {
         public const int numberLocations = 16;
+        public const int numberMessages = 2;
         private static IConfigurationRoot configuration;
        
 
@@ -25,8 +26,39 @@ namespace Chatbot_GF.Data
             }
         }
 
+
+
         private static List<SearchableLocation> locations;
 
+        private static List<SearchableMessage> messages;
+
+        private static void initMessages()
+        {
+            try
+            {
+                var builder = new ConfigurationBuilder().
+                    SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("messages.json");
+
+                configuration = builder.Build();
+
+                messages = new List<SearchableMessage>();
+                for(int i=0; i<numberMessages; i++)
+                {
+                    messages.Add(new SearchableMessage
+                    {
+                        Name = configuration[$"messages:{i}:Name"],
+                        NL = configuration[$"messages:{i}:NL"],
+                        GENTS = configuration[$"messages:{i}:GENTS"],
+                        EN = configuration[$"messages:{i}:EN"]
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
 
         private static void initLocations()
         {
@@ -55,6 +87,23 @@ namespace Chatbot_GF.Data
                 Console.WriteLine(ex);
             }
             //Console.WriteLine(JsonConvert.SerializeObject(locations));
+        }
+
+        public static SearchableMessage GetMessage(string name)
+        {
+            if(messages == null)
+            {
+                initMessages();
+            }
+
+            foreach(SearchableMessage mes in messages)
+            {
+                if(mes.Name == name)
+                {
+                    return mes;
+                }
+            }
+            return null;
         }
 
         public static SearchableLocation GetLocation(string name){
