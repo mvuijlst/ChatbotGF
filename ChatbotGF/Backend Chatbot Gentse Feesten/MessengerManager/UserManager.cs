@@ -120,10 +120,6 @@ namespace Chatbot_GF.MessengerManager
             }
         }
         
-
-
-
-
-
+        
     }
 }

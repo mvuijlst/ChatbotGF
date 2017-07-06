@@ -45,8 +45,15 @@ namespace Chatbot_GF.Data
             string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
+            //filter over defined locations only
+            List<SearchableLocation> locations = DataConstants.Locations;
+            string locationFilters = "str(?location) = \"" + locations[0].Id + "\"";
+            for(int i = 1; i<locations.Count; i++)
+            {
+                locationFilters += " || str(?location) = \"" + locations[i].Id + "\"";
+            }
 
-            string query = BASE_QUERY + " FILTER(" + startdatefilter + " && " + enddatefilter + ") }";
+            string query = BASE_QUERY + " FILTER( (" + locationFilters + ") && " + startdatefilter + " && " + enddatefilter + ") }";
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
@@ -59,9 +66,10 @@ namespace Chatbot_GF.Data
                 List<Event> events = new List<Event>();
                 IMessengerApi api = RestClientBuilder.GetMessengerApi();
                 System.Console.WriteLine("Query Callback");
-                User user = (User)u;
-                if (results.Count > 0 && u != null)
+                
+                if (results.Count > 0 && u is User)
                 {
+                    User user = (User)u;
                     System.Console.WriteLine("Found Results");
 
 
@@ -74,9 +82,9 @@ namespace Chatbot_GF.Data
 
 
 
-                        GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
+                        //GenericMessage toSend = new GenericMessage(user.id, e.name.nl);
                         System.Console.WriteLine("stap 6");
-                        string dresult = api.SendMessageToUser(toSend).Result;
+                        //string dresult = api.SendMessageToUser(toSend).Result;
                         
                         events.Add(e);
                         
@@ -88,11 +96,19 @@ namespace Chatbot_GF.Data
                     System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
                     String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.id, events)).Result;
                 }
-                else
+                else if(u is User)
                 {
+                    User user = (User)u;
                     ReplyManager rm = new ReplyManager();
                     rm.SendNoEventFound(user.id);
                     rm.SendConfirmation(user.id);
+                }
+                else if (u is VDS.RDF.AsyncError)
+                {
+                    VDS.RDF.AsyncError error = (VDS.RDF.AsyncError)u;
+                    User user = (User)error.State; 
+                    ReplyManager rm = new ReplyManager();
+                    rm.SendTextMessage(user.id, "Er is iets foutgelopen, we proberen dit zo snel mogelijk op te lossen!");
                 }
 
                 System.Console.WriteLine("End of query method");
