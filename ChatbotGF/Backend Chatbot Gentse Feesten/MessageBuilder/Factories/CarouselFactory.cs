@@ -33,7 +33,17 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 }*/
                 defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
                 // buttons.Add(new ButtonPayload("Kleine uitleg", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
-                buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + "Vanaf " + ResultParser.normalizeDate(eve.startDate.ToString()) + " tot " + ResultParser.normalizeDate(eve.endDate.ToString())));
+                string dates = "";
+                DateTime start = ResultParser.normalizeDate(eve.startDate.ToString());
+                DateTime end = ResultParser.normalizeDate(eve.endDate.ToString());
+                if (start.Day == end.Day)
+                {
+                    dates = "De " + start.Day + "e vanaf " + start.Hour + ":" + start.Minute + " tot " + end.Hour + ":" + end.Minute;
+                } else
+                {
+                    dates = "Vanaf de " + start.Day + "e om " + start.Hour + ":" + start.Minute + " tot de " + end.Day + "e om " + end.Hour + ":" + end.Minute;
+                }
+                buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + dates ));
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {

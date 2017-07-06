@@ -82,12 +82,12 @@ namespace Chatbot_GF.Data
             }
         }
 
-        public static string normalizeDate(string date)
+        public static DateTime normalizeDate(string date)
         {
             // date: 2017-07-16T19:30:00+02:00
             DateTime myDate = DateTime.ParseExact(date, "yyyy-MM-ddTHH:mm:sszzz",
                                        System.Globalization.CultureInfo.InvariantCulture);
-            return myDate.Day.ToString();
+            return myDate;
         }
     }
 }

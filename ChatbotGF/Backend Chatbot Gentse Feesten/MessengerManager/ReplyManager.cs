@@ -62,14 +62,14 @@ namespace Chatbot_GF.MessengerManager
         public void SendConfirmation(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", "Ja", "GET_EVENT_HERE_NOW"));
+            reply.Add(new QuickReply("text", "Ja", "GET_EVENT_HERE_NOW-0"));
             reply.Add(new QuickReply("text", "Nee", "DEVELOPER_DEFINED_SEARCHFALSE"));
             GenericMessage message = new GenericMessage(id, "Wilt je een andere locatie bekijken?", reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
         public void SendInfoForEnding(long id)
         {
-            SendTextMessage(id, "ls je opnieuw wilt zoeken kan in het menu klikken op de knop Begin Opnieuw");
+            SendTextMessage(id, "Type \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak");
             // fotos voor waar de knop is
         }
 
