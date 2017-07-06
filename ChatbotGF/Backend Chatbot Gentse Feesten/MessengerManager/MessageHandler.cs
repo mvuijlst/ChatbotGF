@@ -1,4 +1,5 @@
 ﻿using Chatbot_GF.Client;
+using Chatbot_GF.Data;
 using Chatbot_GF.MessageBuilder.Model;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,10 @@ namespace Chatbot_GF.MessengerManager
                 string value = message?.message?.text;
                 if (value.ToLower().Contains("opnieuw")){
                     SetPayload(message, "GET_STARTED_PAYLOAD");   
+                }
+                else if(DataConstants.GetLocation(value) != null) //the typed message is a valid location
+                {
+                    SetPayload(message, "DEVELOPER_DEFINED_LOCATION-" + DataConstants.GetLocation(value).Name);
                 }
             }
             return message;
