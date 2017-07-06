@@ -66,7 +66,7 @@ namespace Chatbot_GF.MessengerManager
                 case "DEVELOPER_DEFINED_HOURS":
                     int loc = value.IndexOf("-_-");
                     string date = value.Substring(0, loc);
-                    string name = value.Substring(loc + 1);
+                    string name = value.Substring(loc + 3 );
                     rmanager.SendTextMessage(id, name + ": " + date);
                     break;
                 default:

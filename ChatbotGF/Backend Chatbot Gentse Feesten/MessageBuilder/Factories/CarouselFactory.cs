@@ -50,7 +50,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     image = /* keuze */ "https://gentsefeesten.stad.gent/sites/default/files/styles/large_3_2/public/2017-04/foto%20campagne%20timeline.png?itok=xs3Q9p3L";
                 }
                 
-                elements.Add(new Element(eve.name.nl, image, buttons, defaultAction));
+                elements.Add(new Element(eve.name.nl, image, DataConstants.GetLocation(eve.location).PrettyName, buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");
             Attachment attachment = new Attachment("template", payload);
