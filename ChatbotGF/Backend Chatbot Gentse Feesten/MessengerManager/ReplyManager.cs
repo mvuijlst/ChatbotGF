@@ -13,6 +13,7 @@ namespace Chatbot_GF.MessengerManager
     public class ReplyManager
     {
         private IMessengerApi api;
+        private string hmess;
 
         public ReplyManager()
         {
@@ -21,26 +22,41 @@ namespace Chatbot_GF.MessengerManager
 
         public void SendWelcomeMessage(long id)
         {
-            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", "Zoek op locatie", "SEND_LOCATION_CHOICE"));
-            reply.Add(new QuickReply("text", "Wat is nu bezig?", "DEVELOPER_DEFINED_LOCATION-ALL"));
-            GenericMessage message = new GenericMessage(id,"Hallo. Hieronder ziet u een aantal suggesties. U kunt ook altijd opnieuw beginnen door op de knop te drukken.",reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            try
+            {
+                List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+                hmess = DataConstants.GetMessage("Search_location").GENTS;
+                reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
+                hmess = DataConstants.GetMessage("Now").GENTS;
+                reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL"));
+                hmess = DataConstants.GetMessage("Welcome").GENTS;
+                GenericMessage message = new GenericMessage(id, hmess, reply);
+                Console.WriteLine(api.SendMessageToUser(message).Result);
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         public void SendLocationsChoice(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", "Kies uit lijst", "GET_EVENT_HERE_NOW-0"));
-            reply.Add(new QuickReply("text", "Kies op kaart.", "GET_USER_LOCATION"));
+            hmess = DataConstants.GetMessage("Choose_list").GENTS;
+            reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-0"));
+            hmess = DataConstants.GetMessage("Choose_card").GENTS;
+            reply.Add(new QuickReply("text", hmess, "GET_USER_LOCATION"));
             GenericMessage message = new GenericMessage(id, "Je kan ofwel een locatie kiezen, ofwel je eigen locatie gebruiken.", reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
         public void SendLocationResult(long id, SearchableLocation loc)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", "Ja", $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
-            reply.Add(new QuickReply("text", "Gebruik mijn locatie.", "DEVELOPER_DEFINED_SEARCHFALSE"));
+            hmess = DataConstants.GetMessage("Ja").GENTS;
+            reply.Add(new QuickReply("text", hmess, $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
+            hmess = DataConstants.GetMessage("My_location").GENTS;
+            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_SEARCHFALSE"));
+            hmess = DataConstants.GetMessage("Nearest_location").GENTS;
+            string h = DataConstants.GetMessage("This_location").GENTS;
             GenericMessage message = new GenericMessage(id, $"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?", reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
@@ -71,15 +87,16 @@ namespace Chatbot_GF.MessengerManager
                 //Max 10 quickreplies, we got more locations. When at first page, add extra button to show second page
                 if(page == 0)
                 {
-                    string mes = DataConstants.GetMessage("More").GENTS;
-                    reply.Add(new QuickReply("text", mes, "GET_EVENT_HERE_NOW-" + 1));
+                    hmess = DataConstants.GetMessage("More").GENTS;
+                    reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-" + 1));
                 }
                 else
                 {
-                    string mes = DataConstants.GetMessage("Previous").GENTS;
-                    reply.Add(new QuickReply("text", mes, "GET_EVENT_HERE_NOW-" + (page - 1)));
+                    hmess = DataConstants.GetMessage("Previous").GENTS;
+                    reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-" + (page - 1)));
                 }
-                GenericMessage message = new GenericMessage(id, "Welke locatie wil je bezoeken?", reply);
+                hmess = DataConstants.GetMessage("Which_location").GENTS;
+                GenericMessage message = new GenericMessage(id, hmess, reply);
 
                 Console.WriteLine(api.SendMessageToUser(message).Result);
             }catch(Exception ex)
@@ -91,22 +108,27 @@ namespace Chatbot_GF.MessengerManager
         public void SendConfirmation(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", "Ja", "SEND_LOCATION_CHOICE"));
-            reply.Add(new QuickReply("text", "Nee", "DEVELOPER_DEFINED_SEARCHFALSE"));
-            GenericMessage message = new GenericMessage(id, "Wil je een andere locatie bekijken?", reply);
+            hmess = DataConstants.GetMessage("Yes").GENTS;
+            reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
+            hmess = DataConstants.GetMessage("No").GENTS;
+            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_SEARCHFALSE"));
+            hmess = DataConstants.GetMessage("Other_location").GENTS;
+            GenericMessage message = new GenericMessage(id, hmess, reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
         public void SendInfoForEnding(long id)
         {
-            SendTextMessage(id, "Typ \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak als je een nieuwe zoekopdracht wil starten.");
+            hmess = DataConstants.GetMessage("Restart").GENTS;
+            SendTextMessage(id, hmess);
             // fotos voor waar de knop is
         }
 
 
         public void SendNoEventFound(long id)
         {
-            SendTextMessage(id, "Woeps! Ik kon jammer genoeg geen evenementen vinden.");
+            hmess = DataConstants.GetMessage("Not_found").GENTS;
+            SendTextMessage(id, hmess);
         }
     }
 }

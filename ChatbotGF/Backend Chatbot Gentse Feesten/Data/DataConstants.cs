@@ -13,7 +13,7 @@ namespace Chatbot_GF.Data
     public class DataConstants
     {
         public const int numberLocations = 16;
-        public const int numberMessages = 2;
+        public const int numberMessages = 16;
         private static IConfigurationRoot configuration;
        
 
