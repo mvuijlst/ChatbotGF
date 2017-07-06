@@ -22,7 +22,8 @@ namespace Chatbot_GF.MessengerManager
         {
             if (!string.IsNullOrWhiteSpace(message?.message?.text))
             {
-                replyManager.SendTextMessage(message.sender.id, message.message.text);
+                replyManager.SendTextMessage(message.sender.id, "Ik begrijp niet wat je bedoelt, wilt u weten wat hier gebeurt?");
+                replyManager.SendLocationQuery(message.sender.id, 0);
             }                
             
         }
