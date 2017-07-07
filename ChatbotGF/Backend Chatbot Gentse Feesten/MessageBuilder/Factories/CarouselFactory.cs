@@ -46,7 +46,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + dates + "-_-" + eve.name.nl ));
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
-                    buttons.Add(new ButtonPayload("Wat is het?", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nls));
+                    buttons.Add(new ButtonPayload("Wat is het?", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
                 }
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
