@@ -36,7 +36,7 @@ namespace Chatbot_GF.Data
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
 
-            string query = BASE_QUERY + " FILTER(" + locationfilter + " && " + startdatefilter + " && " + enddatefilter + ") }";
+            string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"), locationfilter, startdatefilter, enddatefilter);
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
@@ -54,9 +54,17 @@ namespace Chatbot_GF.Data
                 locationFilters += " || str(?location) = \"" + locations[i].Id + "\"";
             }
 
-            string query = BASE_QUERY + " FILTER( (" + locationFilters + ") && " + startdatefilter + " && " + enddatefilter + ") }";
+            string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"),locationFilters,startdatefilter,enddatefilter);
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
+        }
+        public void GetNextEvents(string locationurl,DateTime date, int count, long id)
+        {
+            string formattedTime = date.ToString("yyyy-MM-ddTHH:mm:sszzz");
+
+            string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("NextEventsOnLocation"), locationurl, formattedTime, count);
+            System.Console.WriteLine(query);
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new User(id));
         }
 
 

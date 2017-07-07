@@ -16,7 +16,7 @@ namespace Chatbot_GF.Data
         public const int numberMessages = 16;
         private static IConfigurationRoot LocationsStore;
         private static IConfigurationRoot MessagesStore;
-
+        private static IConfigurationRoot QueryStore;
 
         public static List<SearchableLocation> Locations
         {
@@ -26,11 +26,26 @@ namespace Chatbot_GF.Data
                 return locations;
             }
         }
-
-
-
+        
         private static List<SearchableLocation> locations;
         
+        private static void initQueries()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("queries.json");
+
+            QueryStore = builder.Build();
+        }
+
+        public static String GetQuery(string name)
+        {
+            if(QueryStore == null)
+            {
+                initQueries();
+            }
+            return QueryStore[name];
+        }
 
         private static void initMessages()
         {

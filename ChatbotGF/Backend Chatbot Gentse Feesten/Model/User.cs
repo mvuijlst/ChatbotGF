@@ -8,9 +8,10 @@ namespace Chatbot_GF.Model
 {
     public class User
     {
-        public long id { get; set; }                    //Messenger id from user
+        public long id { get; set; }               //Messenger id from user
         
         public DateTime date { get; set; }
+
         public string location { get; set; }    //needs to be URL's of the locations
         public IList<string> keywords { get; set; }
 
