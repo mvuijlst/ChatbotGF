@@ -22,20 +22,20 @@ namespace Chatbot_GF.MessengerManager
 
         public void SendWelcomeMessage(long id)
         {
-            try
-            {
-                List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-                hmess = DataConstants.GetMessage("Search_location", "GENTS");
-                reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
-                hmess = DataConstants.GetMessage("Now", "GENTS");
-                reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL"));
-                hmess = DataConstants.GetMessage("Welcome", "GENTS");
-                GenericMessage message = new GenericMessage(id, hmess, reply);
-                Console.WriteLine(api.SendMessageToUser(message).Result);
-            }catch(Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            hmess = DataConstants.GetMessage("Search_location", "GENTS");
+            reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
+
+            /* hmess = DataConstants.GetMessage("Now", "GENTS");
+            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL")); */
+
+            // test geval knoppen op gsm word dan schuiven dus minder goed
+            hmess = DataConstants.GetMessage("Search_Date", "GENTS");
+            reply.Add(new QuickReply("text", hmess, "SEND_DATE_CHOICE"));
+
+            hmess = DataConstants.GetMessage("Welcome", "GENTS");
+            GenericMessage message = new GenericMessage(id, hmess, reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
         public void SendLocationsChoice(long id)
@@ -103,6 +103,7 @@ namespace Chatbot_GF.MessengerManager
             }
 
         }
+
         public void SendConfirmation(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
@@ -122,11 +123,64 @@ namespace Chatbot_GF.MessengerManager
             // fotos voor waar de knop is
         }
 
-
         public void SendNoEventFound(long id)
         {
             hmess = DataConstants.GetMessage("Not_found", "GENTS");
             SendTextMessage(id, hmess);
+        }
+
+        public void SendDayOption(long id)
+        {
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            string[] data = DataConstants.GetMessage("Day_Block", "GENTS").Split(',');
+            foreach (var block in data)
+            {
+                reply.Add(new QuickReply("text", block, "DEVELOPER_DEFINED_DAY-" + block.Split(' ')[1]));
+            }
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Choice_For_Date", "GENTS"), reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
+        }
+
+        public void SendTimePeriod(long id, string value)
+        {
+            // value is om bij te houden opwelke dag ze hebben gekozen
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            string[] data = DataConstants.GetMessage("Time_Block", "GENTS").Split('|');
+            foreach (var block in data)
+            {
+                string[] blockinfo = block.Split(':');
+                reply.Add(new QuickReply("text", blockinfo[0], "DEVELOPER_DEFINED_HOURS-" + blockinfo[1] + "|" + value));
+            }
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Time_Periods", "GENTS"), reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
+        }
+
+        public void SendDateChoice(long id)
+        {
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            hmess = DataConstants.GetMessage("Now", "GENTS");
+            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL"));
+
+            hmess = DataConstants.GetMessage("Choice_For_Date", "GENTS");
+            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_DATE_SPECIFIC"));
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Date_Choice", "GENTS"), reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
+        }
+
+        public void SendHoursChoice(long id, string looping, string value)
+        {
+            // value opnieuw informatie // date: 2017-07-16T19:30:00+02:00
+            value = $"2017-07-{value}T";
+            string[] loop = looping.Split('~');
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            for (int i = Convert.ToInt32(loop[0]); i <= Convert.ToInt32(loop[1]); i++)
+            {
+                string view = (i.ToString().Length == 1) ? "0" + i + ":00" : i + ":00";
+                reply.Add(new QuickReply("text", view, "DEVELOPER_DEFINED_HOURS_COMP-" + view + "|" + value));
+            }
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous_Block", "GENTS"), "DEVELOPER_DEFINED_DAY-" + value));
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Time_Periods", "GENTS"), reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
         }
     }
 }

@@ -45,6 +45,51 @@
       "GENTS": "Zoek op locatie",
       "EN": "Search on location"
     },
+    "Search_Date": {
+      "NL": "Zoek op datum",
+      "GENTS": "Zoek op datum",
+      "EN": "Search on date"
+    },
+    "Time_Block": {
+      "NL": "Voormiddag:8~15|Namiddag:16~23|'s Nachts:0~7",
+      "GENTS": "Voormiddag:8~15|Namiddag:16~23|'s Nachts:0~7",
+      "EN": "Forenoon:8~15|Noon:16~23|At night:0~7"
+    },
+    "HOURS_BLOCK": {
+      "NL": "Rond welk uur wilt je?",
+      "GENTS": "Rond welk uur wilt je?",
+      "EN": "Which hour?"
+    },
+    "Time_Periods": {
+      "NL": "Kies een van de volgende opties om te specifieren",
+      "GENTS": "Kies een van de volgende opties om te specifieren",
+      "EN": "Pick one"
+    },
+    "Date_Choice": {
+      "NL": "Je kan kiezen voor alles wat nu gebeurt, ofwel kan je de datum zelf kiezen",
+      "GENTS": "Je kan kiezen voor alles wat nu gebeurt, ofwel kan je de datum zelf kiezen",
+      "EN": "Pick one"
+    },
+    "Previous_Block": {
+      "NL": "Terug",
+      "GENTS": "Terug",
+      "EN": "Back"
+    },
+    "Choice_For_Date": {
+      "NL": "Kies jouw datum",
+      "GENTS": "Kies jouw datum",
+      "EN": "Make your date"
+    },
+    "Choice_For_Day": {
+      "NL": "Welke dag kies je",
+      "GENTS": "Welke dag kies je",
+      "EN": "Which day"
+    },
+    "Day_Block": {
+      "NL": "Vr 14,Za 15,Zo 16,Ma 17,Di 18,Wo 19,Do 20,Vr 21,Za 22,Zo 23",
+      "GENTS": "Vr 14,Za 15,Zo 16,Ma 17,Di 18,Wo 19,Do 20,Vr 21,Za 22,Zo 23",
+      "EN": "Fr 14,Sa 15,Su 16,Mo 17,Tu 18,We 19,Th 20,Fr 21,Sa 22,Su 23"
+    },
     "Now": {
       "NL": "Wat is er nu bezig?",
       "GENTS": "Wa est er neu bezig?",
@@ -89,6 +134,6 @@
       "NL": "Na dit te doen?", // betere zin
       "GENTS": "Wa der achter?", //VERTALLEN
       "EN": "After this event?"
-    } 
+    }
   }
 }

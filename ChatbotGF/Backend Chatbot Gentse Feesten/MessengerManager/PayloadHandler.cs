@@ -30,6 +30,13 @@ namespace Chatbot_GF.MessengerManager
                 case "SEND_LOCATION_CHOICE":
                     rmanager.SendLocationsChoice(message.sender.id);
                     break;
+                // tijd keuze extra 
+                case "SEND_DATE_CHOICE":
+                    rmanager.SendDateChoice(message.sender.id);
+                    break;
+                case "DEVELOPER_DEFINED_DATE_SPECIFIC":
+                    rmanager.SendDayOption(message.sender.id);
+                    break;
                 case "GET_USER_LOCATION":
                     rmanager.SendGetLocationButton(message.sender.id);
                     break;
@@ -65,6 +72,9 @@ namespace Chatbot_GF.MessengerManager
                 case "DEVELOPER_DEFINED_SEARCH":
                     umanager.searchResults(id);
                     break;
+                case "DEVELOPER_DEFINED_DAY":
+                    rmanager.SendTimePeriod(id, value);
+                    break;
                 case "DEVELOPER_DEFINED_COORDINATES":
                     try
                     {
@@ -81,9 +91,16 @@ namespace Chatbot_GF.MessengerManager
                     rmanager.SendTextMessage(id, value);
                     break;
                 case "DEVELOPER_DEFINED_HOURS":
-                    pos = value.IndexOf("-_-");
-                    rmanager.SendTextMessage(id, value.Substring(pos + 3) + ": " + value.Substring(0, pos));
+                    string[] dat = value.Split('|');
+                    rmanager.SendHoursChoice(id, dat[0], dat[1]);
                     break;
+                case "DEVELOPER_DEFINED_HOURS_COMP":
+                    string[] da = value.Split('|');
+                    value = $"{da[1]}T{da[0]}+2:00";
+                    rmanager.SendTextMessage(id, value);
+                    // querry uitvoeren 
+                    break;
+                
                 case "DEVELOPER_DEFINED_NEXT":
                     // moet nog normaal gezet worden maar voor test gevallen is het deze tijd
                     pos = value.IndexOf("-_-");
