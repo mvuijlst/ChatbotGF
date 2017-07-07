@@ -66,9 +66,16 @@ namespace Chatbot_GF.MessengerManager
                     umanager.searchResults(id);
                     break;
                 case "DEVELOPER_DEFINED_COORDINATES":
-                    string[] data = value.Split(':');
-                    SearchableLocation location = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) });
-                    rmanager.SendLocationResult(id, location);
+                    try
+                    {
+                        string[] data = value.Split(':');
+                        SearchableLocation location = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) });
+                        Console.WriteLine("Closest location found.");
+                        rmanager.SendLocationResult(id, location);
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     break;
                 case "DEVELOPER_DEFINED_DESCRIPTION":
                     rmanager.SendTextMessage(id, value);
