@@ -40,11 +40,11 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 DateTime end = ResultParser.normalizeDate(eve.endDate.ToString());
                 if (start.Day == end.Day)
                 {
-                    dates = $" Op de {start.Day}e van {start.ToString("HH:mm")} tot {end.ToString("HH:mm")}";
+                    dates = $" | {start.Day} juli {start.ToString("HH:mm")} - {end.ToString("HH:mm")}";
                 }
                 else
                 {
-                    dates = $" Vanaf de {start.Day}e om {start.ToString("HH:mm")} tot de {end.Day}e om {end.ToString("HH:mm")}";
+                    dates = $" | {start.Day} juli {start.ToString("HH:mm")} - {end.Day} juli {end.ToString("HH:mm")}";
                 }
 
                 string subtitle = DataConstants.GetLocation(eve.location).PrettyName + dates;
