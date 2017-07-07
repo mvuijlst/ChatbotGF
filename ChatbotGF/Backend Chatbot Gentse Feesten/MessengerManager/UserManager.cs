@@ -18,7 +18,7 @@ namespace Chatbot_GF.MessengerManager
 
         public UserManager()
         {
-            dataDAO = new RemoteDataManager();
+            dataDAO = RemoteDataManager.GetInstance();
             activeUsers = new Dictionary<long, User>();
             reply = new ReplyManager();
         }

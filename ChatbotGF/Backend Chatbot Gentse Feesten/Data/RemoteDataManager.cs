@@ -17,6 +17,7 @@ namespace Chatbot_GF.Data
 {
     public class RemoteDataManager
     {
+        private static RemoteDataManager instance;
         private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . OPTIONAL {?sub schema:url ?url. } OPTIONAL {?sub schema:name ?name.} OPTIONAL {?sub schema:startDate ?startdate. } OPTIONAL {?sub schema:endDate ?enddate. } OPTIONAL {?sub schema:description ?description. } OPTIONAL {?sub schema:location ?location. } OPTIONAL {?sub schema:isAccessibleForFree ?isFree.} OPTIONAL {?sub schema:organizer ?organizer. } OPTIONAL { ?sub schema:image/schema:url ?image. } ";
         //private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
@@ -26,6 +27,15 @@ namespace Chatbot_GF.Data
             endpoint = new SparqlRemoteEndpoint(new Uri("https://stad.gent/sparql"), "http://stad.gent/gentse-feesten/");
             rm = new ReplyManager();
 
+        }
+
+        public static RemoteDataManager GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new RemoteDataManager();
+            }
+            return instance;
         }
 
 
@@ -58,7 +68,7 @@ namespace Chatbot_GF.Data
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
-        public void GetNextEvents(string locationurl,DateTime date, int count, long id)
+        public  void GetNextEvents(string locationurl,DateTime date, int count, long id)
         {
             string formattedTime = date.ToString("yyyy-MM-ddTHH:mm:sszzz");
 

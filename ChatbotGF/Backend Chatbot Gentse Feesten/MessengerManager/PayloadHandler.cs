@@ -84,9 +84,10 @@ namespace Chatbot_GF.MessengerManager
                     pos = value.IndexOf("-_-");
                     rmanager.SendTextMessage(id, value.Substring(pos + 3) + ": " + value.Substring(0, pos));
                     break;
-                case "DEVELOPER_DEFiNED_NEXT":
-                    pos = value.IndexOf("-_-");
-                    rmanager.SendTextMessage(id, value.Substring(pos + 3) + ": " + value.Substring(0, pos));
+                case "DEVELOPER_DEFINED_NEXT":
+                    // moet nog normaal gezet worden maar voor test gevallen is het deze tijd
+                    User user = new User();
+                    RemoteDataManager.GetInstance().GetNextEvents(value, user.date, 3, id);
                     break;
                 default:
                    //do nothing
