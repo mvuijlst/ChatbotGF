@@ -1,102 +1,86 @@
 ﻿{
-  "messages": [
-    {
-      "Name": "More",
+  "messages": {
+    "More": {
       "NL": "Meer",
       "GENTS": "Mier",
       "EN": "More"
     },
-    {
-      "Name": "Previous",
+    "Previous": {
       "NL": "Vorige locaties",
       "GENTS": "Veurige locaties",
       "EN": "Previous"
     },
-    {
-      "Name": "Which_location",
+    "Which_location": {
       "NL": "Welke locatie wilt u bezoeken?",
       "GENTS": "Is ter een fiestpleine dadde wilt bezoeken?",
       "EN": "Which location do you want to visit?"
     },
-    {
-      "Name": "Yes",
+    "Yes": {
       "NL": "Ja",
       "GENTS": "Ja!",
       "EN": "Yes"
     },
-    {
-      "Name": "No",
+    "No": {
       "NL": "Neen",
       "GENTS": "Nieje",
       "EN": "No"
     },
-    {
-      "Name": "Other_location",
+    "Other_location": {
       "NL": "Wenst u een andere locatie te bekijken?",
       "GENTS": "Wilde n ander fiestpleine zien?",
       "EN": "Do you like to check another location?"
     },
-    {
-      "Name": "Restart",
+    "Restart": {
       "NL": "Typ \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak als u een nieuwe zoekopdracht wenst te starten.",
       "GENTS": "As ge opnieuw wil zoeke, typt dan \"opnieuw\" of klikt op Begin opnieuw int menu naast het tekstvak",
       "EN": "Type \"opnieuw\" or push the button Begin opnieuw"
     },
-    {
-      "Name": "Not_found",
+    "Not_found": {
       "NL": "Sorry, ik kon jammer genoeg geen evenementen vinden.",
       "GENTS": "Oesje, ik koste niks nie vinde, probeert es opnieuw!",
       "EN": "Sorry, I couldn't find an event."
     },
-    {
-      "Name": "Search_location",
+    "Search_location": {
       "NL": "Zoek op locatie",
       "GENTS": "Zoek op locatie",
       "EN": "Search on location"
     },
-    {
-      "Name": "Now",
+    "Now": {
       "NL": "Wat is er nu bezig?",
       "GENTS": "Wa est er neu bezig?",
       "EN": "Search on location"
     },
-    {
-      "Name": "Welcome",
+    "Welcome": {
       "NL": "Hallo. Hieronder ziet u een aantal suggesties. U kunt ook altijd opnieuw beginnen door op de knop te drukken.",
       "GENTS": "Goeiendag beste fiester! Hieronder ziede een ewa opties. Ge kunt uk altijd opnieuw beginne door op den knop te drukke",
       "EN": "Welcome"
     },
-    {
-      "Name": "My_location",
+    "My_location": {
       "NL": "Gebruik mijn locatie",
       "GENTS": "Gebruik mijn locatie",
       "EN": "Use my location"
     },
-    {
-      "Name": "Nearest_location",
+    "Nearest_location": {
       "NL": "U bent het dichtst bij ",
       "GENTS": "Je bent het dichtst bij ",
       "EN": "The nearest location is "
     },
-    {
-      "Name": "This_location",
+    "This_location": {
       "NL": "Wilt u op deze locatie zoeken?",
       "GENTS": "Wil je op deze locatie zoeken?",
       "EN": "Do you want to search on this location?"
     },
-    {
-      "Name": "Choose_card",
+    "Choose_card": {
       "NL": "Kies op kaart.",
       "GENTS": "Kies op kaart.",
       "EN": "Choose on card"
     },
-    {
-      "Name": "Choose_list",
+    "Choose_list":{
       "NL": "Kies uit lijst.",
       "GENTS": "Kies uit lijst.",
       "EN": "Choose from list"
     }
 
-  ]
+  }
 
 }

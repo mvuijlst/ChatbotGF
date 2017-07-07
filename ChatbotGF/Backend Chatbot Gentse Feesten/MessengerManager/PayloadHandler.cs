@@ -70,7 +70,7 @@ namespace Chatbot_GF.MessengerManager
                     {
                         string[] data = value.Split(':');
                         SearchableLocation location = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) });
-                        Console.WriteLine("Closest location found.");
+                        Console.WriteLine($"Closest location found: {location.PrettyName} ");
                         rmanager.SendLocationResult(id, location);
                     }catch(Exception ex)
                     {
