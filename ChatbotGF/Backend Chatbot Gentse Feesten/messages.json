@@ -75,12 +75,20 @@
       "GENTS": "Kies op kaart.",
       "EN": "Choose on card"
     },
-    "Choose_list":{
+    "Choose_list": {
       "NL": "Kies uit lijst.",
       "GENTS": "Kies uit lijst.",
       "EN": "Choose from list"
-    }
-
+    },
+    "What_Is_It": {
+      "NL": "Wat is het?",
+      "GENTS": "Wat is het?", //VERTALLEN
+      "EN": "What is it?"
+    },
+    "NEXT": {
+      "NL": "Na dit te doen?", // betere zin
+      "GENTS": "Na dit te doen?", //VERTALLEN
+      "EN": "After this event?"
+    } 
   }
-
 }

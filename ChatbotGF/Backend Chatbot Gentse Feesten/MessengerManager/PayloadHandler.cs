@@ -47,7 +47,7 @@ namespace Chatbot_GF.MessengerManager
         private void handleInformation(long id, string payload)
         {
             //payload indicates which category data in messengers has been given
-            int pos = payload.IndexOf("-");
+            var pos = payload.IndexOf("-");
             string category = payload.Substring(0, pos);
             string value = payload.Substring(pos + 1);
             Console.WriteLine(category + " " + value);
@@ -81,10 +81,12 @@ namespace Chatbot_GF.MessengerManager
                     rmanager.SendTextMessage(id, value);
                     break;
                 case "DEVELOPER_DEFINED_HOURS":
-                    int loc = value.IndexOf("-_-");
-                    string date = value.Substring(0, loc);
-                    string name = value.Substring(loc + 3 );
-                    rmanager.SendTextMessage(id, name + ": " + date);
+                    pos = value.IndexOf("-_-");
+                    rmanager.SendTextMessage(id, value.Substring(pos + 3) + ": " + value.Substring(0, pos));
+                    break;
+                case "DEVELOPER_DEFiNED_NEXT":
+                    pos = value.IndexOf("-_-");
+                    rmanager.SendTextMessage(id, value.Substring(pos + 3) + ": " + value.Substring(0, pos));
                     break;
                 default:
                    //do nothing
