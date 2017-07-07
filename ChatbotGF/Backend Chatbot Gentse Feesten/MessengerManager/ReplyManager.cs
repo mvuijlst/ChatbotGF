@@ -53,7 +53,7 @@ namespace Chatbot_GF.MessengerManager
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             hmess =DataConstants.GetMessage("Yes", "GENTS");
             reply.Add(new QuickReply("text", hmess, $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
-            hmess = DataConstants.GetMessage("My_location","GENTS");
+            hmess = DataConstants.GetMessage("No","GENTS");
             reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_SEARCHFALSE"));
             GenericMessage message = new GenericMessage(id, $"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?", reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);

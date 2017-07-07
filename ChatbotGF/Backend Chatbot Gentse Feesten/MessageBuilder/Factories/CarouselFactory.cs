@@ -27,7 +27,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 {
                     buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", "NL"), "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
                 }
-                buttons.Add(new ButtonPayload(DataConstants.GetMessage("NEXT", "NL"), "postback", "DEVELOPER_DEFINED_NEXT-" + eve.location));
+                buttons.Add(new ButtonPayload(DataConstants.GetMessage("NEXT", "NL"), "postback", "DEVELOPER_DEFINED_NEXT-" + eve.location + "-_-" + eve.startDate));
 
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))

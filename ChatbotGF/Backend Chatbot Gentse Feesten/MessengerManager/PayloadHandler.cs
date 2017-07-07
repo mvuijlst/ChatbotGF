@@ -86,8 +86,8 @@ namespace Chatbot_GF.MessengerManager
                     break;
                 case "DEVELOPER_DEFINED_NEXT":
                     // moet nog normaal gezet worden maar voor test gevallen is het deze tijd
-                    User user = new User(223233);
-                    RemoteDataManager.GetInstance().GetNextEvents(value, user.date, 3, id);
+                    pos = value.IndexOf("-_-");
+                    RemoteDataManager.GetInstance().GetNextEvents(value.Substring(0, pos), value.Substring(pos + 3), 3, id);
                     break;
                 default:
                    //do nothing

@@ -68,11 +68,9 @@ namespace Chatbot_GF.Data
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
-        public  void GetNextEvents(string locationurl,DateTime date, int count, long id)
+        public  void GetNextEvents(string locationurl,string date, int count, long id)
         {
-            string formattedTime = date.ToString("yyyy-MM-ddTHH:mm:sszzz");
-
-            string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("NextEventsOnLocation"), locationurl, formattedTime, count);
+            string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("NextEventsOnLocation"), locationurl, date, count);
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new User(id));
         }
