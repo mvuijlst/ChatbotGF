@@ -14,8 +14,9 @@ namespace Chatbot_GF.Data
     {
         public const int numberLocations = 16;
         public const int numberMessages = 16;
-        private static IConfigurationRoot configuration;
-       
+        private static IConfigurationRoot LocationsStore;
+        private static IConfigurationRoot MessagesStore;
+
 
         public static List<SearchableLocation> Locations
         {
@@ -29,30 +30,17 @@ namespace Chatbot_GF.Data
 
 
         private static List<SearchableLocation> locations;
-
-        private static List<SearchableMessage> messages;
+        
 
         private static void initMessages()
         {
             try
             {
-                var builder = new ConfigurationBuilder().
-                    SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("messages.json");
+                    var builder = new ConfigurationBuilder().
+                        SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("messages.json");
 
-                configuration = builder.Build();
-
-                messages = new List<SearchableMessage>();
-                for(int i=0; i<numberMessages; i++)
-                {
-                    messages.Add(new SearchableMessage
-                    {
-                        Name = configuration[$"messages:{i}:Name"],
-                        NL = configuration[$"messages:{i}:NL"],
-                        GENTS = configuration[$"messages:{i}:GENTS"],
-                        EN = configuration[$"messages:{i}:EN"]
-                    });
-                }
+                MessagesStore = builder.Build();
             }
             catch (Exception ex)
             {
@@ -68,18 +56,19 @@ namespace Chatbot_GF.Data
                 .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("locations.json");
 
-                configuration = builder.Build();
+                LocationsStore = builder.Build();
+                
 
                 locations = new List<SearchableLocation>();
                 for (int i = 0; i < numberLocations; i++)
                 {
                     locations.Add(new SearchableLocation
                     {
-                        Name = configuration[$"locations:{i}:Name"],
-                        PrettyName = configuration[$"locations:{i}:PrettyName"],
-                        Id = configuration[$"locations:{i}:Id"],
-                        Lat = double.Parse(configuration[$"locations:{i}:Lat"]),
-                        Lon = double.Parse(configuration[$"locations:{i}:lon"])
+                        Name = LocationsStore[$"locations:{i}:Name"],
+                        PrettyName = LocationsStore[$"locations:{i}:PrettyName"],
+                        Id = LocationsStore[$"locations:{i}:Id"],
+                        Lat = double.Parse(LocationsStore[$"locations:{i}:Lat"]),
+                        Lon = double.Parse(LocationsStore[$"locations:{i}:lon"])
                     });
                 }
             }catch(Exception ex)
@@ -89,21 +78,14 @@ namespace Chatbot_GF.Data
             //Console.WriteLine(JsonConvert.SerializeObject(locations));
         }
 
-        public static SearchableMessage GetMessage(string name)
+        public static string GetMessage(string name, string locale)
         {
-            if(messages == null)
+            if(MessagesStore == null)
             {
                 initMessages();
             }
-
-            foreach(SearchableMessage mes in messages)
-            {
-                if(mes.Name == name)
-                {
-                    return mes;
-                }
-            }
-            return null;
+            return MessagesStore[$"messages:{name}:{locale}"];
+            
         }
 
         public static SearchableLocation GetLocation(string name){

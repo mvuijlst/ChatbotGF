@@ -36,7 +36,7 @@ namespace Chatbot_GF.Data
                             e.endDate = normalizeUrl(res[key].ToString());
                             break;
                         case "description":
-                            e.description.nl = res[key].ToString();
+                            e.description.nl = normalizeString(res[key].ToString());
                             break;
                         case "organizer":
                             e.organizer = res[key].ToString();
