@@ -44,6 +44,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     dates = $"de {start.Day}e van {start.ToString("HH:mm")} tot de {end.Day}e om {end.ToString("HH:mm")}";
                 }
                 buttons.Add(new ButtonPayload("Wanneer is het?", "postback", "DEVELOPER_DEFINED_HOURS-" + dates + "-_-" + eve.name.nl ));
+                buttons.Add(new ButtonPayload("Wat is het?", "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl.ToString()));
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {
