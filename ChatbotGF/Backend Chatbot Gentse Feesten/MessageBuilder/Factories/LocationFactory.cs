@@ -1,4 +1,5 @@
-﻿using Chatbot_GF.MessageBuilder.Model;
+﻿using Chatbot_GF.Data;
+using Chatbot_GF.MessageBuilder.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Chatbot_GF.MessageBuilder.Factories
         {
             List<SimpleQuickReply> quick_replies = new List<SimpleQuickReply>();
             quick_replies.Add(new SimpleQuickReply("location"));
-            return new GenericMessage(id, "Duid een locatie aan op de kaart.", quick_replies);
+            String hmess = DataConstants.GetMessage("Pick_map", "GENTS");
+            return new GenericMessage(id, hmess, quick_replies);
         }
     }
 }

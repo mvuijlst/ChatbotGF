@@ -13,17 +13,20 @@ namespace Chatbot_GF.MessengerManager
     {
 
         private ReplyManager replyManager;
+        public string Language_choice { get; set; }
 
         public MessageHandler()
         {
             replyManager = new ReplyManager();
+            Language_choice = "GENTS";
         }
 
         public void ReplyRecieved(Messaging message)
         {
             if (!string.IsNullOrWhiteSpace(message?.message?.text))
             {
-                replyManager.SendTextMessage(message.sender.id, "Ik begrijp niet wat u bedoelt, wilt u weten wat hier gebeurt?");
+                String hmess = DataConstants.GetMessage("Donot_understand", Language_choice);
+                replyManager.SendTextMessage(message.sender.id, hmess);
                 replyManager.SendLocationQuery(message.sender.id, 0);
             }                
             

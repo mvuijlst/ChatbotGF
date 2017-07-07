@@ -112,7 +112,7 @@
     },
     "This_location": {
       "NL": "Wilt u op deze locatie zoeken?",
-      "GENTS": "Wilde op dies locatie zoeken?",
+      "GENTS": " Wilde op dies locatie zoeken?",
       "EN": "Do you want to search on this location?"
     },
     "Choose_card": {
@@ -144,6 +144,22 @@
       "NL": "Er is iets foutgelopen, we proberen dit zo snel mogelijk op te lossen.",
       "GENTS": "Der es ietken misgegoan, we probiere et te fikse!",
       "EN": "Something has gone wrong. We are trying to fix it as quick as possible."
-    }
+    },
+    "Choose_options": {
+      "NL": "Je kan ofwel een locatie kiezen, ofwel je eigen locatie gebruiken.",
+      "GENTS": "Ge kun kiezen veur eu locatie, ofwel iene kiezen",
+      "EN": "You can choose a location or use your own."
+    },
+    "Pick_map": {
+      "NL": "Duid een locatie aan op de kaart.",
+      "GENTS": "Kiest eu locatie op de koarte.",
+      "EN": "Choose your location on the map."
+    },
+    "Donot_understand": {
+      "NL": "Ik begrijp niet wat u bedoelt, wilt u weten wat hier gebeurt?",
+      "GENTS": "Wadadde? Woar es da fiestje? Hier es da fiestje! Wilde wete wa ter gebeurt?",
+      "EN": "I don't understand. Do you want to know what's happening overhere?"
+    },
+    
   }
 }

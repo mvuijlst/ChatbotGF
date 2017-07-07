@@ -47,7 +47,8 @@ namespace Chatbot_GF.MessengerManager
             reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-0"));
             hmess = DataConstants.GetMessage("Choose_card", Language_choice);
             reply.Add(new QuickReply("text", hmess, "GET_USER_LOCATION"));
-            GenericMessage message = new GenericMessage(id, "Je kan ofwel een locatie kiezen, ofwel je eigen locatie gebruiken.", reply);
+            hmess = DataConstants.GetMessage("Choose_options", Language_choice);
+            GenericMessage message = new GenericMessage(id, hmess, reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
         public void SendLocationResult(long id, SearchableLocation loc)
@@ -57,7 +58,11 @@ namespace Chatbot_GF.MessengerManager
             reply.Add(new QuickReply("text", hmess, $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
             hmess = DataConstants.GetMessage("No", Language_choice);
             reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_SEARCHFALSE"));
-            GenericMessage message = new GenericMessage(id, $"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?", reply);
+            hmess = DataConstants.GetMessage("Nearest_location", Language_choice);
+            hmess += $"{loc.PrettyName}";
+            hmess += DataConstants.GetMessage("This_location", Language_choice);
+            //$"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?"
+            GenericMessage message = new GenericMessage(id, hmess, reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 

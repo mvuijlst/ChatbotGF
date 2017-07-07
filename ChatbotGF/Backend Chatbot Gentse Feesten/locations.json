@@ -21,13 +21,13 @@
       "Lon":3.727681,
       "Lat":51.056523
    },
-   {  
-      "Name":"CENTRUM",
-      "PrettyName":"Centrum",
-      "Id":"https://gentsefeesten.stad.gent/api/v1/location/f792034c-a8e5-4260-ab6b-2adeecf759a6",
-      "Lon":3.73036,
-      "Lat":51.047455
-   },
+    {
+      "Name": "CENTRUM",
+      "PrettyName": "Centrum",
+      "Id": "https://gentsefeesten.stad.gent/api/v1/location/f792034c-a8e5-4260-ab6b-2adeecf759a6",
+      "Lon": 3.718548,
+      "Lat": 51.0575292
+    },
    {  
       "Name":"STADSHAL",
       "PrettyName":"Stadshal",
