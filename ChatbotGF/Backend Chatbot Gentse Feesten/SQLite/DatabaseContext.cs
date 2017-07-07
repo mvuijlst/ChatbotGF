@@ -10,7 +10,7 @@ namespace Chatbot_GF.SQLite
 
         public class DatabaseContext : DbContext
         {
-            public DbSet<User> Posts { get; set; }
+            public DbSet<User> Users { get; set; }
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
