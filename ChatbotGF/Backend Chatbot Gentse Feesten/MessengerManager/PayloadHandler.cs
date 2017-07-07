@@ -96,8 +96,17 @@ namespace Chatbot_GF.MessengerManager
                     break;
                 case "DEVELOPER_DEFINED_HOURS_COMP":
                     string[] da = value.Split('|');
-                    value = $"{da[1]}T{da[0]}+2:00";
-                    rmanager.SendTextMessage(id, value);
+                    value = $"{da[1]}{da[0]}:00+02:00";
+                    //rmanager.SendTextMessage(id, value);
+                    try
+                    {
+                        Console.WriteLine("Datum: " + value);
+                        RemoteDataManager.GetInstance().GetEventsAtTime(id, value);
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                    }
                     // querry uitvoeren 
                     break;
                 

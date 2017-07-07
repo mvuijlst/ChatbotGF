@@ -97,7 +97,7 @@
     },
     "Welcome": {
       "NL": "Hallo. Hieronder ziet u een aantal suggesties. U kunt ook altijd opnieuw beginnen door op de knop te drukken.",
-      "GENTS": "Goeiendag beste fiester! Hieronder ziede een ewa opties. Ge kunt uk altijd opnieuw beginne door op den knop te drukke",
+      "GENTS": "Goeiendag beste fiester! Hieronder ziede ewa opties. Ge kunt uk altijd opnieuw beginne door op den knop te drukke",
       "EN": "Welcome"
     },
     "My_location": {
@@ -112,7 +112,7 @@
     },
     "This_location": {
       "NL": "Wilt u op deze locatie zoeken?",
-      "GENTS": " Wilde op dies locatie zoeken?",
+      "GENTS": ". Wilde op dies locatie zoeken?",
       "EN": "Do you want to search on this location?"
     },
     "Choose_card": {
@@ -121,8 +121,8 @@
       "EN": "Choose on card"
     },
     "Choose_list": {
-      "NL": "Kies uit lijst.",
-      "GENTS": "Kies uit ne lijst.",
+      "NL": "Kies uit lijst",
+      "GENTS": "Kies uit ne lijst",
       "EN": "Choose from list"
     },
     "What_Is_It": {
@@ -157,7 +157,7 @@
     },
     "Donot_understand": {
       "NL": "Ik begrijp niet wat u bedoelt, wilt u weten wat hier gebeurt?",
-      "GENTS": "Wadadde? Woar es da fiestje? Hier es da fiestje! Wilde wete wa ter gebeurt?",
+      "GENTS": "Wadadde? Da ès maar iet roar ze! Woar es da fiestje? Hier es da fiestje!",
       "EN": "I don't understand. Do you want to know what's happening overhere?"
     },
     

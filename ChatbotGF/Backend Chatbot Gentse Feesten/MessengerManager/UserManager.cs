@@ -70,7 +70,7 @@ namespace Chatbot_GF.MessengerManager
             try
             {
                 DateTime dt = DateTime.ParseExact(value, "yyyy-MM-ddTHH:mm:sszzz", null);
-                user.date = DateTime.Now.AddDays(10).AddHours(9);
+                user.date = DateTime.Now.AddDays(10).AddHours(3);   //nog naar nu veranderen!
             } catch(Exception e)
             {
                 Console.WriteLine(e);

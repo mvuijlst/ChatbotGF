@@ -23,7 +23,9 @@ namespace Chatbot_GF.MessageBuilder.Factories
             {
                 List<IButton> buttons = new List<IButton>();
                 DefaultAction defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
-                
+
+              
+
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
                     buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", "GENTS"), "postback", "DEVELOPER_DEFINED_DESCRIPTION-" + eve.description.nl));
@@ -36,16 +38,52 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     image = /* keuze */ "https://gentsefeesten.stad.gent/sites/default/files/styles/large_3_2/public/2017-04/foto%20campagne%20timeline.png?itok=xs3Q9p3L";
                 }
 
-                string dates = "";
-                DateTime start = ResultParser.normalizeDate(eve.startDate.ToString());
-                DateTime end = ResultParser.normalizeDate(eve.endDate.ToString());
-                if (start.Day == end.Day)
+                string dates = " ";
+                
+
+               // DateTime start = ResultParser.normalizeDate(eve.startDate.ToString());
+                //DateTime end = ResultParser.normalizeDate(eve.endDate.ToString());
+                //Console.WriteLine("Start na parsen: " + start + "   end na persen: " + end);
+                if (eve.startDate.ToString().Equals(eve.endDate.ToString()))
                 {
-                    dates = $" | {start.Day} juli {start.ToString("HH:mm")} - {end.ToString("HH:mm")}";
+                    string[] helpStart = eve.startDate.ToString().Split('T');
+                    string[] daySt = helpStart[0].Split('-');
+                    string[] hourSt = helpStart[1].Split(':');
+                    dates += daySt[2];
+                    dates += " juli ";
+                    dates += hourSt[0];
+                    dates += ":";
+                    dates += hourSt[1];
+
+                    string[] helpEnd = eve.endDate.ToString().Split('T');
+                    string[] dayEnd = helpEnd[0].Split('-');
+                    string[] hourEnd = helpEnd[1].Split(':');
+                    dates += " - ";
+                    dates += hourEnd[0];
+                    dates += ":";
+                    dates += hourEnd[1];
+                    //dates = $" | {start.Day} juli {start.ToString("HH:mm")} - {end.ToString("HH:mm")}";
                 }
                 else
                 {
-                    dates = $" | {start.Day} juli {start.ToString("HH:mm")} - {end.Day} juli {end.ToString("HH:mm")}";
+                    string[] helpStart = eve.startDate.ToString().Split('T');
+                    string[] daySt = helpStart[0].Split('-');
+                    string[] hourSt = helpStart[1].Split(':');
+                    dates += daySt[2];
+                    dates += " juli ";
+                    dates += hourSt[0];
+                    dates += ":";
+                    dates += hourSt[1];
+
+                    string[] helpEnd = eve.endDate.ToString().Split('T');
+                    string[] dayEnd = helpEnd[0].Split('-');
+                    string[] hourEnd = helpEnd[1].Split(':');
+                    dates += " - ";
+                    dates += dayEnd[2];
+                    dates += " juli ";
+                    dates += hourEnd[0];
+                    dates += ":";
+                    dates += hourEnd[1];
                 }
 
                 string subtitle = DataConstants.GetLocation(eve.location).PrettyName + dates;

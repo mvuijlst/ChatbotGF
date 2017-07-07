@@ -53,6 +53,24 @@ namespace Chatbot_GF.Data
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
         }
 
+        public void GetEventsAtTime(long id, string date)
+        {
+            string startdatefilter = "?startdate < \"" + date + "\" ^^ xsd:dateTime";
+            string enddatefilter = "?enddate > \"" + date + "\" ^^ xsd:dateTime";
+
+            List<SearchableLocation> locations = DataConstants.Locations;
+            string locationFilters = "str(?location) = \"" + locations[0].Id + "\"";
+            for (int i = 1; i < locations.Count; i++)
+            {
+                locationFilters += " || str(?location) = \"" + locations[i].Id + "\"";
+            }
+
+            string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"), locationFilters, startdatefilter, enddatefilter);
+            System.Console.WriteLine(query);
+
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new User(id));
+        }
+
         public void GetEventsNow(User user)
         {
             string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
@@ -92,9 +110,20 @@ namespace Chatbot_GF.Data
                     System.Console.WriteLine("Found Results");
                     foreach (SparqlResult res in results)
                     {
-                        Event e = ResultParser.GetEvent(res);
-                        events.Add(e);
+     
+                        try
+                        {
+                            Event e = ResultParser.GetEvent(res);
+                            events.Add(e);
+                            System.Console.WriteLine("Datum: " + e.startDate);
+                            System.Console.WriteLine("Dend: " + e.endDate);
+                        } catch (Exception ex)
+                        {
+                            System.Console.WriteLine(ex);
+                        }
+                        
                     }
+                    
                     hmess = DataConstants.GetMessage("Found", Language_choice);
                     rm.SendTextMessage(user.id, hmess);
                     System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
