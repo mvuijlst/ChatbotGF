@@ -5,8 +5,6 @@ using Chatbot_GF.MessageBuilder.Model;
 using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Chatbot_GF.MessengerManager
 {
@@ -37,6 +35,7 @@ namespace Chatbot_GF.MessengerManager
             reply.Add(new QuickReply("text", "English", "SET_LANGUAGE°EN°" + lang));
             reply.Add(new QuickReply("text", "Nederlands", "SET_LANGUAGE°NL°" + lang));
             reply.Add(new QuickReply("text", "Gents", "SET_LANGUAGE°GENTS°" + lang));
+            // reply.Add(new QuickReply("text", "Deutsch", "SET_LANGUAGE°DE°" + lang));
             GenericMessage message = new GenericMessage(id, $"Kies u taal: ", reply);
             Console.WriteLine("Language message: " + api.SendMessageToUser(message).Result);
         }

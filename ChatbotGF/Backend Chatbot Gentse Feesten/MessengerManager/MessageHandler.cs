@@ -1,10 +1,4 @@
-﻿using Chatbot_GF.Client;
-using Chatbot_GF.Data;
-using Chatbot_GF.MessageBuilder.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using static Chatbot_GF.BotData.MessengerData;
 
 namespace Chatbot_GF.MessengerManager
