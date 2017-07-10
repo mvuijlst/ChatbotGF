@@ -156,6 +156,12 @@
       "EN": "What is it?",
       "DE": "Was is das?"
     },
+    "FREE": {
+      "NL": "Gratis",
+      "GENTS": "Gratis",
+      "EN": "Free",
+      "DE": "Gratis"
+    },
     "NEXT": {
       "NL": "Wat is er hierna te doen?",
       "GENTS": "Wa est der ierachter?",

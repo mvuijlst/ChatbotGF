@@ -24,8 +24,6 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 List<IButton> buttons = new List<IButton>();
                 DefaultAction defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
 
-              
-
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
                     buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", lang), "postback", "DEVELOPER_DEFINED_DESCRIPTION°" + eve.description.nl + "°" + lang));
@@ -40,21 +38,17 @@ namespace Chatbot_GF.MessageBuilder.Factories
 
                 string dates = " ";
                 
-
-               // DateTime start = ResultParser.normalizeDate(eve.startDate.ToString());
-                //DateTime end = ResultParser.normalizeDate(eve.endDate.ToString());
-                //Console.WriteLine("Start na parsen: " + start + "   end na persen: " + end);
                 if (eve.startDate.ToString().Equals(eve.endDate.ToString()))
                 {
                     string[] helpStart = eve.startDate.ToString().Split('T');
                     string[] daySt = helpStart[0].Split('-');
                     string[] hourSt = helpStart[1].Split(':');
                     dates += daySt[2];
+                    MakeUrl(eve.name.nl, daySt[2]);
                     dates += " juli ";
                     dates += hourSt[0];
                     dates += ":";
                     dates += hourSt[1];
-
                     string[] helpEnd = eve.endDate.ToString().Split('T');
                     string[] dayEnd = helpEnd[0].Split('-');
                     string[] hourEnd = helpEnd[1].Split(':');
@@ -71,6 +65,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     string[] hourSt = helpStart[1].Split(':');
                     dates += daySt[2];
                     dates += " juli ";
+                    MakeUrl(eve.name.nl, daySt[2]);
                     dates += hourSt[0];
                     dates += ":";
                     dates += hourSt[1];
@@ -86,13 +81,27 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     dates += hourEnd[1];
                 }
                 buttons.Add(new ButtonShare());
-                string subtitle = DataConstants.GetLocation(eve.location).PrettyName + dates;
+                string subtitle = DataConstants.GetLocation(eve.location).PrettyName + " | " + dates + " | Free";
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");
             Attachment attachment = new Attachment("template", payload);
             return new GenericMessage(id, attachment);
         }
-        
+
+        public static string MakeUrl(string name, string day)
+        {
+            return "https://gentsefeesten.stad.gent/nl/day/" + day + "/" + ParseName(name); // + getal
+        }
+
+        public static string ParseName(string name)
+        {
+            name = new string((from c in name
+                                     where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
+                                     select c).ToArray());
+            string[] a = name.Split(' ');
+            Console.Write(a);
+            return name;
+        }
     }
 }
