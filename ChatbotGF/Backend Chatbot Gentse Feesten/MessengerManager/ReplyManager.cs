@@ -126,7 +126,11 @@ namespace Chatbot_GF.MessengerManager
         public void SendInfoForEnding(long id)
         {
             hmess = DataConstants.GetMessage("Restart", Language_choice);
-            SendTextMessage(id, hmess);
+
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            reply.Add(new QuickReply("text", "Begin opnieuw", "GET_STARTED_PAYLOAD");
+            GenericMessage message = new GenericMessage(id, hmess, reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
             // fotos voor waar de knop is
         }
 
