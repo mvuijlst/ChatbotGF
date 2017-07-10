@@ -1,0 +1,15 @@
+﻿{
+    "keywords":{
+      "feestje": {
+        "haschildren": true,
+        "waar": {
+          "haschildren": false,
+          "response": "Hier is da feestje!"          
+        },
+          "response": "Er zijn hier veel feestjes ja!"
+        }
+    
+    }
+
+
+}

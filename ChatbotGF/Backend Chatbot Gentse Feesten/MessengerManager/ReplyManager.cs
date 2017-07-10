@@ -106,8 +106,8 @@ namespace Chatbot_GF.MessengerManager
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Begin opnieuw", "GET_STARTED_PAYLOAD"));
-            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Restart", Language_choice), reply);
-            Console.WriteLine("End of conversation: " + api.SendMessageToUser(message).Result);
+            GenericMessage message = new GenericMessage(id, hmess, reply);
+            Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
         public void SendNoEventFound(long id)
