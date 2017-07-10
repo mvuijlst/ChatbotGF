@@ -142,7 +142,7 @@ namespace Chatbot_GF.Data
             double dx = Locations[0].Lon - coors.lon;
             double dy = Locations[0].Lat - coors.lat;
             double shortestDistance = Math.Sqrt(dx * dx + dy * dy);
-            for(int i = 1; i < Locations.Count; i++)
+            for(int i = 1; i < locations.Count; i++)
             {
                 dx = locations[i].Lon - coors.lon;
                 dy = locations[i].Lat - coors.lat;

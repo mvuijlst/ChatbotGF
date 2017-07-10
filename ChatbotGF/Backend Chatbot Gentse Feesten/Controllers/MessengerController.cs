@@ -24,7 +24,7 @@ namespace Chatbot_GF.Controllers
         public MessengerController()
         {
             mhandler = new MessageHandler();
-            phandler = new PayloadHandler();
+            phandler = PayloadHandler.Instance;
         }
 
         [HttpGet]
@@ -67,11 +67,23 @@ namespace Chatbot_GF.Controllers
                         }
                         else if(currentMessage?.message?.attachments != null)
                         {
-                            MessengerData.Attachment locationAtt = currentMessage?.message?.attachments[0];
-                            Coordinates coords = locationAtt.payload?.coordinates;
-                            Console.WriteLine($"Coordinates Received: {coords.lon} {coords.lat}");
-                            currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES°{coords.lon}:{coords.lat}" };
-                            phandler.handle(message);
+                            try
+                            {
+                                MessengerData.Attachment locationAtt = currentMessage?.message?.attachments[0];
+                                Coordinates coords = locationAtt.payload?.coordinates;
+                                Console.WriteLine($"Coordinates Received: {coords.lon} {coords.lat}");
+                                string lang = phandler.GetLanguage(currentMessage.sender.id);
+                                if (string.IsNullOrWhiteSpace(lang))
+                                    lang = "";
+
+                                currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES°{coords.lon}:{coords.lat}°{lang}" };
+                                Console.WriteLine(currentMessage.postback);
+                                phandler.handle(message);
+                            }catch(Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                            }
+                            
                         }
                         else
                         {

@@ -13,10 +13,35 @@ namespace Chatbot_GF.MessengerManager
     {
         private ReplyManager rmanager;
 
+        private Dictionary<long, string> UserLanguage;
+
+        private static PayloadHandler instance;
+
         public PayloadHandler()
         {
             rmanager = new ReplyManager();
+            UserLanguage = new Dictionary<long, string>();
 
+        }
+
+        public static PayloadHandler Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new PayloadHandler();
+                return instance;
+            }
+        }
+
+        public string GetLanguage(long id)
+        {
+            string lang = UserLanguage[id];
+            if(lang != null)
+            {
+                UserLanguage.Remove(id);
+            }
+            return lang;
         }
 
         public void handle(Messaging message)
@@ -48,7 +73,8 @@ namespace Chatbot_GF.MessengerManager
                         rmanager.SendWelcomeMessage(id, payload.Value);
                         break;
                     case "GET_USER_LOCATION":
-                        rmanager.SendGetLocationButton(message.sender.id);
+                        rmanager.SendGetLocationButton(message.sender.id,payload.Language);
+                        UserLanguage.Add(message.sender.id, payload.Language);
                         break;
                     case "DEVELOPER_DEFINED_SEARCHFALSE":
                         rmanager.SendInfoForEnding(message.sender.id, payload.Language);
@@ -68,7 +94,7 @@ namespace Chatbot_GF.MessengerManager
                     case "DEVELOPER_DEFINED_COORDINATES":
                         string[] data = payload.Value.Split(':');
                         List<SearchableLocation> location = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) },3);
-                        Console.WriteLine($"Closest location found: {location.PrettyName} ");
+                       // Console.WriteLine($"Closest location found: {location.PrettyName} ");
                         rmanager.SendLocationResult(id, location, payload.Language);
                         break;
                     case "DEVELOPER_DEFINED_DESCRIPTION":

@@ -53,7 +53,7 @@ namespace Chatbot_GF.MessengerManager
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             foreach(SearchableLocation loc in locations) {
-                reply.Add(new QuickReply("text", DataConstants.GetMessage("Yes", lang), $"DEVELOPER_DEFINED_LOCATION°{loc.Name}°{lang}"));
+                reply.Add(new QuickReply("text", loc.PrettyName, $"DEVELOPER_DEFINED_LOCATION°{loc.Name}°{lang}"));
             }
             var text = DataConstants.GetMessage("Nearest_location", lang);
             //$"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?"
@@ -67,10 +67,11 @@ namespace Chatbot_GF.MessengerManager
             Console.WriteLine("Basic message: " + api.SendMessageToUser(message).Result);
         }
 
-        public void SendGetLocationButton(long id)
+        public void SendGetLocationButton(long id,string lang)
         {
-            GenericMessage message = LocationFactory.makeLocationButton(id);
+            GenericMessage message = LocationFactory.makeLocationButton(id, lang);
             Console.WriteLine("Location map button: " + api.SendMessageToUser(message).Result);
+            
         }
 
         public void SendLocationQuery(long id, int page, string lang)
