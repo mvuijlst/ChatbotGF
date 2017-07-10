@@ -37,7 +37,7 @@ namespace Chatbot_GF.MessengerManager
                 RMmanager.SendTextMessage(id,res);
             }
             RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "GENTS"));
-            RMmanager.SendLocationQuery(id, 0);
+            
         }
 
         private static string RemoveNonAlphanumerics(string text)
