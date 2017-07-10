@@ -41,6 +41,12 @@ namespace Chatbot_GF.MessengerManager
                     case "DEVELOPER_DEFINED_DATE_SPECIFIC":
                         rmanager.SendDayOption(message.sender.id, payload.Language);
                         break;
+                    case "SEND_LANGUAGE_OPTIONS":
+                        rmanager.ChangeLanguage(message.sender.id);
+                        break;
+                    case "SET_LANGUAGE":
+                        rmanager.SendWelcomeMessage(id, payload.Value);
+                        break;
                     case "GET_USER_LOCATION":
                         rmanager.SendGetLocationButton(message.sender.id);
                         break;

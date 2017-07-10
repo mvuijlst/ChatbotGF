@@ -26,10 +26,19 @@ namespace Chatbot_GF.MessengerManager
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", DataConstants.GetMessage("Search_location", lang), "SEND_LOCATION_CHOICE°°" + lang));
             reply.Add(new QuickReply("text", DataConstants.GetMessage("Search_Date", lang), "SEND_DATE_CHOICE°°" + lang));
-            reply.Add(new QuickReply("text", "English", "SET_LANGUAGE_EN°°" + lang));
-            reply.Add(new QuickReply("text", "Nederlands", "SET_LANGUAGE_NL°°" + lang));
+            reply.Add(new QuickReply("text", "Language", "SEND_LANGUAGE_OPTIONS°°" + lang));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Welcome", lang), reply);
             Console.WriteLine("Welcome message: " + api.SendMessageToUser(message).Result);
+        }
+
+        public void ChangeLanguage(long id)
+        {
+            List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
+            reply.Add(new QuickReply("text", "English", "SET_LANGUAGE°EN°" + lang));
+            reply.Add(new QuickReply("text", "Nederlands", "SET_LANGUAGE°NL°" + lang));
+            reply.Add(new QuickReply("text", "Gents", "SET_LANGUAGE°GENTS°" + lang));
+            GenericMessage message = new GenericMessage(id, $"Kies u taal: ", reply);
+            Console.WriteLine("Language message: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendLocationsChoice(long id, string lang)
