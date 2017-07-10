@@ -25,8 +25,8 @@ namespace Chatbot_GF.MessengerManager
         {
             if (!string.IsNullOrWhiteSpace(message?.message?.text))
             {
-                String hmess = DataConstants.GetMessage("Donot_understand", Language_choice);
-                replyManager.SendTextMessage(message.sender.id, hmess);
+                // replyManager.SendImage(message.sender.id, "https://media.giphy.com/media/xUA7beWTUYAcGOkWIM/giphy.gif");
+                replyManager.SendTextMessage(message.sender.id, DataConstants.GetMessage("Donot_understand", Language_choice));
                 replyManager.SendLocationQuery(message.sender.id, 0);
             }                
             

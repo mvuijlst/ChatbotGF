@@ -168,5 +168,10 @@ namespace Chatbot_GF.MessengerManager
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Time_Periods", Language_choice), reply);
             Console.WriteLine("Choice hour: " + api.SendMessageToUser(message).Result);
         }
+
+        public void SendImage(long id, string url)
+        {
+            Console.WriteLine("Smile " + api.SendMessageToUser(new GenericMessage(id, new Attachment("image", new PayloadImage(url)))).Result);
+        }
     }
 }
