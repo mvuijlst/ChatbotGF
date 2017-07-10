@@ -27,11 +27,6 @@ namespace Chatbot_GF.MessengerManager
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             hmess = DataConstants.GetMessage("Search_location", Language_choice);
             reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
-
-            /* hmess = DataConstants.GetMessage("Now", "GENTS");
-            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL")); */
-
-            // test geval knoppen op gsm word dan schuiven dus minder goed
             hmess = DataConstants.GetMessage("Search_Date", Language_choice);
             reply.Add(new QuickReply("text", hmess, "SEND_DATE_CHOICE"));
 
@@ -144,6 +139,7 @@ namespace Chatbot_GF.MessengerManager
             {
                 reply.Add(new QuickReply("text", block, "DEVELOPER_DEFINED_DAY-" + block.Split(' ')[1]));
             }
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous_Block", Language_choice), "SEND_DATE_CHOICE"));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Choice_For_Date", Language_choice), reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
@@ -158,6 +154,7 @@ namespace Chatbot_GF.MessengerManager
                 string[] blockinfo = block.Split(':');
                 reply.Add(new QuickReply("text", blockinfo[0], "DEVELOPER_DEFINED_HOURS-" + blockinfo[1] + "|" + value));
             }
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous_Block", Language_choice), "DEVELOPER_DEFINED_DATE_SPECIFIC"));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Time_Periods", Language_choice), reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
@@ -177,7 +174,10 @@ namespace Chatbot_GF.MessengerManager
         public void SendHoursChoice(long id, string looping, string value)
         {
             // value opnieuw informatie // date: 2017-07-16T19:30:00+02:00
-            value = $"2017-07-{value}T";
+            if (!value.Contains("T"))
+            {
+                value = $"2017-07-{value}T";
+            }
             string[] loop = looping.Split('~');
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             for (int i = Convert.ToInt32(loop[0]); i <= Convert.ToInt32(loop[1]); i++)
