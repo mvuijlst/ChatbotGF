@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
 using static Chatbot_GF.BotData.MessengerData;
-using System.Net;
 using Chatbot_GF.BotData;
-using System.Diagnostics;
 using Chatbot_GF.MessengerManager;
-using Chatbot_GF.MessageBuilder.Model;
-using Chatbot_GF.Client;
-using static Chatbot_GF.MessageBuilder.Model.GenericMessage;
 
 namespace Chatbot_GF.Controllers
 {
