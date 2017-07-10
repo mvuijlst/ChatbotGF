@@ -13,7 +13,6 @@ namespace Chatbot_GF.MessengerManager
     public class ReplyManager
     {
         private IMessengerApi api;
-        private string hmess;
         public string Language_choice { get; set; }
 
         public ReplyManager()
@@ -27,6 +26,8 @@ namespace Chatbot_GF.MessengerManager
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", DataConstants.GetMessage("Search_location", Language_choice), "SEND_LOCATION_CHOICE"));
             reply.Add(new QuickReply("text", DataConstants.GetMessage("Search_Date", Language_choice), "SEND_DATE_CHOICE"));
+            reply.Add(new QuickReply("text", "English", "SET_LANGUAGE_EN"));
+            reply.Add(new QuickReply("text", "Nederlands", "SET_LANGUAGE_NL"));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Welcome", Language_choice), reply);
             Console.WriteLine("Welcome message: " + api.SendMessageToUser(message).Result);
         }
@@ -43,7 +44,7 @@ namespace Chatbot_GF.MessengerManager
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", DataConstants.GetMessage("Yes", Language_choice), $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
-            reply.Add(new QuickReply("text", DataConstants.GetMessage("No", Language_choice), "DEVELOPER_DEFINED_SEARCHFALSE"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("No", Language_choice), "SEND_LOCATION_CHOICE"));
             var text = DataConstants.GetMessage("Nearest_location", Language_choice) + $"{loc.PrettyName}" + DataConstants.GetMessage("This_location", Language_choice);
             //$"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?"
             GenericMessage message = new GenericMessage(id, text, reply);
