@@ -20,7 +20,7 @@ namespace Chatbot_GF
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://*:50001")
+                .UseUrls("http://*:50000")
                 .UseApplicationInsights()
                 .Build();
 

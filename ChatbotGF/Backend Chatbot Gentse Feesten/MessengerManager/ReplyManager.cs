@@ -106,7 +106,7 @@ namespace Chatbot_GF.MessengerManager
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Begin opnieuw", "GET_STARTED_PAYLOAD"));
-            GenericMessage message = new GenericMessage(id, hmess, reply);
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage( "Welcome", Language_choice), reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
         }
 
