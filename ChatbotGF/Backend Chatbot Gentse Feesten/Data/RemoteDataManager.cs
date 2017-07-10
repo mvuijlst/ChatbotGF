@@ -41,19 +41,20 @@ namespace Chatbot_GF.Data
         }
 
 
-        public void GetEventsHereNow(User user)
+        public void GetEventsHereNow(long id,string location,DateTime now,string language)
         {
-            string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
-            string locationfilter = "str(?location) = \"" + user.location + "\"";
+            string formattedTime = now.ToString("yyyy-MM-ddTHH:mm:sszzz");
+            string locationfilter = "str(?location) = \"" + location + "\"";
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
 
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"), locationfilter, startdatefilter, enddatefilter);
             System.Console.WriteLine(query);
-            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
+                        
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = language });
         }
 
-        public void GetEventsAtTime(long id, string date)
+        public void GetEventsAtTime(long id, string date,string language)
         {
             string startdatefilter = "?startdate < \"" + date + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + date + "\" ^^ xsd:dateTime";
@@ -68,12 +69,12 @@ namespace Chatbot_GF.Data
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"), locationFilters, startdatefilter, enddatefilter);
             System.Console.WriteLine(query);
 
-            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new User(id));
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData {Id = id, Language = language });
         }
 
-        public void GetEventsNow(User user)
+        public void GetEventsNow(long id, string lang, DateTime time)
         {
-            string formattedTime = user.date.ToString("yyyy-MM-ddTHH:mm:sszzz");
+            string formattedTime = time.ToString("yyyy-MM-ddTHH:mm:sszzz");
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
             //filter over defined locations only
@@ -86,13 +87,13 @@ namespace Chatbot_GF.Data
 
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"),locationFilters,startdatefilter,enddatefilter);
             System.Console.WriteLine(query);
-            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), user);
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData {Id = id, Language = lang });
         }
-        public  void GetNextEvents(string locationurl,string date, int count, long id)
+        public  void GetNextEvents(string locationurl,string date, int count, long id,string lang)
         {
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("NextEventsOnLocation"), locationurl, date, count);
             System.Console.WriteLine(query);
-            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new User(id));
+            endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = lang });
         }
 
 
@@ -104,9 +105,9 @@ namespace Chatbot_GF.Data
                 IMessengerApi api = RestClientBuilder.GetMessengerApi();
                 System.Console.WriteLine("Query Callback");
                 
-                if (results.Count > 0 && u is User)
+                if (results.Count > 0 && u is CallbackData)
                 {
-                    User user = (User)u;
+                    CallbackData user = (CallbackData)u;
                     System.Console.WriteLine("Found Results");
                     foreach (SparqlResult res in results)
                     {
@@ -125,23 +126,23 @@ namespace Chatbot_GF.Data
                     }
                     
                     hmess = DataConstants.GetMessage("Found", Language_choice);
-                    rm.SendTextMessage(user.id, hmess);
-                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.id, events)));
-                    String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.id, events)).Result;
+                    rm.SendTextMessage(user.Id, hmess);
+                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events)));
+                    String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events)).Result;
                 }
-                else if(u is User)
+                else if(u is CallbackData)
                 {
-                    User user = (User)u;
+                    CallbackData user = (CallbackData)u;
                     
-                    rm.SendNoEventFound(user.id);
-                    rm.SendConfirmation(user.id);
+                    rm.SendNoEventFound(user.Id, user.Language);
+                    rm.SendConfirmation(user.Id, user.Language);
                 }
                 else if (u is VDS.RDF.AsyncError)
                 {
                     VDS.RDF.AsyncError error = (VDS.RDF.AsyncError)u;
-                    User user = (User)error.State;
+                    CallbackData user = (CallbackData)error.State;
                     hmess = DataConstants.GetMessage("Error", Language_choice);
-                    rm.SendTextMessage(user.id, hmess);
+                    rm.SendTextMessage(user.Id, hmess);
                 }
                 System.Console.WriteLine("End of query method");
             }
@@ -150,6 +151,12 @@ namespace Chatbot_GF.Data
                 System.Console.WriteLine(ex);
             }
 
+        }
+
+        public class CallbackData
+        {
+            public string Language { get; set; }
+            public long Id { get; set; }
         }
     }
 }

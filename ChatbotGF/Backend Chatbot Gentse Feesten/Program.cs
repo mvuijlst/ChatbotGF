@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Chatbot_GF.Data;
-using Chatbot_GF.SQLite;
-using Chatbot_GF.Model;
 
 namespace Chatbot_GF
 {
@@ -20,7 +13,7 @@ namespace Chatbot_GF
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://*:50000")
+                .UseUrls("http://*:50001")
                 .UseApplicationInsights()
                 .Build();
 
