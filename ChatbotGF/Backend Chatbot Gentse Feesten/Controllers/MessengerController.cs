@@ -75,7 +75,7 @@ namespace Chatbot_GF.Controllers
                         }
                         else
                         {
-                            mhandler.ReplyRecieved(currentMessage);
+                            mhandler.CheckForKnowText(currentMessage);
                         }
                     }
                 }

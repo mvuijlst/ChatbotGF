@@ -13,6 +13,7 @@ namespace Chatbot_GF.MessengerManager
     {
 
         private ReplyManager replyManager;
+
         public string Language_choice { get; set; }
 
         public MessageHandler()
@@ -30,6 +31,15 @@ namespace Chatbot_GF.MessengerManager
                 replyManager.SendLocationQuery(message.sender.id, 0);
             }                
             
+        }
+
+        public void CheckForKnowText(Messaging message)
+        {
+            if (!string.IsNullOrWhiteSpace(message?.message?.text))
+            {
+                string txt = message.message.text;
+                FreeTextHandler.CheckText(message.sender.id, txt,"nl");
+            }
         }
         /// <summary>
         /// If messages corresponds to any of the alread defined payloads, set the payload
