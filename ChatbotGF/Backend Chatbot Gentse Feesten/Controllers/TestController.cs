@@ -16,7 +16,6 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            FreeTextHandler.GetResponse("waar is da feestje","nl");
             return Ok();
             }
         

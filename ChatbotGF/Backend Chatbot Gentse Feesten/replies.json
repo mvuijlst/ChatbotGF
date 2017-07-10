@@ -1,15 +1,18 @@
 ﻿{
-    "keywords":{
-      "feestje": {
-        "haschildren": true,
-        "waar": {
-          "haschildren": false,
-          "response": "Hier is da feestje!"          
-        },
-          "response": "Er zijn hier veel feestjes ja!"
-        }
-    
+  "keywords": {
+    "feestje": {
+      "haschildren": true,
+      "waar": {
+        "haschildren": false,
+        "response": "Hier is da feestje!"
+      },
+      "response": "Er zijn hier veel feestjes ja!"
     }
-
-
+  },
+  "payloads": {
+    "opnieuw": {
+      "haschildren": true,      
+      "payload": "GET_STARTED_PAYLOAD"
+    }
+  }
 }

@@ -38,7 +38,7 @@ namespace Chatbot_GF.MessengerManager
             if (!string.IsNullOrWhiteSpace(message?.message?.text))
             {
                 string txt = message.message.text;
-                FreeTextHandler.CheckText(message.sender.id, txt,"nl");
+                FreeTextHandler.CheckText(message.sender.id, txt);
             }
         }
         /// <summary>
@@ -48,17 +48,23 @@ namespace Chatbot_GF.MessengerManager
         /// <returns></returns>
         public Messaging MessageRecognized(Messaging message)
         {
-            if (!string.IsNullOrWhiteSpace(message?.message?.text)){
-                string value = message?.message?.text;
-                if (value.ToLower().Contains("opnieuw")){
-                    SetPayload(message, "GET_STARTED_PAYLOAD");   
-                } 
-                else if(value.Length > 6 && DataConstants.GetLocation(value) != null) //the typed message is a valid location
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(message?.message?.text))
                 {
-                    SetPayload(message, "DEVELOPER_DEFINED_LOCATION-" + DataConstants.GetLocation(value).Name);
+                    Console.WriteLine("Zoeken naar payload");
+                    string response = FreeTextHandler.GetPayload(message.message.text);
+                    if (response != null)
+                    {
+                        SetPayload(message, response);
+                    }
                 }
+                return message;
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
             }
-            return message;
         }
 
         public void SetPayload(Messaging msg, String pl)

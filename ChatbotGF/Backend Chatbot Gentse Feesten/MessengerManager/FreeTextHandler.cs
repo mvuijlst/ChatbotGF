@@ -23,14 +23,14 @@ namespace Chatbot_GF.MessengerManager
         }
 
 
-        public static string CheckText(long id,string text, string language)
+        public static string CheckText(long id,string text)
         {
             if(ReplyStore == null)
             {
                 InitReplies();
             }
 
-            string res = GetResponse(text, language);
+            string res = GetResponse(text);
             if(res != null)
             {
                 RMmanager.SendTextMessage(id,res);
@@ -47,9 +47,9 @@ namespace Chatbot_GF.MessengerManager
             return new string(arr);
         }
 
-        public static string GetResponse(string text, string language)
+        public static string GetResponse(string text)
         {
-            InitReplies();
+            
             try
             {
                 text = RemoveNonAlphanumerics(text);
@@ -83,6 +83,53 @@ namespace Chatbot_GF.MessengerManager
                 Console.WriteLine(string.Join(":", KeywordsFound) + ":response");
                 return ReplyStore[string.Join(":", KeywordsFound) + ":response"];
             }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public static string GetPayload(string text)
+        {
+            if (ReplyStore == null)
+            {
+                InitReplies();
+            }
+
+            try
+            {
+                text = RemoveNonAlphanumerics(text);
+
+                List<string> words = text.ToLower().Split(' ').ToList();
+                List<string> KeywordsFound = new List<string>();
+                KeywordsFound.Add("payloads");
+                int count = 0;
+                while (count < words.Count)
+                {
+                    string query = string.Join(":", KeywordsFound);
+                    Console.WriteLine("Searching " + query + ":" + words[count]);
+                    //Console.WriteLine(ReplyStore["keywords:feestje:waar:response:nl"]);
+                    if (ReplyStore.GetSection(query + ":" + words[count]).GetValue<string>("payload") != null)
+                    {
+                        Console.WriteLine(query + ":" + words[count] + "Keyword found!");
+                        KeywordsFound.Add(words[count]);
+                        words.RemoveAt(count);
+                        count = 0; //restart
+                    }
+                    else if (ReplyStore[query + ":haschildren"] != null && ReplyStore[query + ":haschildren"] == "false")
+                    {
+                        Console.WriteLine("No children, stop recursion");
+                        break; //stop recursion, object has no child keywords
+                    }
+                    else
+                    {
+                        count++;
+                    }
+                }
+                Console.WriteLine(string.Join(":", KeywordsFound) + ":payload");
+                return ReplyStore[string.Join(":", KeywordsFound) + ":payload"];
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return null;
