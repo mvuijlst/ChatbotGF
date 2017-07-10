@@ -36,10 +36,11 @@ namespace Chatbot_GF.MessengerManager
             {
                 RMmanager.SendTextMessage(id,res);
             }
-            RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "GENTS"));
-            
+            //No way to know which language is prefered, default to dutch
+            RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "NL"));
+            RMmanager.SendLocationQuery(id, 0, "NL");
         }
-
+        
         private static string RemoveNonAlphanumerics(string text)
         {
             char[] arr = text.Where(c => (char.IsLetterOrDigit(c) ||
