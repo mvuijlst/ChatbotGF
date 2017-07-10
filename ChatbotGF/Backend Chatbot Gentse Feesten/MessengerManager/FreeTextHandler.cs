@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Chatbot_GF.Data;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,7 @@ namespace Chatbot_GF.MessengerManager
         }
 
 
-        public static string CheckText(long id,string text)
+        public static void CheckText(long id,string text)
         {
             if(ReplyStore == null)
             {
@@ -35,7 +36,8 @@ namespace Chatbot_GF.MessengerManager
             {
                 RMmanager.SendTextMessage(id,res);
             }
-            return null;
+            RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "GENTS"));
+            RMmanager.SendLocationQuery(id, 0);
         }
 
         private static string RemoveNonAlphanumerics(string text)
