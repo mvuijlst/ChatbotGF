@@ -40,12 +40,13 @@ namespace Chatbot_GF.MessengerManager
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Choose_options", lang), reply);
             Console.WriteLine("Location choice: " + api.SendMessageToUser(message).Result);
         }
-        public void SendLocationResult(long id, SearchableLocation loc, string lang)
+        public void SendLocationResult(long id, List<SearchableLocation> locations, string lang)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            reply.Add(new QuickReply("text", DataConstants.GetMessage("Yes", lang), $"DEVELOPER_DEFINED_LOCATION°{loc.Name}°{lang}"));
-            reply.Add(new QuickReply("text", DataConstants.GetMessage("No", lang), "SEND_LOCATION_CHOICE°°" + lang));
-            var text = DataConstants.GetMessage("Nearest_location", lang) + $"{loc.PrettyName}" + DataConstants.GetMessage("This_location", lang);
+            foreach(SearchableLocation loc in locations) {
+                reply.Add(new QuickReply("text", DataConstants.GetMessage("Yes", lang), $"DEVELOPER_DEFINED_LOCATION°{loc.Name}°{lang}"));
+            }
+            var text = DataConstants.GetMessage("Nearest_location", lang);
             //$"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?"
             GenericMessage message = new GenericMessage(id, text, reply);
             Console.WriteLine("Approval of using this location: " + api.SendMessageToUser(message).Result);
