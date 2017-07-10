@@ -28,12 +28,12 @@
     "Other_location": {
       "NL": "Wenst u een andere locatie te bekijken?",
       "GENTS": "Wilde n ander fiestpleine zien?",
-      "EN": "Do you like to check another location?"
+      "EN": "Would you like to check another location?"
     },
     "Restart": {
       "NL": "Typ \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak als u een nieuwe zoekopdracht wenst te starten.",
       "GENTS": "As ge opnieuw wil zoeke, typt dan \"opnieuw\" of klikt op Begin opnieuw int menu naast het tekstvak",
-      "EN": "Type \"opnieuw\" or push the button Begin opnieuw"
+      "EN": "Type \"again\" or push the button Begin opnieuw"
     },
     "Not_found": {
       "NL": "Sorry, ik kon jammer genoeg geen evenementen vinden.",
@@ -51,9 +51,9 @@
       "EN": "A date"
     },
     "Time_Block": {
-      "NL": "Voormiddag:8~15|Namiddag:16~23|'s Nachts:0~7",
-      "GENTS": "tsnuchtings:8~15|tsachternoens:16~23|tsenachs:0~7",
-      "EN": "Forenoon:8~15|Noon:16~23|At night:0~7"
+      "NL": "Voormiddag:5~11|Namiddag:12~17|'s Avonds:18~23|'s Nachts:0~4",
+      "GENTS": "Veurmiddag:5~11|Tsachternoens:12~17|Savonds:18~23|Snachts:0~4",
+      "EN": "Fornoon:5~11|Afternoon:12~17|In the evening:18~23|At Night:0~4"
     },
     "HOURS_BLOCK": {
       "NL": "Rond welk uur wilt je?",
