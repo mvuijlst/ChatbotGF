@@ -47,7 +47,8 @@ namespace Chatbot_GF.Data
         }
 
         public static DateTime Now {
-            get { return DateTime.Now.AddDays(9).AddHours(6); }            
+            get { return DateTime.Now.AddDays(9).AddHours(6); }
+            
                 }
 
         private static void initMessages()
@@ -121,21 +122,35 @@ namespace Chatbot_GF.Data
 
             return null;
         }
-        public static SearchableLocation GetClosestLocation(Coordinates coors)
+
+        public static List<SearchableLocation> GetClosestLocation(Coordinates coors, int count)
         {
-            SearchableLocation closests = Locations[0];
+            List<SearchableLocation> closests = new List<SearchableLocation>();
+            List<SearchableLocation> locations = new List<SearchableLocation>(Locations); //shallow clone
+            for(int i = 0; i < count; i++)
+            {
+                SearchableLocation close = GetClosestLocation(locations, coors);
+                locations.Remove(close);
+                closests.Add(close);
+            }
+            return closests;
+        }
+
+        public static SearchableLocation GetClosestLocation(List<SearchableLocation> locations,Coordinates coors)
+        {
+            SearchableLocation closests = locations[0];
             double dx = Locations[0].Lon - coors.lon;
             double dy = Locations[0].Lat - coors.lat;
             double shortestDistance = Math.Sqrt(dx * dx + dy * dy);
             for(int i = 1; i < Locations.Count; i++)
             {
-                dx = Locations[i].Lon - coors.lon;
-                dy = Locations[i].Lat - coors.lat;
+                dx = locations[i].Lon - coors.lon;
+                dy = locations[i].Lat - coors.lat;
                 double distance = Math.Sqrt(dx * dx + dy * dy);
                 if(distance < shortestDistance)
                 {
                     shortestDistance = distance;
-                    closests = Locations[i];
+                    closests = locations[i];
                 }
             }
             return closests;
