@@ -25,57 +25,41 @@ namespace Chatbot_GF.MessengerManager
         public void SendWelcomeMessage(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            hmess = DataConstants.GetMessage("Search_location", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
-
-            /* hmess = DataConstants.GetMessage("Now", "GENTS");
-            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL")); */
-
-            // test geval knoppen op gsm word dan schuiven dus minder goed
-            hmess = DataConstants.GetMessage("Search_Date", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "SEND_DATE_CHOICE"));
-
-            hmess = DataConstants.GetMessage("Welcome", Language_choice);
-            GenericMessage message = new GenericMessage(id, hmess, reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Search_location", Language_choice), "SEND_LOCATION_CHOICE"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Search_Date", Language_choice), "SEND_DATE_CHOICE"));
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Welcome", Language_choice), reply);
+            Console.WriteLine("Welcome message: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendLocationsChoice(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            hmess = DataConstants.GetMessage("Choose_list", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-0"));
-            hmess = DataConstants.GetMessage("Choose_card", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "GET_USER_LOCATION"));
-            hmess = DataConstants.GetMessage("Choose_options", Language_choice);
-            GenericMessage message = new GenericMessage(id, hmess, reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Choose_list", Language_choice), "GET_EVENT_HERE_NOW-0"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Choose_card", Language_choice), "GET_USER_LOCATION"));
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Choose_options", Language_choice), reply);
+            Console.WriteLine("Location choice: " + api.SendMessageToUser(message).Result);
         }
         public void SendLocationResult(long id, SearchableLocation loc)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            hmess =DataConstants.GetMessage("Yes", Language_choice);
-            reply.Add(new QuickReply("text", hmess, $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
-            hmess = DataConstants.GetMessage("No", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_SEARCHFALSE"));
-            hmess = DataConstants.GetMessage("Nearest_location", Language_choice);
-            hmess += $"{loc.PrettyName}";
-            hmess += DataConstants.GetMessage("This_location", Language_choice);
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Yes", Language_choice), $"DEVELOPER_DEFINED_LOCATION-{loc.Name}"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("No", Language_choice), "DEVELOPER_DEFINED_SEARCHFALSE"));
+            var text = DataConstants.GetMessage("Nearest_location", Language_choice) + $"{loc.PrettyName}" + DataConstants.GetMessage("This_location", Language_choice);
             //$"Je bent het dichtst bij {loc.PrettyName}. Wil je op deze locatie zoeken?"
-            GenericMessage message = new GenericMessage(id, hmess, reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            GenericMessage message = new GenericMessage(id, text, reply);
+            Console.WriteLine("Approval of using this location: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendTextMessage(long id, string text)
         {
             GenericMessage message = new GenericMessage(id, text);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            Console.WriteLine("Basic message: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendGetLocationButton(long id)
         {
             GenericMessage message = LocationFactory.makeLocationButton(id);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            Console.WriteLine("Location map button: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendLocationQuery(long id, int page)
@@ -92,18 +76,15 @@ namespace Chatbot_GF.MessengerManager
                 //Max 10 quickreplies, we got more locations. When at first page, add extra button to show second page
                 if(page == 0)
                 {
-                    hmess = DataConstants.GetMessage("More", Language_choice);
-                    reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-" + 1));
+                    reply.Add(new QuickReply("text", DataConstants.GetMessage("More", Language_choice), "GET_EVENT_HERE_NOW-" + 1));
                 }
                 else
                 {
-                    hmess = DataConstants.GetMessage("Previous", Language_choice);
-                    reply.Add(new QuickReply("text", hmess, "GET_EVENT_HERE_NOW-" + (page - 1)));
+                    reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous", Language_choice), "GET_EVENT_HERE_NOW-" + (page - 1)));
                 }
-                hmess = DataConstants.GetMessage("Which_location", Language_choice);
-                GenericMessage message = new GenericMessage(id, hmess, reply);
+                GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Which_location", Language_choice), reply);
 
-                Console.WriteLine(api.SendMessageToUser(message).Result);
+                Console.WriteLine("All squares: " + api.SendMessageToUser(message).Result);
             }catch(Exception ex)
             {
                 Console.WriteLine(ex);
@@ -114,30 +95,23 @@ namespace Chatbot_GF.MessengerManager
         public void SendConfirmation(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            hmess = DataConstants.GetMessage("Yes", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "SEND_LOCATION_CHOICE"));
-            hmess = DataConstants.GetMessage("No", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_SEARCHFALSE"));
-            hmess = DataConstants.GetMessage("Other_location", Language_choice);
-            GenericMessage message = new GenericMessage(id, hmess, reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Yes", Language_choice), "SEND_LOCATION_CHOICE"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("No", Language_choice), "DEVELOPER_DEFINED_SEARCHFALSE"));
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Other_location", Language_choice), reply);
+            Console.WriteLine("Confirmation: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendInfoForEnding(long id)
         {
-            hmess = DataConstants.GetMessage("Restart", Language_choice);
-
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             reply.Add(new QuickReply("text", "Begin opnieuw", "GET_STARTED_PAYLOAD"));
             GenericMessage message = new GenericMessage(id, hmess, reply);
             Console.WriteLine(api.SendMessageToUser(message).Result);
-            // fotos voor waar de knop is
         }
 
         public void SendNoEventFound(long id)
         {
-            hmess = DataConstants.GetMessage("Not_found", Language_choice);
-            SendTextMessage(id, hmess);
+            SendTextMessage(id, DataConstants.GetMessage("Not_found", Language_choice));
         }
 
         public void SendDayOption(long id)
@@ -148,8 +122,9 @@ namespace Chatbot_GF.MessengerManager
             {
                 reply.Add(new QuickReply("text", block, "DEVELOPER_DEFINED_DAY-" + block.Split(' ')[1]));
             }
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous_Block", Language_choice), "SEND_DATE_CHOICE"));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Choice_For_Date", Language_choice), reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            Console.WriteLine("Pick a date: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendTimePeriod(long id, string value)
@@ -162,26 +137,26 @@ namespace Chatbot_GF.MessengerManager
                 string[] blockinfo = block.Split(':');
                 reply.Add(new QuickReply("text", blockinfo[0], "DEVELOPER_DEFINED_HOURS-" + blockinfo[1] + "|" + value));
             }
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous_Block", Language_choice), "DEVELOPER_DEFINED_DATE_SPECIFIC"));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Time_Periods", Language_choice), reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            Console.WriteLine("Pick a time block: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendDateChoice(long id)
         {
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
-            hmess = DataConstants.GetMessage("Now", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_LOCATION-ALL"));
-
-            hmess = DataConstants.GetMessage("Choice_For_Date", Language_choice);
-            reply.Add(new QuickReply("text", hmess, "DEVELOPER_DEFINED_DATE_SPECIFIC"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Now", Language_choice), "DEVELOPER_DEFINED_LOCATION-ALL"));
+            reply.Add(new QuickReply("text", DataConstants.GetMessage("Choice_For_Date", Language_choice), "DEVELOPER_DEFINED_DATE_SPECIFIC"));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Date_Choice", Language_choice), reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            Console.WriteLine("All now or date specific: " + api.SendMessageToUser(message).Result);
         }
 
         public void SendHoursChoice(long id, string looping, string value)
         {
-            // value opnieuw informatie // date: 2017-07-16T19:30:00+02:00
-            value = $"2017-07-{value}T";
+            if (!value.Contains("T"))
+            {
+                value = $"2017-07-{value}T";
+            }
             string[] loop = looping.Split('~');
             List<SimpleQuickReply> reply = new List<SimpleQuickReply>();
             for (int i = Convert.ToInt32(loop[0]); i <= Convert.ToInt32(loop[1]); i++)
@@ -191,7 +166,12 @@ namespace Chatbot_GF.MessengerManager
             }
             reply.Add(new QuickReply("text", DataConstants.GetMessage("Previous_Block", Language_choice), "DEVELOPER_DEFINED_DAY-" + value));
             GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Time_Periods", Language_choice), reply);
-            Console.WriteLine(api.SendMessageToUser(message).Result);
+            Console.WriteLine("Choice hour: " + api.SendMessageToUser(message).Result);
+        }
+
+        public void SendImage(long id, string url)
+        {
+            Console.WriteLine("Smile " + api.SendMessageToUser(new GenericMessage(id, new Attachment("image", new PayloadImage(url)))).Result);
         }
     }
 }
