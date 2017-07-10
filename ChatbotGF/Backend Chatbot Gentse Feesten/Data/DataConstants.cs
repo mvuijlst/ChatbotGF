@@ -46,6 +46,10 @@ namespace Chatbot_GF.Data
             return QueryStore[name];
         }
 
+        public static DateTime Now {
+            get { return DateTime.Now.AddDays(9).AddHours(6); }            
+                }
+
         private static void initMessages()
         {
             try

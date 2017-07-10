@@ -22,7 +22,7 @@ namespace Chatbot_GF.MessengerManager
             Language_choice = "GENTS";
         }
 
-        public void ReplyRecieved(Messaging message)
+        /*public void ReplyRecieved(Messaging message)
         {
             if (!string.IsNullOrWhiteSpace(message?.message?.text))
             {
@@ -31,7 +31,7 @@ namespace Chatbot_GF.MessengerManager
                 replyManager.SendLocationQuery(message.sender.id, 0);
             }                
             
-        }
+        }*/
 
         public void CheckForKnowText(Messaging message)
         {
