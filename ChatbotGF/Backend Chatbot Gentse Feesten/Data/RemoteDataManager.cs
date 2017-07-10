@@ -125,7 +125,7 @@ namespace Chatbot_GF.Data
                         
                     }
                     
-                    hmess = DataConstants.GetMessage("Found", Language_choice);
+                    hmess = DataConstants.GetMessage("Found", user.Language);
                     rm.SendTextMessage(user.Id, hmess);
                     System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events,user.Language)));
                     String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events,user.Language)).Result;
@@ -141,7 +141,7 @@ namespace Chatbot_GF.Data
                 {
                     VDS.RDF.AsyncError error = (VDS.RDF.AsyncError)u;
                     CallbackData user = (CallbackData)error.State;
-                    hmess = DataConstants.GetMessage("Error", Language_choice);
+                    hmess = DataConstants.GetMessage("Error", user.Language);
                     rm.SendTextMessage(user.Id, hmess);
                 }
                 System.Console.WriteLine("End of query method");

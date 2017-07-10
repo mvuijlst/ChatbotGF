@@ -84,27 +84,6 @@ namespace Chatbot_GF.Controllers
             return Ok();
         }
 
-        public static async Task<String> PostRawAsync(string url, string data)
-        {
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Method = "POST";
-            using (var requestWriter = new StreamWriter(await request.GetRequestStreamAsync()))
-            {
-                requestWriter.Write(data);
-            }
-
-            var response = (HttpWebResponse)await request.GetResponseAsync();
-            if (response == null)
-                throw new InvalidOperationException("GetResponse returns null");
-
-            using (var sr = new StreamReader(response.GetResponseStream()))
-            {
-                return sr.ReadToEnd();
-            }
-        }
-        
-
 
     }
 }

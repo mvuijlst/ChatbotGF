@@ -50,7 +50,7 @@ namespace Chatbot_GF.MessengerManager
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(message?.message?.text))
+                if (string.IsNullOrWhiteSpace(message?.postback?.payload) && !string.IsNullOrWhiteSpace(message?.message?.text))
                 {
                     Console.WriteLine("Zoeken naar payload");
                     string response = FreeTextHandler.GetPayload(message.message.text);
