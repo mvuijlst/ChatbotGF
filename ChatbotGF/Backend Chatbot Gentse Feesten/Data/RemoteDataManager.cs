@@ -127,8 +127,8 @@ namespace Chatbot_GF.Data
                     
                     hmess = DataConstants.GetMessage("Found", Language_choice);
                     rm.SendTextMessage(user.Id, hmess);
-                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events)));
-                    String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events)).Result;
+                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events,user.Language)));
+                    String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events,user.Language)).Result;
                 }
                 else if(u is CallbackData)
                 {

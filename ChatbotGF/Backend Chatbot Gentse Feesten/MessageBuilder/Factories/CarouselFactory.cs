@@ -12,7 +12,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
     public class CarouselFactory
     {
 
-        public static GenericMessage makeCarousel(long id, List<Event> events)
+        public static GenericMessage makeCarousel(long id, List<Event> events, string lang)
         {
             if (events.Count > 10)
             {
@@ -28,9 +28,9 @@ namespace Chatbot_GF.MessageBuilder.Factories
 
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
-                    buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", "GENTS"), "postback", "DEVELOPER_DEFINED_DESCRIPTION°" + eve.description.nl));
+                    buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", lang), "postback", "DEVELOPER_DEFINED_DESCRIPTION°" + eve.description.nl + "°" + lang));
                 }
-                buttons.Add(new ButtonPayload(DataConstants.GetMessage("NEXT", "GENTS"), "postback", "DEVELOPER_DEFINED_NEXT°" + eve.location + "-_-" + eve.startDate));
+                buttons.Add(new ButtonPayload(DataConstants.GetMessage("NEXT", lang), "postback", "DEVELOPER_DEFINED_NEXT°" + eve.location + "-_-" + eve.startDate + "°" + lang));
 
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
