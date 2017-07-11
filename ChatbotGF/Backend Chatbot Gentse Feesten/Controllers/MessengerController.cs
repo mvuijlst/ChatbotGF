@@ -64,7 +64,7 @@ namespace Chatbot_GF.Controllers
                                 string lang = phandler.GetLanguage(currentMessage.sender.id);
                                 if (string.IsNullOrWhiteSpace(lang))
                                     lang = "";
-                                if (TempUserData.Instance.WantsToilet(message.sender.id))
+                                if (!TempUserData.Instance.WantsToilet(message.sender.id))
                                 {
                                     currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES°{coords.lon}:{coords.lat}°{lang}" };
                                     Console.WriteLine(currentMessage.postback);

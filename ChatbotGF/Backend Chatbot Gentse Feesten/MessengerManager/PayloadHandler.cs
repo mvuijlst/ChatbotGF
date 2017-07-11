@@ -81,8 +81,11 @@ namespace Chatbot_GF.MessengerManager
                         {
                             TempUserData.Instance.Add(id, payload.Language, true);
                         }
+                        else
+                        {
+                            TempUserData.Instance.Add(id, payload.Language, false);
+                        }
                         rmanager.SendGetLocationButton(message.sender.id,payload.Language);
-                        UserLanguage.Add(message.sender.id, payload.Language, null);
                         break;
                     case "DEVELOPER_DEFINED_SEARCHFALSE":
                         rmanager.SendInfoForEnding(message.sender.id, payload.Language);

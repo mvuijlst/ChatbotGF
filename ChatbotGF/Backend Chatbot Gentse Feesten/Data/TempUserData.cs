@@ -76,6 +76,7 @@ namespace Chatbot_GF.Data
             if (UserLanguage.ContainsKey(id))
             {
                 bool res = UserLanguage[id].Toilet;
+                Console.WriteLine($"Found id: {res}");
                 Remove(id);
                 return res;
             }
