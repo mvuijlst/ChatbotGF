@@ -27,20 +27,31 @@ namespace Chatbot_GF.MessengerManager
         public static void CheckText(long id,string text)
         {
 
-
-            if(ReplyStore == null)
+            string res;
+            if (!string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
             {
-                InitReplies();
+                RemoteDataManager.GetInstance().GetEventsHereNow(id, DataConstants.GetLocationBySearchTag(text).Id, DataConstants.Now, "NL");
             }
-
-            string res = GetResponse(text);
-            if(res != null)
+            else
             {
-                RMmanager.SendTextMessage(id,res);
+
+                if (ReplyStore == null)
+                {
+                    InitReplies();
+                }
+
+                res = GetResponse(text);
+                if (res != null)
+                {
+                    RMmanager.SendTextMessage(id, res);
+                }
+
+                //No way to know which language is prefered, default to dutch
+                /*RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "NL"));
+                RMmanager.SendLocationQuery(id, 0, "NL");*/
+                Console.WriteLine("Zoeken naar event: " + text);
+                RemoteDataManager.GetInstance().GetEventByName(text, id, "NL");
             }
-            //No way to know which language is prefered, default to dutch
-            RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "NL"));
-            RMmanager.SendLocationQuery(id, 0, "NL");
         }
         
         private static string RemoveNonAlphanumerics(string text)
@@ -57,7 +68,7 @@ namespace Chatbot_GF.MessengerManager
             
             try
             {
-                text = RemoveNonAlphanumerics(text);
+                text = RemoveNonAlphanumerics(text); 
 
                 List<string> words = text.ToLower().Split(' ').ToList();
                 List<string> KeywordsFound = new List<string>();

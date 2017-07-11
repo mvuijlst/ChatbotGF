@@ -88,6 +88,19 @@ namespace Chatbot_GF.Data
             //System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = lang });
         }
+        public void GetEventByName(string locationName, long id, string lang)
+        {
+            try
+            {
+                string formattedTime = DataConstants.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");
+                string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("SearchByName"), locationName, formattedTime);
+                System.Console.WriteLine(query);
+                endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = lang });
+            }catch(Exception ex)
+            {
+                System.Console.WriteLine(ex);
+            }
+        }
 
 
         public void callback(SparqlResultSet results, Object u)

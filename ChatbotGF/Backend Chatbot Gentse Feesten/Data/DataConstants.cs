@@ -12,7 +12,7 @@ namespace Chatbot_GF.Data
 {
     public class DataConstants
     {
-        public const int numberLocations = 16;
+        public const int numberLocations = 17;
         private static IConfigurationRoot LocationsStore;
         private static IConfigurationRoot MessagesStore;
         private static IConfigurationRoot QueryStore;
@@ -73,6 +73,21 @@ namespace Chatbot_GF.Data
             return GetClosestLocation(Toilets, new Coordinates { lon = Lon, lat = Lat });
         }
 
+        public static SearchableLocation GetLocationBySearchTag(string tag)
+        {
+            foreach(SearchableLocation loc in Locations)
+            {
+                if(loc.Search != null)
+                {
+                    if (loc.Search.Contains(tag.ToLower()))
+                    {
+                        return loc;
+                    }
+                }
+            }
+            return null;
+        }
+
         public static String GetQuery(string name)
         {
             if(QueryStore == null)
@@ -84,7 +99,7 @@ namespace Chatbot_GF.Data
 
         public static DateTime Now
         {
-            get { return DateTime.Now.AddDays(9).AddHours(6); }
+            get { return DateTime.Now.AddDays(5).AddHours(6); }
         }
 
         private static void initMessages()
