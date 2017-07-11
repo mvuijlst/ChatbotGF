@@ -37,7 +37,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 }
 
                 string dates = " ";
-                
+                string juli = $" {DataConstants.GetMessage("MONTH", lang)} ";
                 if (eve.startDate.ToString().Equals(eve.endDate.ToString()))
                 {
                     string[] helpStart = eve.startDate.ToString().Split('T');
@@ -45,7 +45,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     string[] hourSt = helpStart[1].Split(':');
                     dates += daySt[2];
                     MakeUrl(eve.name.nl, daySt[2]);
-                    dates += " juli ";
+                    dates += juli;
                     dates += hourSt[0];
                     dates += ":";
                     dates += hourSt[1];
@@ -64,7 +64,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     string[] daySt = helpStart[0].Split('-');
                     string[] hourSt = helpStart[1].Split(':');
                     dates += daySt[2];
-                    dates += " juli ";
+                    dates += juli;
                     MakeUrl(eve.name.nl, daySt[2]);
                     dates += hourSt[0];
                     dates += ":";
@@ -75,12 +75,13 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     string[] hourEnd = helpEnd[1].Split(':');
                     dates += " - ";
                     dates += dayEnd[2];
-                    dates += " juli ";
+                    dates += juli;
                     dates += hourEnd[0];
                     dates += ":";
                     dates += hourEnd[1];
                 }
                 buttons.Add(new ButtonShare());
+                Console.WriteLine("Event is " + eve.isAccessibleForFree);  
                 string subtitle = DataConstants.GetLocation(eve.location).PrettyName + " | " + dates + " | Free";
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
@@ -99,8 +100,6 @@ namespace Chatbot_GF.MessageBuilder.Factories
             name = new string((from c in name
                                      where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
                                      select c).ToArray());
-            string[] a = name.Split(' ');
-            Console.Write(a);
             return name;
         }
     }
