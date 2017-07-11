@@ -80,7 +80,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     dates += hourEnd[1];
                 }
                 buttons.Add(new ButtonShare());
-                string free = (eve.isAccessibleForFree == true) ? DataConstants.GetMessage("FREE", lang) : "€€€";
+                string free = (eve.isAccessibleForFree == true) ? DataConstants.GetMessage("FREE", lang) : DataConstants.GetMessage("NOTFREE", lang);
                 string subtitle = DataConstants.GetLocation(eve.location).PrettyName + " | " + dates + " | " + free;
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
