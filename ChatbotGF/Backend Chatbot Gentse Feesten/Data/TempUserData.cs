@@ -14,7 +14,8 @@ namespace Chatbot_GF.Data
         private Dictionary<long, DateTime> InverseLastConnected;
 
         private static TempUserData instance;
-
+        private static readonly int MAX_USERS = 1;
+        private static readonly int KEEP_ALIVE_MINUTES = 2;
         public TempUserData()
         {
             UserLanguage = new Dictionary<long,string>();
@@ -77,12 +78,14 @@ namespace Chatbot_GF.Data
 
         public void Add(long id, string lang)
         {
+            Remove(id);
             DateTime now = DateTime.Now;
             UserLanguage.Add(id, lang);
             LastConnected.Add(now, id);
             InverseLastConnected.Add(id, now);
 
-            CleanMaps(10); //remove users that did not connect in more than 10 minutes
+            if(UserLanguage.Count > MAX_USERS)
+                CleanMaps(KEEP_ALIVE_MINUTES); //remove users that did not connect in more than 10 minutes
         }
 
 

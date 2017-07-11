@@ -47,8 +47,8 @@ namespace Chatbot_GF.Data
                         case "location":
                             e.location = normalizeUrl(res[key].ToString());
                             break;
-                        case "isAccessibleForFree":
-                            e.isAccessibleForFree = res[key].ToString().Equals("true");
+                        case "isFree":
+                            e.isAccessibleForFree = ParseBool(res[key].ToString());
                             break;
                     }
                 }catch(Exception ex)
@@ -60,6 +60,8 @@ namespace Chatbot_GF.Data
 
                         
         }
+
+
         private static string normalizeString(string s)
         {
             int lastIndex = s.LastIndexOf('@');
@@ -86,6 +88,23 @@ namespace Chatbot_GF.Data
             {
                 return url;
             }
+        }
+
+        public static bool? ParseBool(string str)
+        {
+            if (!string.IsNullOrEmpty(str))
+            {
+                System.Console.WriteLine(str);
+                str = normalizeUrl(str);
+                return (str.Equals("1") || str.Equals("true"));
+            }
+            else
+            {
+                return null;
+            }
+           
+
+
         }
 
         public static DateTime normalizeDate(string date)
