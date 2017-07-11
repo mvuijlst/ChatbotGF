@@ -106,7 +106,7 @@
       "NL": "Vr 14,Za 15,Zo 16,Ma 17,Di 18,Wo 19,Do 20,Vr 21,Za 22,Zo 23",
       "GENTS": "Vr 14,Za 15,Zo 16,Ma 17,Di 18,Wo 19,Do 20,Vr 21,Za 22,Zo 23",
       "EN": "Fr 14,Sa 15,Su 16,Mo 17,Tu 18,We 19,Th 20,Fr 21,Sa 22,Su 23",
-      "EN": "Fr 14,Sa 15,So 16,Mo 17,Di 18,Mi 19,Do 20,Fr 21,Sa 22,So 23"
+      "DE": "Fr 14,Sa 15,So 16,Mo 17,Di 18,Mi 19,Do 20,Fr 21,Sa 22,So 23"
     },
     "Now": {
       "NL": "Wat is er nu bezig?",
@@ -130,7 +130,7 @@
       "NL": "U bent het dichtst bij ",
       "GENTS": "Ge zijt het dichtste bij ",
       "EN": "The nearest location is ",
-      "EN": "Nächste Lage is "
+      "DE": "Nächste Lage is "
     },
     "This_location": {
       "NL": "Wilt u op deze locatie zoeken?",
@@ -164,7 +164,7 @@
     },
     "FREE": {
       "NL": "Gratis",
-      "GENTS": "Gratis",
+      "GENTS": "Vue niets",
       "EN": "Free",
       "DE": "Gratis"
     },
