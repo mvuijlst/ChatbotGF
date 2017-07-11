@@ -62,7 +62,7 @@ namespace Chatbot_GF.Data
             if (UserLanguage.ContainsKey(id))
             {
                 string lang = UserLanguage[id].Lang;
-                Remove(id);
+                //Remove(id);
                 return lang;
             }
             else
@@ -77,7 +77,7 @@ namespace Chatbot_GF.Data
             {
                 bool res = UserLanguage[id].Toilet;
                 Console.WriteLine($"Found id: {res}");
-                Remove(id);
+                //Remove(id);
                 return res;
             }
             else
@@ -98,14 +98,20 @@ namespace Chatbot_GF.Data
 
         public void Add(long id, string lang, bool? toilet)
         {
-            Remove(id);
-            DateTime now = DateTime.Now;
-            UserLanguage.Add(id, new UserData {Lang = lang, Toilet = (toilet ?? false) });
-            LastConnected.Add(now, id);
-            InverseLastConnected.Add(id, now);
-
+            try
+            {
+                Remove(id);
+                DateTime now = DateTime.Now;
+                Console.WriteLine("Added user, toilet= " + (toilet ?? false));
+                UserLanguage.Add(id, new UserData { Lang = lang, Toilet = (toilet ?? false) });
+                LastConnected.Add(now, id);
+                InverseLastConnected.Add(id, now);
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             if(UserLanguage.Count > MAX_USERS)
-                CleanMaps(KEEP_ALIVE_MINUTES); //remove users that did not connect in more than 10 minutes
+                CleanMaps(KEEP_ALIVE_MINUTES); //remove users that did not connect in more than x minutes
         }
 
 
