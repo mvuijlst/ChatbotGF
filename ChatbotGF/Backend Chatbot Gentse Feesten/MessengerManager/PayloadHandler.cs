@@ -32,16 +32,6 @@ namespace Chatbot_GF.MessengerManager
             }
         }
 
-        public string GetLanguage(long id)
-        {
-            string lang = UserLanguage.GetLanguage(id);
-            if(lang != null)
-            {
-                UserLanguage.Remove(id);
-            }
-            return lang;
-        }
-
         public void handle(Messaging message)
         {
             try
