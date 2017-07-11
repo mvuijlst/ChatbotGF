@@ -40,17 +40,14 @@ namespace Chatbot_GF.Data
             return instance;
         }
 
-
         public void GetEventsHereNow(long id,string location,DateTime now,string language)
         {
             string formattedTime = now.ToString("yyyy-MM-ddTHH:mm:sszzz");
             string locationfilter = "str(?location) = \"" + location + "\"";
             string startdatefilter = "?startdate < \"" + formattedTime + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + formattedTime + "\" ^^ xsd:dateTime";
-
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"), locationfilter, startdatefilter, enddatefilter);
             System.Console.WriteLine(query);
-                        
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = language });
         }
 
@@ -58,17 +55,14 @@ namespace Chatbot_GF.Data
         {
             string startdatefilter = "?startdate < \"" + date + "\" ^^ xsd:dateTime";
             string enddatefilter = "?enddate > \"" + date + "\" ^^ xsd:dateTime";
-
             List<SearchableLocation> locations = DataConstants.Locations;
             string locationFilters = "str(?location) = \"" + locations[0].Id + "\"";
             for (int i = 1; i < locations.Count; i++)
             {
                 locationFilters += " || str(?location) = \"" + locations[i].Id + "\"";
             }
-
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"), locationFilters, startdatefilter, enddatefilter);
             System.Console.WriteLine(query);
-
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData {Id = id, Language = language });
         }
 
@@ -84,7 +78,6 @@ namespace Chatbot_GF.Data
             {
                 locationFilters += " || str(?location) = \"" + locations[i].Id + "\"";
             }
-
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"),locationFilters,startdatefilter,enddatefilter);
             System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData {Id = id, Language = lang });
@@ -111,7 +104,6 @@ namespace Chatbot_GF.Data
                     System.Console.WriteLine("Found Results");
                     foreach (SparqlResult res in results)
                     {
-     
                         try
                         {
                             Event e = ResultParser.GetEvent(res);
@@ -122,18 +114,14 @@ namespace Chatbot_GF.Data
                         {
                             System.Console.WriteLine(ex);
                         }
-                        
                     }
-                    
-                    hmess = DataConstants.GetMessage("Found", user.Language);
-                    rm.SendTextMessage(user.Id, hmess);
+                    rm.SendTextMessage(user.Id, DataConstants.GetMessage("Found", user.Language));
                     System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events,user.Language)));
                     String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events,user.Language)).Result;
                 }
                 else if(u is CallbackData)
                 {
                     CallbackData user = (CallbackData)u;
-                    
                     rm.SendNoEventFound(user.Id, user.Language);
                     rm.SendConfirmation(user.Id, user.Language);
                 }
@@ -150,7 +138,6 @@ namespace Chatbot_GF.Data
             {
                 System.Console.WriteLine(ex);
             }
-
         }
 
         public class CallbackData

@@ -23,7 +23,6 @@ namespace Chatbot_GF.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-
             var allUrlKeyValues = Request.Query;
             if (allUrlKeyValues["hub.mode"] == "subscribe" && allUrlKeyValues["hub.verify_token"] == "test123")
             {
@@ -37,17 +36,14 @@ namespace Chatbot_GF.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] MessengerData data)
         {
-
             Task.Factory.StartNew(() =>
             {
                 foreach (var entry in data.entry)
                 {
-
                     foreach (var message in entry.messaging)
                     { 
                         // Check current message if text is recognized and sets corresponding payload
                         Messaging currentMessage = mhandler.MessageRecognized(message);
-
                         if (currentMessage.postback != null)
                         {
                             phandler.handle(message);
@@ -62,7 +58,7 @@ namespace Chatbot_GF.Controllers
                         {
                             try
                             {
-                                MessengerData.Attachment locationAtt = currentMessage?.message?.attachments[0];
+                                Attachment locationAtt = currentMessage?.message?.attachments[0];
                                 Coordinates coords = locationAtt.payload?.coordinates;
                                 Console.WriteLine($"Coordinates Received: {coords.lon} {coords.lat}");
                                 string lang = phandler.GetLanguage(currentMessage.sender.id);
@@ -94,10 +90,7 @@ namespace Chatbot_GF.Controllers
                     }
                 }
             });
-
             return Ok();
         }
-
-
     }
 }

@@ -1,10 +1,4 @@
-using Chatbot_GF.MessageBuilder.Factories;
-using Chatbot_GF.MessageBuilder.Model;
-using Chatbot_GF.MessengerManager;
-using Chatbot_GF.Model;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 
 namespace Chatbot_GF.Controllers
 {
@@ -12,13 +6,11 @@ namespace Chatbot_GF.Controllers
     [Route("api/Test")]
     public class TestController : Controller
     {
-
         [HttpGet]
         public ActionResult Get()
         {
             return Ok();
-            }
-        
+        }
     }
 }
 
