@@ -47,6 +47,9 @@ namespace Chatbot_GF.Data
                         case "location":
                             e.location = normalizeUrl(res[key].ToString());
                             break;
+                        case "isFree":
+                            e.isAccessibleForFree = res[key].ToString().Equals("true");
+                            break;
                     }
                 }catch(Exception ex)
                 {

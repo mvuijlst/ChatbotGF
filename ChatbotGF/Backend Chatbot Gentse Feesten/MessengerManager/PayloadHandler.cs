@@ -10,15 +10,14 @@ namespace Chatbot_GF.MessengerManager
     public class PayloadHandler
     {
         private ReplyManager rmanager;
-
-        private Dictionary<long, string> UserLanguage;
+        private TempUserData UserLanguage;
 
         private static PayloadHandler instance;
 
         public PayloadHandler()
         {
             rmanager = new ReplyManager();
-            UserLanguage = new Dictionary<long, string>();
+            UserLanguage = TempUserData.Instance;
 
         }
 
@@ -34,7 +33,7 @@ namespace Chatbot_GF.MessengerManager
 
         public string GetLanguage(long id)
         {
-            string lang = UserLanguage[id];
+            string lang = UserLanguage.GetLanguage(id);
             if(lang != null)
             {
                 UserLanguage.Remove(id);
