@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Chatbot_GF.BotData
 {
@@ -12,8 +10,6 @@ namespace Chatbot_GF.BotData
         public String Object { get; set; }
         public List<Entry> entry { get; set; }
         
-
-
         public class Sender
         {
             public long id { get; set; }
@@ -31,7 +27,6 @@ namespace Chatbot_GF.BotData
             public Recipient recipient { get; set; }
             public Message message { get; set; }
             public Postback postback { get; set; }
-
 
             public class QuickReply
             {
@@ -53,9 +48,9 @@ namespace Chatbot_GF.BotData
             public long time { get; set; }
             public List<Messaging> messaging { get; set; }
         }
+
         public class Postback
         {
-
             public string payload { get; set; }
         }
 
@@ -79,6 +74,4 @@ namespace Chatbot_GF.BotData
             public Payload payload { get; set; }
         }
     }
-
-
 }

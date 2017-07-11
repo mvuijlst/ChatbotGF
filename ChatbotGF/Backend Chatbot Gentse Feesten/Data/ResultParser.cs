@@ -57,10 +57,7 @@ namespace Chatbot_GF.Data
                 }
             }
             return e;
-
-                        
         }
-
 
         private static string normalizeString(string s)
         {
@@ -78,7 +75,6 @@ namespace Chatbot_GF.Data
         private static string normalizeUrl(string url)
         {
             url = url.Replace(" ", "%20");
-
             int lastIndex = url.LastIndexOf('^') - 1 ;
             if (lastIndex > 0)
             {
@@ -102,16 +98,11 @@ namespace Chatbot_GF.Data
             {
                 return null;
             }
-           
-
-
         }
 
         public static DateTime normalizeDate(string date)
         {
-            // date: 2017-07-16T19:30:00+02:00
-            DateTime myDate = DateTime.ParseExact(date, "yyyy-MM-ddTHH:mm:sszzz",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+            DateTime myDate = DateTime.ParseExact(date, "yyyy-MM-ddTHH:mm:sszzz",System.Globalization.CultureInfo.InvariantCulture);
             return myDate;
         }
     }

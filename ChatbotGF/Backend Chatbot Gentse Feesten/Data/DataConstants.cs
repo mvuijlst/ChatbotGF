@@ -31,9 +31,8 @@ namespace Chatbot_GF.Data
         private static void initQueries()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("queries.json");
-
+                              .SetBasePath(Directory.GetCurrentDirectory())
+                              .AddJsonFile("queries.json");
             QueryStore = builder.Build();
         }
 
@@ -46,19 +45,18 @@ namespace Chatbot_GF.Data
             return QueryStore[name];
         }
 
-        public static DateTime Now {
+        public static DateTime Now
+        {
             get { return DateTime.Now.AddDays(9).AddHours(6); }
-            
-                }
+        }
 
         private static void initMessages()
         {
             try
             {
-                    var builder = new ConfigurationBuilder().
-                        SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile("messages.json");
-
+                var builder = new ConfigurationBuilder()
+                                    .SetBasePath(Directory.GetCurrentDirectory())
+                                    .AddJsonFile("messages.json");
                 MessagesStore = builder.Build();
             }
             catch (Exception ex)
@@ -72,12 +70,9 @@ namespace Chatbot_GF.Data
             try
             {
                 var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("locations.json");
-
+                                    .SetBasePath(Directory.GetCurrentDirectory())
+                                    .AddJsonFile("locations.json");
                 LocationsStore = builder.Build();
-                
-
                 locations = new List<SearchableLocation>();
                 for (int i = 0; i < numberLocations; i++)
                 {
@@ -94,7 +89,6 @@ namespace Chatbot_GF.Data
             {
                 Console.WriteLine(ex);
             }
-            //Console.WriteLine(JsonConvert.SerializeObject(locations));
         }
 
         public static string GetMessage(string name, string locale)
@@ -104,22 +98,18 @@ namespace Chatbot_GF.Data
                 initMessages();
             }
             return MessagesStore[$"messages:{name}:{locale}"];
-            
         }
 
         public static SearchableLocation GetLocation(string name){
             if (locations == null)
                 initLocations();
-
             foreach(SearchableLocation loc in locations)
             { 
-            
                 if (loc.Id == name || loc.Name.Contains(name) || loc.PrettyName.Contains(name))
                 {
                     return loc;
                 }
             }
-
             return null;
         }
 
@@ -155,8 +145,5 @@ namespace Chatbot_GF.Data
             }
             return closests;
         }
-
-    
-
     }
 }

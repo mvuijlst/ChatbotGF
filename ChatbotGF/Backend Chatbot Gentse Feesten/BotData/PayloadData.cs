@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Chatbot_GF.BotData
 {
-    public class PayloadData  : List<string>
+    public class PayloadData : List<string>
     {
         private string _Language;
 
@@ -20,7 +18,6 @@ namespace Chatbot_GF.BotData
                 {
                     _Language = list[2];
                 }
-                
             }
         }
 
