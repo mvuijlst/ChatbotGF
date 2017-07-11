@@ -3,146 +3,122 @@
     "More": {
       "NL": "Meer",
       "GENTS": "Mier",
-      "EN": "More",
-      "DE": "Mehr"
+      "EN": "More"
     },
     "Previous": {
       "NL": "Vorige locaties",
       "GENTS": "Veurige locaties",
-      "EN": "Previous",
-      "DE": "Zurückgehen"
+      "EN": "Previous"
     },
     "Which_location": {
       "NL": "Welke locatie wilt u bezoeken?",
       "GENTS": "Is ter een fiestpleine dadde wilt bezoeken?",
-      "EN": "Which location do you want to visit?",
-      "DE": "Welche Lage willen Sie besuchen"
+      "EN": "Which location do you want to visit?"
     },
     "Yes": {
       "NL": "Ja",
       "GENTS": "Ja!",
-      "EN": "Yes",
-      "DE": "Ja"
+      "EN": "Yes"
     },
     "No": {
       "NL": "Neen",
       "GENTS": "Nieje",
-      "EN": "No",
-      "DE": "Nein"
+      "EN": "No"
     },
     "Other_location": {
       "NL": "Wenst u een andere locatie te bekijken?",
       "GENTS": "Wilde n ander fiestpleine zien?",
-      "EN": "Would you like to check another location?",
-      "DE": "Wünschen Sie ein andere Lage besuchen"
+      "EN": "Would you like to check another location?"
     },
     "Restart": {
       "NL": "Typ \"opnieuw\" of klik Begin opnieuw in het menu naast het tekstvak als u een nieuwe zoekopdracht wenst te starten.",
-      "GENTS": "As ge opnieuw wil zoeke, typt dan \"opnieuw\" of klikt op Begin opnieuw int menu naast het tekstvak",
-      "EN": "Type \"again\" or push the button Begin opnieuw",
-      "DE": "Type \"again\" or push the button Begin opnieuw"
+      "GENTS": "As ge opnieuw wil zoeke, typt dan \"kere\" of klikt op Begin opnieuw int menu naast het tekstvak",
+      "EN": "Type \"again\" or push the button Begin opnieuw"
     },
     "Not_found": {
       "NL": "Sorry, ik kon jammer genoeg geen evenementen vinden.",
       "GENTS": "Oesje, ik koste niks nie vinde, probeert es opnieuw!",
-      "EN": "Sorry, I couldn't find an event.",
-      "DE": "Enschuldigung ich habe nichts gefunden"
+      "EN": "Sorry, I couldn't find an event."
     },
     "Search_location": {
       "NL": "Een locatie",
       "GENTS": "Een fiestpleine",
-      "EN": "A location",
-      "DE": "Ein Lage"
+      "EN": "A location"
     },
     "Search_Date": {
       "NL": "Een datum",
       "GENTS": "Nen datum",
-      "EN": "A date",
-      "DE": "Ein Datum"
+      "EN": "A date"
     },
     "Time_Block": {
       "NL": "Voormiddag:5~11|Namiddag:12~17|'s Avonds:18~23|'s Nachts:0~4",
       "GENTS": "Veurmiddag:5~11|Tsachternoens:12~17|Savonds:18~23|Snachts:0~4",
-      "EN": "Forenoon:5~11|Afternoon:12~17|In the evening:18~23|At Night:0~4",
-      "DE": "Vormittag:5~11|Nachmittag:12~17|Am Abend:18~23|Nachts:0~4"
+      "EN": "Forenoon:5~11|Afternoon:12~17|In the evening:18~23|At Night:0~4"
     },
     "HOURS_BLOCK": {
       "NL": "Rond welk uur wilt je?",
       "GENTS": "Rond ewa uur wilde?",
-      "EN": "Which hour?",
-      "DE": "Welche Stunde"
+      "EN": "Which hour?"
     },
     "Time_Periods": {
       "NL": "Kies een van de volgende opties om te specifieren",
       "GENTS": "Kiest iene van de opties om te specifieren",
-      "EN": "Pick one",
-      "DE": "Pick one"
+      "EN": "Pick one"
     },
     "Date_Choice": {
       "NL": "Je kan kiezen voor alles wat nu gebeurt, ofwel kan je de datum zelf kiezen",
       "GENTS": "Ge kun kiezen voor alles wadat er neu bezig es, ofwel zelf nen datum kiezen",
-      "EN": "I can show you everything that's happening now, or you can choose a specific date",
-      "DE": "Pick one"
+      "EN": "I can show you everything that's happening now, or you can choose a specific date"
     },
     "Previous_Block": {
       "NL": "Terug",
       "GENTS": "Kere ke were",
-      "EN": "Back",
-      "DE": "Zurückgehen"
+      "EN": "Back"
     },
     "Choice_For_Date": {
       "NL": "Kies uw datum",
       "GENTS": "Kiest euwen datum",
-      "EN": "Pick a date",
-      "DE": "Mach seine Datum"
+      "EN": "Pick a date"
     },
     "Choice_For_Day": {
       "NL": "Welke dag kiest u?",
       "GENTS": "Welke dag kiesde?",
-      "EN": "Which day",
-      "DE": "Welcher Tag"
+      "EN": "Which day"
     },
     "Day_Block": {
       "NL": "Vr 14,Za 15,Zo 16,Ma 17,Di 18,Wo 19,Do 20,Vr 21,Za 22,Zo 23",
       "GENTS": "Vr 14,Za 15,Zo 16,Ma 17,Di 18,Wo 19,Do 20,Vr 21,Za 22,Zo 23",
-      "EN": "Fr 14,Sa 15,Su 16,Mo 17,Tu 18,We 19,Th 20,Fr 21,Sa 22,Su 23",
-      "DE": "Fr 14,Sa 15,So 16,Mo 17,Di 18,Mi 19,Do 20,Fr 21,Sa 22,So 23"
+      "EN": "Fr 14,Sa 15,Su 16,Mo 17,Tu 18,We 19,Th 20,Fr 21,Sa 22,Su 23"
     },
     "Now": {
       "NL": "Wat is er nu bezig?",
       "GENTS": "Wa est er neu bezig?",
-      "EN": "What's going on now",
-      "DE": "Jetzt"
+      "EN": "What's going on now"
     },
     "Welcome": {
       "NL": "Hallo. Hieronder ziet u een aantal suggesties. U kunt ook altijd opnieuw beginnen door op de knop te drukken. Zoeken op",
       "GENTS": "Goeiendag beste fiester! Hieronder ziede ewa opties. Ge kunt uk altijd opnieuw beginne door op den knop te drukke, Zoeken op",
-      "EN": "Welcome, Search on",
-      "DE": "GutenTag"
+      "EN": "Welcome, Search on"
     },
     "My_location": {
       "NL": "Gebruik mijn locatie",
       "GENTS": "Gebruik mijn locatie moar",
-      "EN": "Use my location",
-      "DE": "Gebrauchen meine Lage"
+      "EN": "Use my location"
     },
     "Nearest_location": {
       "NL": "U bent het dichtst bij ",
       "GENTS": "Ge zijt het dichtste bij ",
-      "EN": "The nearest location is ",
-      "DE": "Nächste Lage is "
+      "EN": "The nearest location is "
     },
     "This_location": {
       "NL": "Wilt u op deze locatie zoeken?",
       "GENTS": ". Wilde op dies locatie zoeken?",
-      "EN": "Do you want to search on this location?",
-      "DE": "Willen Sie suchen in desen Lage"
+      "EN": "Do you want to search on this location?"
     },
     "Choose_card": {
       "NL": "Kies op kaart",
       "GENTS": "Kies op de koart",
-      "EN": "Pick a location on the map",
-      "DE": "Markieren an Positionskarte"
+      "EN": "Pick a location on the map"
     },
     "Choose_Language": {
       "NL": "Kies uw taal / Choose your language",
@@ -153,20 +129,17 @@
     "Choose_list": {
       "NL": "Kies uit lijst",
       "GENTS": "Kies uit ne lijst",
-      "EN": "Choose from list",
-      "DE": "Auf ein List"
+      "EN": "Choose from list"
     },
     "What_Is_It": {
       "NL": "Wat houdt dit in?",
       "GENTS": "Wa est?",
-      "EN": "What is it?",
-      "DE": "Was is das?"
+      "EN": "What is it?"
     },
     "MONTH": {
       "NL": "juli",
       "GENTS": "juli",
-      "EN": "july",
-      "DE": "Juli"
+      "EN": "july"
     },
     "FREE": {
       "NL": "Gratis",
@@ -177,44 +150,37 @@
     "NOTFREE": {
       "NL": "€€€",
       "GENTS": "€€€",
-      "EN": "€€€",
-      "DE": "€€€"
+      "EN": "€€€"
     },
     "NEXT": {
       "NL": "Wat is er hierna te doen?",
       "GENTS": "Wa est der ierachter?",
-      "EN": "After this event?",
-      "DE": "Nach dies Ereignis"
+      "EN": "After this event?"
     },
     "FOUND": {
       "NL": "Dit heb ik gevonden:",
       "GENTS": "Dees è kik gevonde:",
-      "EN": "This is what I found: ",
-      "DE": "This is what I found: "
+      "EN": "This is what I found: "
     },
     "ERROR": {
       "NL": "Er is iets foutgelopen, we proberen dit zo snel mogelijk op te lossen.",
       "GENTS": "Der es ietken misgegoan, we probiere et te fikse!",
-      "EN": "Something has gone wrong. We are trying to fix it as quick as possible.",
-      "DE": "Whoops"
+      "EN": "Something has gone wrong. We are trying to fix it as quick as possible."
     },
     "Choose_options": {
       "NL": "Je kan ofwel een locatie kiezen, ofwel je eigen locatie gebruiken.",
       "GENTS": "Ge kun kiezen veur eu locatie, ofwel iene kiezen",
-      "EN": "You can choose a location or use your own.",
-      "DE": "Sein Positione oder choose ein"
+      "EN": "You can choose a location or use your own."
     },
     "Pick_map": {
       "NL": "Duid een locatie aan op de kaart.",
       "GENTS": "Kiest eu locatie op de koarte.",
-      "EN": "Choose your location on the map.",
-      "DE": "Markieren an Positionskarte"
+      "EN": "Choose your location on the map."
     },
     "Donot_understand": {
       "NL": "Ik begrijp niet wat u bedoelt, wilt u weten wat hier gebeurt?",
       "GENTS": "Wadadde? Da ès maar iet roar ze! Woar es da fiestje? Hier es da fiestje!",
-      "EN": "I don't understand. Do you want to know what's happening overhere?",
-      "DE": "Nope mijn Duits is slecht, sorry"
+      "EN": "I don't understand. Do you want to know what's happening overhere?"
     }
 
   }
