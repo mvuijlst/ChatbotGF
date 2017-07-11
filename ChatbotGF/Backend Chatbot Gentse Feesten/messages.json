@@ -81,7 +81,7 @@
     "Date_Choice": {
       "NL": "Je kan kiezen voor alles wat nu gebeurt, ofwel kan je de datum zelf kiezen",
       "GENTS": "Ge kun kiezen voor alles wadat er neu bezig es, ofwel zelf nen datum kiezen",
-      "EN": "Pick one",
+      "EN": "I can show you everything that's happening now, or you can choose a specific date",
       "DE": "Pick one"
     },
     "Previous_Block": {
@@ -93,7 +93,7 @@
     "Choice_For_Date": {
       "NL": "Kies uw datum",
       "GENTS": "Kiest euwen datum",
-      "EN": "Make your date",
+      "EN": "Pick a date",
       "DE": "Mach seine Datum"
     },
     "Choice_For_Day": {
@@ -141,7 +141,7 @@
     "Choose_card": {
       "NL": "Kies op kaart",
       "GENTS": "Kies op de koart",
-      "EN": "Choose on card",
+      "EN": "Pick a location on the map",
       "DE": "Markieren an Positionskarte"
     },
     "Choose_list": {

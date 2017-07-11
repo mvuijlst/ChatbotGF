@@ -11,8 +11,20 @@
   },
   "payloads": {
     "opnieuw": {
-      "haschildren": true,      
-      "payload": "GET_STARTED_PAYLOAD"
+      "haschildren": true,
+      "payload": "GET_STARTED_PAYLOAD°°NL"
+    },
+    "reset": {
+      "haschildren": true,
+      "payload": "GET_STARTED_PAYLOAD°°EN"
+    },
+    "again": {
+      "haschildren": true,
+      "payload": "GET_STARTED_PAYLOAD°°EN"
+    },
+    "were": {
+      "haschildren": true,
+      "payload": "GET_STARTED_PAYLOAD°°GENTS"
     }
   }
 }

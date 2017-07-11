@@ -14,8 +14,8 @@ namespace Chatbot_GF.Data
         private Dictionary<long, DateTime> InverseLastConnected;
 
         private static TempUserData instance;
-        private static readonly int MAX_USERS = 1;
-        private static readonly int KEEP_ALIVE_MINUTES = 2;
+        private static readonly int MAX_USERS = 500;
+        private static readonly int KEEP_ALIVE_MINUTES = 10;
         public TempUserData()
         {
             UserLanguage = new Dictionary<long,string>();
