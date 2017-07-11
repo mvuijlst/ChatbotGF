@@ -185,9 +185,13 @@ namespace Chatbot_GF.MessengerManager
             Console.WriteLine("Choice hour: " + api.SendMessageToUser(message).Result);
         }
 
-        public void SendImage(long id, string url)
+        public void SendHelpMessage(long id)
         {
-            Console.WriteLine("Smile " + api.SendMessageToUser(new GenericMessage(id, new Attachment("image", new PayloadImage(url)))).Result);
+            List<IButton> buttons = new List<IButton>();
+            buttons.Add(new ButtonPayload("iets", "postback", "GET_HELP_PAGE"));
+            buttons.Add(new ButtonPayload("Hulpdiensten", "phone_number", "+112"));
+            GenericMessage message = new GenericMessage(id, new Attachment("template", new ButtonTemplate("button", buttons, DataConstants.GetMessage("HELPMESSAGE", "NL"))));
+            Console.WriteLine("Help options: " + api.SendMessageToUser(message).Result);
         }
     }
 }
