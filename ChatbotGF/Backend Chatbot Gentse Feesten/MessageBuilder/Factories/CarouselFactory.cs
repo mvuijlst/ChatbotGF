@@ -81,7 +81,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 }
                 buttons.Add(new ButtonShare());
                 string free = (eve.isAccessibleForFree == true) ? DataConstants.GetMessage("FREE", lang) : DataConstants.GetMessage("NOTFREE", lang);
-                string wheelie = " | ♿";
+                string wheelie = "";
                 if (!(eve.isWheelchairUnfriendly ?? true))
                 {
                     wheelie = " | ♿";
