@@ -122,9 +122,6 @@
     },
     "Choose_Language": {
       "NL": "Kies uw taal / Choose your language",
-      "GENTS": "",
-      "EN": "Choose your language",
-      "DE": ""
     },
     "Choose_list": {
       "NL": "Kies uit lijst",
@@ -143,7 +140,7 @@
     },
     "FREE": {
       "NL": "Gratis",
-      "GENTS": "Gien kloten",
+      "GENTS": "Kost gien kloten",
       "EN": "Free",
       "DE": "Gratis"
     },

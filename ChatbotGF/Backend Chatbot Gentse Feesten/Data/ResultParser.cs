@@ -50,6 +50,9 @@ namespace Chatbot_GF.Data
                         case "isFree":
                             e.isAccessibleForFree = ParseBool(res[key].ToString());
                             break;
+                        case "isWheelchairUnfriendly":
+                            e.isWheelchairUnfriendly = ParseBool(res[key].ToString());
+                            break;
                     }
                 }catch(Exception ex)
                 {
