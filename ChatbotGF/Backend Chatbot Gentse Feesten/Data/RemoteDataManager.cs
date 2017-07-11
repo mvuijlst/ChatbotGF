@@ -108,8 +108,8 @@ namespace Chatbot_GF.Data
                         {
                             Event e = ResultParser.GetEvent(res);
                             events.Add(e);
-                            System.Console.WriteLine("Datum: " + e.startDate);
-                            System.Console.WriteLine("Dend: " + e.endDate);
+                            //System.Console.WriteLine("Datum: " + e.startDate);
+                            //System.Console.WriteLine("Dend: " + e.endDate);
                         } catch (Exception ex)
                         {
                             System.Console.WriteLine(ex);

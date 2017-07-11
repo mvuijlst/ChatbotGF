@@ -124,7 +124,8 @@ namespace Chatbot_GF.Data
                     locations[i].Search = new List<string>();
                     if (!string.IsNullOrWhiteSpace(LocationsStore[$"locations:{i}:SearchCount"]))
                     {
-                        for(int j=0; j < int.Parse(LocationsStore[$"locations:{i}:SearchCount"]); j++)
+                        int count = int.Parse(LocationsStore[$"locations:{i}:SearchCount"]);
+                        for (int j=0; j < count; j++)
                         {
                             string tag = LocationsStore[$"locations:{i}:Search:{j}"];
                             Console.WriteLine("Tag found: " + tag);

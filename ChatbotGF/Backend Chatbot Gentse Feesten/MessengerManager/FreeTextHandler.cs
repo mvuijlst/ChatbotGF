@@ -70,14 +70,14 @@ namespace Chatbot_GF.MessengerManager
                     //Console.WriteLine(ReplyStore["keywords:feestje:waar:response:nl"]);
                     if (ReplyStore.GetSection(query + ":" + words[count]).GetValue<string>("response") != null)
                     {
-                        Console.WriteLine(query + ":" + words[count] + "Keyword found!");
+                       // Console.WriteLine(query + ":" + words[count] + "Keyword found!");
                         KeywordsFound.Add(words[count]);
                         words.RemoveAt(count);
                         count = 0; //restart
                     }
                     else if (ReplyStore[query + ":haschildren"] != null && ReplyStore[query + ":haschildren"] == "false")
                     {
-                        Console.WriteLine("No children, strop recursion");
+                       // Console.WriteLine("No children, strop recursion");
                         break; //stop recursion, object has no child keywords
                     }
                     else
@@ -85,7 +85,7 @@ namespace Chatbot_GF.MessengerManager
                         count++;
                     }
                 }
-                Console.WriteLine(string.Join(":", KeywordsFound) + ":response");
+                //Console.WriteLine(string.Join(":", KeywordsFound) + ":response");
                 return ReplyStore[string.Join(":", KeywordsFound) + ":response"];
             }catch(Exception ex)
             {
@@ -116,14 +116,14 @@ namespace Chatbot_GF.MessengerManager
                     //Console.WriteLine(ReplyStore["keywords:feestje:waar:response:nl"]);
                     if (ReplyStore.GetSection(query + ":" + words[count]).GetValue<string>("payload") != null)
                     {
-                        Console.WriteLine(query + ":" + words[count] + "Keyword found!");
+                        //Console.WriteLine(query + ":" + words[count] + "Keyword found!");
                         KeywordsFound.Add(words[count]);
                         words.RemoveAt(count);
                         count = 0; //restart
                     }
                     else if (ReplyStore[query + ":haschildren"] != null && ReplyStore[query + ":haschildren"] == "false")
                     {
-                        Console.WriteLine("No children, stop recursion");
+                       // Console.WriteLine("No children, stop recursion");
                         break; //stop recursion, object has no child keywords
                     }
                     else

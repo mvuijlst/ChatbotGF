@@ -90,7 +90,7 @@ namespace Chatbot_GF.Data
         {
             if (!string.IsNullOrEmpty(str))
             {
-                System.Console.WriteLine(str);
+                //System.Console.WriteLine(str);
                 str = normalizeUrl(str);
                 return (str.Equals("1") || str.Equals("true"));
             }

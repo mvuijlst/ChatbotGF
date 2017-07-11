@@ -38,7 +38,7 @@ namespace Chatbot_GF.MessengerManager
             {
                 long id = message.sender.id;
                 PayloadData payload = new PayloadData(message.postback.payload);
-                Console.WriteLine(payload);
+                //Console.WriteLine(payload);
                 switch (payload.Payload)
                 {
                     case "GET_STARTED_PAYLOAD":
@@ -109,7 +109,7 @@ namespace Chatbot_GF.MessengerManager
                         string[] da = payload.Value.Split('|');
                         payload.Value = $"{da[1]}{da[0]}:00+02:00";
                         //rmanager.SendTextMessage(id, value);
-                        Console.WriteLine("Datum: " + payload.Value);
+                        //Console.WriteLine("Datum: " + payload.Value);
                         RemoteDataManager.GetInstance().GetEventsAtTime(id, payload.Value,payload.Language);
                         break;
 
