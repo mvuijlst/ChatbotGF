@@ -12,6 +12,7 @@ namespace Chatbot_GF.Model
         public string Id { get; set; }
         public double Lon { get; set; }
         public double Lat { get; set; }
+        public List<string> Search { get; set; }
 
     }
 }

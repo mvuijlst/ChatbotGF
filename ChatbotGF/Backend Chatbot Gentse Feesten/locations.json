@@ -111,6 +111,15 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/d5a937e8-5bed-43ab-ba54-8f2d19e418a7",
       "Lon": 3.7283689,
       "Lat": 51.0480501
+    },
+    {
+      "Name": "Charlatan",
+      "PrettyName": "Charlatan",
+      "id": "https://gentsefeesten.stad.gent/api/v1/location/fb0a9492-daf8-4b70-8079-d81fcea20b8f",
+      "Lon": 3.6584911,
+      "Lat": 51.0559587,
+      "SearchCount": 2,
+      "Search": ["charla", "charlatan"]
     }
   ],
   "toilets":  [

@@ -30,7 +30,6 @@
       "haschildren": false,
       "payload": "GET_TOILET°°GENTS"
     },
-<<<<<<< HEAD
     "nu": {
       "haschildren": false,
       "payload": "DEVELOPER_DEFINED_LOCATION°ALL°NL"
@@ -41,12 +40,12 @@
     },
     "now": {
       "haschildren": false,
-      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN"
-=======
+      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN",
+    },
     "help": {
       "haschildren": false,
       "payload": "GET_HELP°°NL"
->>>>>>> ab8a6b97d7e9d4aa18392dbdf8edf95092c61d75
     }
   }
 }
+  

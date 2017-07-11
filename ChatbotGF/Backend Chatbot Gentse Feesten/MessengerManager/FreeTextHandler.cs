@@ -26,6 +26,8 @@ namespace Chatbot_GF.MessengerManager
 
         public static void CheckText(long id,string text)
         {
+
+
             if(ReplyStore == null)
             {
                 InitReplies();

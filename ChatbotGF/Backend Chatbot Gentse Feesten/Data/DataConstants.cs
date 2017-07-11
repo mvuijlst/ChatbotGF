@@ -121,6 +121,17 @@ namespace Chatbot_GF.Data
                         Lat = double.Parse(LocationsStore[$"locations:{i}:Lat"]),
                         Lon = double.Parse(LocationsStore[$"locations:{i}:lon"])
                     });
+                    locations[i].Search = new List<string>();
+                    if (!string.IsNullOrWhiteSpace(LocationsStore[$"locations:{i}:SearchCount"]))
+                    {
+                        for(int j=0; j < int.Parse(LocationsStore[$"locations:{i}:SearchCount"]); j++)
+                        {
+                            string tag = LocationsStore[$"locations:{i}:Search:{j}"];
+                            Console.WriteLine("Tag found: " + tag);
+                            locations[i].Search.Add(tag);
+                        }
+                    }
+                    
                 }
             }catch(Exception ex)
             {
