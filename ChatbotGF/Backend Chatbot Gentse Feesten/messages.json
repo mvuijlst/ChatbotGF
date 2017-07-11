@@ -181,6 +181,11 @@
       "NL": "Ik begrijp niet wat u bedoelt, wilt u weten wat hier gebeurt?",
       "GENTS": "Wadadde? Da ès maar iet roar ze! Woar es da fiestje? Hier es da fiestje!",
       "EN": "I don't understand. Do you want to know what's happening overhere?"
+    },
+    "HELPMESSAGE": {
+      "NL": "Wil je weten hoe je met mij praat of wil je de hulpdiensten bellen?",
+      "GENTS": "Wil je weten hoe je met mij praat of wil je de hulpdiensten bellen?",
+      "EN": "Wil je weten hoe je met mij praat of wil je de hulpdiensten bellen?"
     }
 
   }

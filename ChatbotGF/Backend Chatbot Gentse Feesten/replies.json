@@ -11,24 +11,28 @@
   },
   "payloads": {
     "opnieuw": {
-      "haschildren": true,
+      "haschildren": false,
       "payload": "GET_STARTED_PAYLOAD°°NL"
     },
     "reset": {
-      "haschildren": true,
+      "haschildren": false,
       "payload": "GET_STARTED_PAYLOAD°°EN"
     },
     "again": {
-      "haschildren": true,
+      "haschildren": false,
       "payload": "GET_STARTED_PAYLOAD°°EN"
     },
     "were": {
-      "haschildren": true,
+      "haschildren": false,
       "payload": "GET_STARTED_PAYLOAD°°GENTS"
     },
     "toilet": {
-      "haschildren": true,
+      "haschildren": false,
       "payload": "GET_TOILET°°GENTS"
+    },
+    "help": {
+      "haschildren": false,
+      "payload": "GET_HELP°°NL"
     }
   }
 }
