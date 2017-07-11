@@ -25,6 +25,10 @@
     "were": {
       "haschildren": true,
       "payload": "GET_STARTED_PAYLOAD°°GENTS"
+    },
+    "toilet": {
+      "haschildren": true,
+      "payload": "GET_TOILET°°GENTS"
     }
   }
 }

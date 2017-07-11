@@ -1,5 +1,6 @@
 ﻿using Chatbot_GF.BotData;
 using Chatbot_GF.Data;
+using Chatbot_GF.MessageBuilder.Factories;
 using Chatbot_GF.Model;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace Chatbot_GF.MessengerManager
                         rmanager.SendWelcomeMessage(id, payload.Language);
                         break;
                     case "SEND_LOCATION_CHOICE":
-                        rmanager.SendLocationsChoice(id,payload.Language);
+                        rmanager.SendLocationsChoice(id, payload.Language);
                         break;
                     // tijd keuze extra 
                     case "SEND_DATE_CHOICE":
@@ -66,12 +67,22 @@ namespace Chatbot_GF.MessengerManager
                     case "SEND_LANGUAGE_OPTIONS":
                         rmanager.ChangeLanguage(message.sender.id);
                         break;
+                    case "GET_TOILET":
+                        string[] co = payload.Value.Split(':');
+                        SearchableLocation location = DataConstants.GetClosestsToilet(double.Parse(co[0]), double.Parse(co[1]));
+                        // Console.WriteLine($"Closest location found: {location.PrettyName} ");
+                        rmanager.SendGenericMessage(LocationFactory.MakeLocationResponse(id, location.Lat, location.Lon));
+                        break;
                     case "SET_LANGUAGE":
                         rmanager.SendWelcomeMessage(id, payload.Value);
                         break;
                     case "GET_USER_LOCATION":
+                        if(!string.IsNullOrWhiteSpace(payload.Value) && payload.Value == "true")
+                        {
+                            TempUserData.Instance.Add(id, payload.Language, true);
+                        }
                         rmanager.SendGetLocationButton(message.sender.id,payload.Language);
-                        UserLanguage.Add(message.sender.id, payload.Language);
+                        UserLanguage.Add(message.sender.id, payload.Language, null);
                         break;
                     case "DEVELOPER_DEFINED_SEARCHFALSE":
                         rmanager.SendInfoForEnding(message.sender.id, payload.Language);
@@ -90,9 +101,9 @@ namespace Chatbot_GF.MessengerManager
                         break;
                     case "DEVELOPER_DEFINED_COORDINATES":
                         string[] data = payload.Value.Split(':');
-                        List<SearchableLocation> location = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) },3);
+                        List<SearchableLocation> locatio = DataConstants.GetClosestLocation(new Coordinates { lat = double.Parse(data[1]), lon = double.Parse(data[0]) },3);
                        // Console.WriteLine($"Closest location found: {location.PrettyName} ");
-                        rmanager.SendLocationResult(id, location, payload.Language);
+                        rmanager.SendLocationResult(id, locatio, payload.Language);
                         break;
                     case "DEVELOPER_DEFINED_DESCRIPTION":
                         rmanager.SendTextMessage(id, payload.Value);

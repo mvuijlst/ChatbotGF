@@ -8,7 +8,7 @@ namespace Chatbot_GF.Data
 {
     public class TempUserData
     {
-        private Dictionary<long, string> UserLanguage;
+        private Dictionary<long, UserData> UserLanguage;
 
         private Dictionary<DateTime, long> LastConnected;
         private Dictionary<long, DateTime> InverseLastConnected;
@@ -18,12 +18,17 @@ namespace Chatbot_GF.Data
         private static readonly int KEEP_ALIVE_MINUTES = 10;
         public TempUserData()
         {
-            UserLanguage = new Dictionary<long,string>();
+            UserLanguage = new Dictionary<long, UserData>();
             LastConnected = new Dictionary<DateTime, long>();
             InverseLastConnected = new Dictionary<long, DateTime>();
-                       
+
         }
-    
+
+        public class UserData
+        {
+            public string Lang { get; set; }
+            public bool Toilet { get; set; }
+        }
         /// <summary>
         /// Removes all users that did not perform any action in x minutes 
         /// </summary>
@@ -56,13 +61,27 @@ namespace Chatbot_GF.Data
         {
             if (UserLanguage.ContainsKey(id))
             {
-                string lang = UserLanguage[id];
+                string lang = UserLanguage[id].Lang;
                 Remove(id);
                 return lang;
             }
             else
             {
                 return null;
+            }
+        }
+
+        public bool WantsToilet(long id)
+        {
+            if (UserLanguage.ContainsKey(id))
+            {
+                bool res = UserLanguage[id].Toilet;
+                Remove(id);
+                return res;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -76,11 +95,11 @@ namespace Chatbot_GF.Data
             }
         }
 
-        public void Add(long id, string lang)
+        public void Add(long id, string lang, bool? toilet)
         {
             Remove(id);
             DateTime now = DateTime.Now;
-            UserLanguage.Add(id, lang);
+            UserLanguage.Add(id, new UserData {Lang = lang, Toilet = (toilet ?? false) });
             LastConnected.Add(now, id);
             InverseLastConnected.Add(id, now);
 

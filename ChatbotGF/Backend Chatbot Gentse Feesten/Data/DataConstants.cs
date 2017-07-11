@@ -27,7 +27,17 @@ namespace Chatbot_GF.Data
         }
         
         private static List<SearchableLocation> locations;
-        
+        private static List<SearchableLocation> toilets;
+        private static readonly int TOILET_COUNT = 171;
+
+        public static List<SearchableLocation> Toilets {
+            get {
+                if (toilets == null)
+                    initToilets();
+                return toilets;
+            }
+        }
+
         private static void initQueries()
         {
             var builder = new ConfigurationBuilder()
@@ -35,6 +45,33 @@ namespace Chatbot_GF.Data
                .AddJsonFile("queries.json");
 
             QueryStore = builder.Build();
+        }
+
+        private static void initToilets()
+        {
+            try
+            {
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("locations.json");
+
+                IConfiguration toiletStore = builder.Build();
+                toilets = new List<SearchableLocation>();
+
+                for (int i = 0; i < TOILET_COUNT; i++)
+                {
+                    //Console.WriteLine("Toilet toegevoegd");
+                    toilets.Add(new SearchableLocation { Lon = double.Parse(toiletStore[$"toilets:{i}:{0}"]), Lat = double.Parse(toiletStore[$"toilets:{i}:{1}"]) });
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        public static SearchableLocation GetClosestsToilet(double Lon, double Lat)
+        {
+            return GetClosestLocation(Toilets, new Coordinates { lon = Lon, lat = Lat });
         }
 
         public static String GetQuery(string name)

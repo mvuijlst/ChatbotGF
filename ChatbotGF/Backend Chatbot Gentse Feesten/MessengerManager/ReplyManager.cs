@@ -36,8 +36,13 @@ namespace Chatbot_GF.MessengerManager
             reply.Add(new QuickReply("text", "Nederlands", "SET_LANGUAGE°NL°" + lang));
             reply.Add(new QuickReply("text", "Gents", "SET_LANGUAGE°GENTS°" + lang));
             // reply.Add(new QuickReply("text", "Deutsch", "SET_LANGUAGE°DE°" + lang));
-            GenericMessage message = new GenericMessage(id, $"Kies u taal: ", reply);
+            GenericMessage message = new GenericMessage(id, DataConstants.GetMessage("Choose_Language", "NL"), reply);
             Console.WriteLine("Language message: " + api.SendMessageToUser(message).Result);
+        }
+
+        public void SendGenericMessage(GenericMessage msg)
+        {
+            Console.WriteLine(api.SendMessageToUser(msg).Result);
         }
 
         public void SendLocationsChoice(long id, string lang)

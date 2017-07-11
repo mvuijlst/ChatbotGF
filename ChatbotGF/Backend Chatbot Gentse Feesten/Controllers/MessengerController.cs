@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using static Chatbot_GF.BotData.MessengerData;
 using Chatbot_GF.BotData;
 using Chatbot_GF.MessengerManager;
+using Chatbot_GF.Data;
 
 namespace Chatbot_GF.Controllers
 {
@@ -67,11 +68,20 @@ namespace Chatbot_GF.Controllers
                                 string lang = phandler.GetLanguage(currentMessage.sender.id);
                                 if (string.IsNullOrWhiteSpace(lang))
                                     lang = "";
-
-                                currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES°{coords.lon}:{coords.lat}°{lang}" };
-                                Console.WriteLine(currentMessage.postback);
-                                phandler.handle(message);
-                            }catch(Exception ex)
+                                if (TempUserData.Instance.WantsToilet(message.sender.id))
+                                {
+                                    currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES°{coords.lon}:{coords.lat}°{lang}" };
+                                    Console.WriteLine(currentMessage.postback);
+                                    phandler.handle(message);
+                                }
+                                else
+                                {
+                                    currentMessage.postback = new Postback { payload = $"GET_TOILET°{coords.lon}:{coords.lat}°{lang}" };
+                                    Console.WriteLine(currentMessage.postback);
+                                    phandler.handle(message);
+                                }
+                            }
+                            catch(Exception ex)
                             {
                                 Console.WriteLine(ex);
                             }

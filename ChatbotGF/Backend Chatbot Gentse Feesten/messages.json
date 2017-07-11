@@ -144,6 +144,12 @@
       "EN": "Pick a location on the map",
       "DE": "Markieren an Positionskarte"
     },
+    "Choose_Language": {
+      "NL": "Kies uw taal / Choose your language",
+      "GENTS": "",
+      "EN": "Choose your language",
+      "DE": ""
+    },
     "Choose_list": {
       "NL": "Kies uit lijst",
       "GENTS": "Kies uit ne lijst",
