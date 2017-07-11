@@ -29,6 +29,18 @@
     "toilet": {
       "haschildren": true,
       "payload": "GET_TOILET°°GENTS"
+    },
+    "nu": {
+      "haschildren": false,
+      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°NL"
+    },
+    "nui": {
+      "haschildren": false,
+      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°GENTS"
+    },
+    "now": {
+      "haschildren": false,
+      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN"
     }
   }
 }
