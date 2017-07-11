@@ -81,7 +81,12 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 }
                 buttons.Add(new ButtonShare());
                 string free = (eve.isAccessibleForFree == true) ? DataConstants.GetMessage("FREE", lang) : DataConstants.GetMessage("NOTFREE", lang);
-                string subtitle = DataConstants.GetLocation(eve.location).PrettyName + " | " + dates + " | " + free;
+                string wheelie = "";
+                if (!(eve.isWheelchairUnfriendly ?? true))
+                {
+                    wheelie = " | ♿";
+                }
+                string subtitle = DataConstants.GetLocation(eve.location).PrettyName + " | " + dates + " | " + free + wheelie;
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");
