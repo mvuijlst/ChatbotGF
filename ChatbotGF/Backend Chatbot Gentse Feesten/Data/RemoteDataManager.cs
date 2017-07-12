@@ -88,7 +88,7 @@ namespace Chatbot_GF.Data
             try
             {
                 string formattedTime = DataConstants.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");
-                string query = DataConstants.GetQuery("Base_With_Location") + string.Format(DataConstants.GetQuery("SearchByName"), locationName.ToLower(), formattedTime);
+                string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("SearchByName"), locationName.ToLower(), formattedTime);
                 System.Console.WriteLine(query);
                 endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = lang });
             }catch(Exception ex)
