@@ -11,7 +11,7 @@
       "EN": "Previous"
     },
     "Which_location": {
-      "NL": "Van welke locatie wilt je iets meer van weten?",
+      "NL": "Over welke locatie wil je iets meer van weten?",
       "GENTS": "Is ter een fiestpleine dadde wilt bezoeken?",
       "EN": "Which location do you want to visit?"
     },
@@ -21,12 +21,12 @@
       "EN": "Yes"
     },
     "No": {
-      "NL": "Neen",
+      "NL": "Nee",
       "GENTS": "Nieje",
       "EN": "No"
     },
     "Other_location": {
-      "NL": "Wenst je een andere locatie te bekijken?",
+      "NL": "Wil je een andere locatie te bekijken?",
       "GENTS": "Wilde n ander fiestpleine zien?",
       "EN": "Would you like to check another location?"
     },
@@ -56,7 +56,7 @@
       "EN": "Forenoon:5~11|Afternoon:12~17|In the evening:18~23|At Night:0~4"
     },
     "HOURS_BLOCK": {
-      "NL": "Rond welk uur wilt je?",
+      "NL": "Rond welk uur wil je?",
       "GENTS": "Rond ewa uur wilde?",
       "EN": "Which hour?"
     },
@@ -71,7 +71,7 @@
       "EN": "I can show you everything that's happening now, or you can choose a specific date"
     },
     "Previous_Block": {
-      "NL": "Terug",
+      "NL": "Terugkeren",
       "GENTS": "Kere ke were",
       "EN": "Back"
     },
@@ -81,7 +81,7 @@
       "EN": "Pick a date"
     },
     "Choice_For_Day": {
-      "NL": "Welke dag kiest u?",
+      "NL": "Welke dag kies je?",
       "GENTS": "Welke dag kiesde?",
       "EN": "Which day"
     },
@@ -96,7 +96,7 @@
       "EN": "What's going on now"
     },
     "Welcome": {
-      "NL": "Hallo, welkom bij de Gentse Feesten. Ik kan je helpen bij het navigeren van de vele evenementen! De blauwe knoppen geven een aantal suggesties. Het hamburgermenu naast het tekstvak kan je ook altijd gebruiken. Je kan ook altijd zelf een zin sturen zoals \"Wat gebeurt er nu\" of \"Waar is er een toilet\". Waarop wil je zoeken?",
+      "NL": "Hallo, welkom bij de Gentse Feesten. Ik kan je helpen bij het navigeren tussen de vele evenementen! De blauwe knoppen geven een aantal suggesties. Het hamburgermenu naast het tekstvak kan je ook altijd gebruiken. Je kan ook altijd zelf een zin sturen zoals \"Wat gebeurt er nu\" of \"Waar is er een toilet\". Waarop wil je zoeken?",
       "GENTS": "Goeiendag beste fiester! Hieronder ziede ewa opties, ge kunt ook altijd zelf iet typen gelijk \"kmoe zieke\" of \"wa is ter neu te doen?\". 'T menuutje neverst den tekstbalk kan eu ook vuu'der elpen. Waarop wilde zoeken?",
       "EN": "Hello! The blue buttons show some possible follow up questions. It's also possible to type a question yourself like \"What is happening now?\" or choose an option in the menu next to the textfield at the bottom. What are you looking for?"
     },
@@ -106,12 +106,12 @@
       "EN": "Use my location"
     },
     "Nearest_location": {
-      "NL": "Je gekozen locatie is het dichts bij:",
+      "NL": "Je gekozen locatie is het dichtst bij:",
       "GENTS": "Ge zijt het dichtste bij ",
       "EN": "The nearest location is "
     },
     "This_location": {
-      "NL": "Wilt u op deze locatie zoeken?",
+      "NL": "Wil je op deze locatie zoeken?",
       "GENTS": ". Wilde op dies locatie zoeken?",
       "EN": "Do you want to search on this location?"
     },
@@ -125,7 +125,7 @@
     },
     "Choose_list": {
       "NL": "Kies uit lijst",
-      "GENTS": "Kies uit ne lijst",
+      "GENTS": "Kiest uit ne lijst",
       "EN": "Choose from list"
     },
     "What_Is_It": {
@@ -150,7 +150,7 @@
     },
     "NEXT": {
       "NL": "Te doen hierna?",
-      "GENTS": "Wa est der ierachter?",
+      "GENTS": "Wa est ierachter?",
       "EN": "After this event?"
     },
     "FOUND": {
