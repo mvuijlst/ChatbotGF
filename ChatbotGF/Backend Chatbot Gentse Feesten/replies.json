@@ -28,7 +28,7 @@
     },
     "toilet": {
       "haschildren": false,
-      "payload": "GET_LOCATION°true°NL"
+      "payload": "GET_USER_LOCATION°true°NL"
     },
     "nu": {
       "haschildren": false,

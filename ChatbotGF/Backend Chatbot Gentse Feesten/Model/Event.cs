@@ -37,6 +37,7 @@ namespace Chatbot_GF.Model
         public string duration { get; set; }
         public string endDate { get; set; }
         public String image { get; set; }
+        public string locationName { get; set; }
         public IList<string> inLanguage { get; set; }
         public Boolean? isAccessibleForFree { get; set; }
         public IList<string> isPartOf { get; set; }
