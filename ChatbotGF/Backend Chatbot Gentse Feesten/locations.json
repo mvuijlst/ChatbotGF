@@ -134,7 +134,7 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/c2559115-bfcb-4cf3-9d4f-a5147f99e371",
       "Lon": 3.727214,
       "Lat": 51.059811,
-      "SearchCount": 3,
+      "SearchCount": 2,
       "Search": [ "de beersteeg", "willem de beersteeg" ]
     },
     {
@@ -154,6 +154,15 @@
       "Lat": 51.05611,
       "SearchCount": 2,
       "Search": [ "charla", "charlatan" ]},
+    {
+      "Name": "Het Huis van Alijn",
+      "PrettyName": "Het Huis van Alijn",
+      "id": "https://gentsefeesten.stad.gent/api/v1/location/e70e9d0e-1e6c-4a98-b3d6-607ec34927cb",
+      "Lon": 3.7211418,
+      "Lat": 51.0574001,
+      "SearchCount": 3,
+      "Search": [ "alijn", "huis van alijn", "het huis van alijn" ]
+    }
   ],
   "toilets": [
     [ 3.7294641044784, 51.063988153217 ],
