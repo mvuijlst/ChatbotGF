@@ -26,8 +26,15 @@ namespace Chatbot_GF.MessageBuilder.Factories
 
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
-                    buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", lang), "postback", "DEVELOPER_DEFINED_DESCRIPTION°" + eve.description.nl + "°" + lang));
+                    if (eve.description.nl.Length < 900)
+                    {
+                        buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", lang), "postback", "DEVELOPER_DEFINED_DESCRIPTION°" + eve.description.nl + "°" + lang));
+                    } else
+                    {
+                        buttons.Add(new ButtonPayload(DataConstants.GetMessage("What_Is_It", lang), "postback", "DEVELOPER_DEFINED_DESCRIPTION°" + eve.description.nl.Substring(0, 900) + "..." + "°" + lang));
+                    }
                 }
+
                 buttons.Add(new ButtonPayload(DataConstants.GetMessage("NEXT", lang), "postback", "DEVELOPER_DEFINED_NEXT°" + eve.location + "-_-" + eve.startDate + "°" + lang));
 
                 var image = eve.image;
