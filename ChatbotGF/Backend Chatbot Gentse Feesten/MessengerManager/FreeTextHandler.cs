@@ -27,8 +27,7 @@ namespace Chatbot_GF.MessengerManager
         public static void CheckText(long id,string text)
         {
             string res;
-            Console.Write(text.Length > 3);
-            if (text.Length > 3 && !string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
+            if (!string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
             {
                 RemoteDataManager.GetInstance().GetEventsHereNow(id, DataConstants.GetLocationBySearchTag(text).Id, DataConstants.Now, "NL");
             }
@@ -41,7 +40,7 @@ namespace Chatbot_GF.MessengerManager
                 }
 
                 res = GetResponse(text);
-                if (res != null)
+                if (res != null && res.Length > 3)
                 {
                     RMmanager.SendTextMessage(id, res);
                 }
