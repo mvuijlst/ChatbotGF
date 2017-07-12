@@ -18,6 +18,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
             {
                 events = events.GetRange(0, 10);
             }
+
             List<Element> elements = new List<Element>();
             foreach (var eve in events)
             {
