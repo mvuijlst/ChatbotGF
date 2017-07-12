@@ -23,7 +23,6 @@ namespace Chatbot_GF.MessageBuilder.Factories
             {
                 List<IButton> buttons = new List<IButton>();
                 DefaultAction defaultAction = new DefaultAction("web_url", MakeUrl(eve.name.nl), true);
-
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
                     if (eve.description.nl.Length < 640)
@@ -91,7 +90,12 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 {
                     wheelie = " | ♿";
                 }
-                string subtitle = (DataConstants.GetLocation(eve.location)?.PrettyName ?? (eve.locationName ?? "???" )) + " | " + dates + " | " + free + wheelie;
+                string loc = (DataConstants.GetLocation(eve.location)?.PrettyName ?? (eve.locationName ?? "???"));
+                if (loc.Length > 21)
+                {
+                    loc = loc.Substring(0, 20) + "...";
+                }
+                string subtitle =  loc + " | " + dates + " | " + free + wheelie;
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");

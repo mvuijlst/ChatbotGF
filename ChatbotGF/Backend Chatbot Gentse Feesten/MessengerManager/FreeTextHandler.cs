@@ -26,9 +26,9 @@ namespace Chatbot_GF.MessengerManager
 
         public static void CheckText(long id,string text)
         {
-            Console.Write("INput?: " + text);
             string res;
-            if (!string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
+            Console.Write(text.Length > 3);
+            if (text.Length > 3 && !string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
             {
                 RemoteDataManager.GetInstance().GetEventsHereNow(id, DataConstants.GetLocationBySearchTag(text).Id, DataConstants.Now, "NL");
             }
