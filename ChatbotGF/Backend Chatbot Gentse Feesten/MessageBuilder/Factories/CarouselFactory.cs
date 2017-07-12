@@ -22,7 +22,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
             foreach (var eve in events)
             {
                 List<IButton> buttons = new List<IButton>();
-                DefaultAction defaultAction = new DefaultAction("web_url", "https://gentsefeesten.stad.gent", true);
+                DefaultAction defaultAction = new DefaultAction("web_url", MakeUrl(eve.name.nl), true);
 
                 if (!string.IsNullOrWhiteSpace(eve.description.nl))
                 {
@@ -51,7 +51,6 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     string[] daySt = helpStart[0].Split('-');
                     string[] hourSt = helpStart[1].Split(':');
                     dates += daySt[2];
-                    MakeUrl(eve.name.nl, daySt[2]);
                     dates += juli;
                     dates += hourSt[0];
                     dates += ":";
@@ -71,7 +70,6 @@ namespace Chatbot_GF.MessageBuilder.Factories
                     string[] hourSt = helpStart[1].Split(':');
                     dates += daySt[2];
                     dates += juli;
-                    MakeUrl(eve.name.nl, daySt[2]);
                     dates += hourSt[0];
                     dates += ":";
                     dates += hourSt[1];
@@ -101,9 +99,9 @@ namespace Chatbot_GF.MessageBuilder.Factories
             return new GenericMessage(id, attachment);
         }
 
-        public static string MakeUrl(string name, string day)
+        public static string MakeUrl(string name)
         {
-            return "https://gentsefeesten.stad.gent/nl/day/" + day + "/" + ParseName(name); // + getal
+            return "https://gentsefeesten.stad.gent/nl/search?search=Cosmo%20%20s+foger+T";
         }
 
         public static string ParseName(string name)
