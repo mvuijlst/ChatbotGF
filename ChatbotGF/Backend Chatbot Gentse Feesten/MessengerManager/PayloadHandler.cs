@@ -61,7 +61,7 @@ namespace Chatbot_GF.MessengerManager
                         string[] co = payload.Value.Split(':');
                         SearchableLocation location = DataConstants.GetClosestsToilet(double.Parse(co[0]), double.Parse(co[1]));
                         // Console.WriteLine($"Closest location found: {location.PrettyName} ");
-                        rmanager.SendGenericMessage(LocationFactory.MakeLocationResponse(id, location.Lat, location.Lon));
+                        rmanager.SendGenericMessage(LocationFactory.MakeLocationResponse(id, location.Lat, location.Lon, payload.Language));
                         break;
                     case "SET_LANGUAGE":
                         rmanager.SendWelcomeMessage(id, payload.Value);

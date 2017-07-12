@@ -40,7 +40,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {
-                    image = /* keuze */ "https://gentsefeesten.stad.gent/sites/default/files/styles/large_3_2/public/2017-04/foto%20campagne%20timeline.png?itok=xs3Q9p3L";
+                    image = "https://chatbot.lab9k.gent/images/default.png";
                 }
 
                 string dates = " ";
