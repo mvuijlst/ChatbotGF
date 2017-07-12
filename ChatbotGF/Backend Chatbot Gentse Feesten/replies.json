@@ -30,6 +30,14 @@
       "haschildren": false,
       "payload": "GET_USER_LOCATION°true°NL"
     },
+    "wc": {
+      "haschildren": false,
+      "payload": "GET_USER_LOCATION°true°NL"
+    },
+    "zieke": {
+      "haschildren": false,
+      "payload": "GET_USER_LOCATION°true°GENTS"
+    },
     "nu": {
       "haschildren": false,
       "payload": "DEVELOPER_DEFINED_LOCATION°ALL°NL"
@@ -38,9 +46,13 @@
       "haschildren": false,
       "payload": "DEVELOPER_DEFINED_LOCATION°ALL°GENTS"
     },
+    "neu": {
+      "haschildren": false,
+      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°GENTS"
+    },
     "now": {
       "haschildren": false,
-      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN",
+      "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN"
     },
     "help": {
       "haschildren": false,
