@@ -37,7 +37,7 @@ namespace Chatbot_GF.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] MessengerData data)
         {
-            System.Console.WriteLine(JsonConvert.SerializeObject(data));
+            //System.Console.WriteLine(JsonConvert.SerializeObject(data));
 
             Task.Factory.StartNew(() =>
             {
@@ -63,20 +63,20 @@ namespace Chatbot_GF.Controllers
                             {
                                 Attachment locationAtt = currentMessage?.message?.attachments[0];
                                 Coordinates coords = locationAtt.payload?.coordinates;
-                                Console.WriteLine($"Coordinates Received: {coords.lon} {coords.lat}");
+                                //Console.WriteLine($"Coordinates Received: {coords.lon} {coords.lat}");
                                 string lang = TempUserData.Instance.GetLanguage(currentMessage.sender.id);
                                 if (string.IsNullOrWhiteSpace(lang))
                                     lang = "";
                                 if (!TempUserData.Instance.WantsToilet(message.sender.id))
                                 {
                                     currentMessage.postback = new Postback { payload = $"DEVELOPER_DEFINED_COORDINATES°{coords.lon}:{coords.lat}°{lang}" };
-                                    Console.WriteLine("False " + currentMessage.postback);
+                                    //Console.WriteLine("False " + currentMessage.postback);
                                     phandler.handle(message);
                                 }
                                 else
                                 {
                                     currentMessage.postback = new Postback { payload = $"GET_TOILET°{coords.lon}:{coords.lat}°{lang}" };
-                                    Console.WriteLine("True " +  currentMessage.postback);
+                                    //Console.WriteLine("True " +  currentMessage.postback);
                                     phandler.handle(message);
                                 }
                                 TempUserData.Instance.Remove(message.sender.id); //Remove the user from the set

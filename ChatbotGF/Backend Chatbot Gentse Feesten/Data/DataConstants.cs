@@ -59,6 +59,7 @@ namespace Chatbot_GF.Data
 
                 for (int i = 0; i < TOILET_COUNT; i++)
                 {
+                    
                     //Console.WriteLine("Toilet toegevoegd");
                     toilets.Add(new SearchableLocation { Lon = double.Parse(toiletStore[$"toilets:{i}:{0}"]), Lat = double.Parse(toiletStore[$"toilets:{i}:{1}"]) });
                 }
@@ -144,7 +145,7 @@ namespace Chatbot_GF.Data
                         for (int j=0; j < count; j++)
                         {
                             string tag = LocationsStore[$"locations:{i}:Search:{j}"];
-                            Console.WriteLine("Tag found: " + tag);
+                            //Console.WriteLine("Tag found: " + tag);
                             locations[i].Search.Add(tag);
                         }
                     }

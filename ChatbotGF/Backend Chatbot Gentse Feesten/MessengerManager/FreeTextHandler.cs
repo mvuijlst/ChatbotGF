@@ -26,7 +26,7 @@ namespace Chatbot_GF.MessengerManager
 
         public static void CheckText(long id,string text)
         {
-            Console.Write("INput?: " + text);
+            //Console.Write("INput?: " + text);
             string res;
             if (!string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
             {
@@ -49,7 +49,7 @@ namespace Chatbot_GF.MessengerManager
                 //No way to know which language is prefered, default to dutch
                 /*RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "NL"));
                 RMmanager.SendLocationQuery(id, 0, "NL");*/
-                Console.WriteLine("Zoeken naar event: " + text);
+                //Console.WriteLine("Zoeken naar event: " + text);
                 RemoteDataManager.GetInstance().GetEventByName(text, id, "NL");
             }
         }
@@ -77,7 +77,7 @@ namespace Chatbot_GF.MessengerManager
                 while (count < words.Count)
                 {                    
                     string query = string.Join(":", KeywordsFound);
-                    Console.WriteLine("Searching " + query + ":" + words[count]);
+                    //Console.WriteLine("Searching " + query + ":" + words[count]);
                     //Console.WriteLine(ReplyStore["keywords:feestje:waar:response:nl"]);
                     if (ReplyStore.GetSection(query + ":" + words[count]).GetValue<string>("response") != null)
                     {
@@ -123,7 +123,7 @@ namespace Chatbot_GF.MessengerManager
                 while (count < words.Count)
                 {
                     string query = string.Join(":", KeywordsFound);
-                    Console.WriteLine("Searching " + query + ":" + words[count]);
+                   // Console.WriteLine("Searching " + query + ":" + words[count]);
                     //Console.WriteLine(ReplyStore["keywords:feestje:waar:response:nl"]);
                     if (ReplyStore.GetSection(query + ":" + words[count]).GetValue<string>("payload") != null)
                     {
@@ -142,7 +142,7 @@ namespace Chatbot_GF.MessengerManager
                         count++;
                     }
                 }
-                Console.WriteLine(string.Join(":", KeywordsFound) + ":payload");
+                //Console.WriteLine(string.Join(":", KeywordsFound) + ":payload");
                 return ReplyStore[string.Join(":", KeywordsFound) + ":payload"];
             }
             catch (Exception ex)
