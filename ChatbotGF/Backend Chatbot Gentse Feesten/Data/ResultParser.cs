@@ -54,7 +54,7 @@ namespace Chatbot_GF.Data
                             e.isWheelchairUnfriendly = ParseBool(res[key].ToString());
                             break;
                         case "location_name":
-                            e.location = normalizeString(res[key].ToString());
+                            e.locationName = normalizeString(res[key].ToString());
                             break;
                     }
                 }catch(Exception ex)
