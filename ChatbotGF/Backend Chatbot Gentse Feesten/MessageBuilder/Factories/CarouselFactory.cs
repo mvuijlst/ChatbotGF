@@ -91,7 +91,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 {
                     wheelie = " | ♿";
                 }
-                string subtitle = (DataConstants.GetLocation(eve.location)?.PrettyName ?? "Gent") + " | " + dates + " | " + free + wheelie;
+                string subtitle = (DataConstants.GetLocation(eve.location)?.PrettyName ?? (eve.locationName ?? "???" )) + " | " + dates + " | " + free + wheelie;
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");
@@ -101,15 +101,8 @@ namespace Chatbot_GF.MessageBuilder.Factories
 
         public static string MakeUrl(string name)
         {
-            return "https://gentsefeesten.stad.gent/nl/search?search=Cosmo%20%20s+foger+T";
+            return "https://gentsefeesten.stad.gent/nl/search?search=" + name;
         }
 
-        public static string ParseName(string name)
-        {
-            name = new string((from c in name
-                                     where char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)
-                                     select c).ToArray());
-            return name;
-        }
     }
 }
