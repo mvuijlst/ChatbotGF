@@ -129,7 +129,7 @@ namespace Chatbot_GF.Data
                         }
                     }
                     rm.SendTextMessage(user.Id, DataConstants.GetMessage("Found", user.Language));
-                   // System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events,user.Language)));
+                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events,user.Language)));
                     String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events,user.Language)).Result;
                 }
                 else if(u is CallbackData)

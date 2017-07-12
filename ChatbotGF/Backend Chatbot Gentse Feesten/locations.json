@@ -25,8 +25,8 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/2917fe2d-8597-46ab-be01-a5e0a97447c2",
       "Lon": 3.727681,
       "Lat": 51.056523,
-      "SearchCount": 8,
-      "Search": [ "sintjacobs", "sint jacobs", "bij sintjacobs", "bij sint jacobs", "bijsintjacobs", "de buckplein", "walter de buck", "walter de buckplein", "walterdebuckplein" ]
+      "SearchCount": 4,
+      "Search": [ "sintjacobs", "sint jacobs", "bij sintjacobs", "walter de buckplein" ]
     },
     {
       "Name": "CENTRUM",
@@ -52,8 +52,8 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/c9218a9b-0340-40ed-b2f8-67c74271cb58",
       "Lon": 3.72385,
       "Lat": 51.053605,
-      "SearchCount": 4,
-      "Search": [ "emile", "braunplein", "emile braunplein", "emilebraunplein" ]
+      "SearchCount": 2,
+      "Search": [ "emile braunplein", "emilebraunplein" ]
     },
     {
       "Name": "LUISTERPLEIN",
@@ -61,8 +61,8 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/39a81c28-09ac-496d-acb6-f10aa9db0aea",
       "Lon": 3.728229,
       "Lat": 51.051073,
-      "SearchCount": 4,
-      "Search": [ "luisterplein", "laurentplein", "francois laurent", "francois laurentplein" ]
+      "SearchCount": 2,
+      "Search": [ "luisterplein",  "francois laurentplein" ]
     },
     {
       "Name": "GROENTENMARKT",
@@ -79,8 +79,8 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/5a123130-716e-4923-a59d-3bbcb863890d",
       "Lon": 3.72076,
       "Lat": 51.05471,
-      "SearchCount": 6,
-      "Search": [ "graslei", "korenlei", "graslei korenlei", "grasleikorenlei", "korenlei graslei", "korenleigraslei" ]
+      "SearchCount": 2,
+      "Search": [ "graslei", "korenlei" ]
     },
     {
       "Name": "KORENMARKT",
@@ -106,8 +106,8 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/f614c847-2cab-432a-b0f0-6639f8a5ac57",
       "Lon": 3.721284,
       "Lat": 51.05669,
-      "SearchCount": 4,
-      "Search": [ "veerleplein", "sint veerle", "sint veerleplein", "sintveerleplein" ]
+      "SearchCount": 2,
+      "Search": [ "sint veerleplein", "sintveerleplein" ]
     },
     {
       "Name": "VLASMARKT",
@@ -134,8 +134,8 @@
       "Id": "https://gentsefeesten.stad.gent/api/v1/location/c2559115-bfcb-4cf3-9d4f-a5147f99e371",
       "Lon": 3.727214,
       "Lat": 51.059811,
-      "SearchCount": 4,
-      "Search": [ "beersteeg", "de beersteeg", "parking arteveldehogeschool", "willem de beersteeg" ]
+      "SearchCount": 2,
+      "Search": [ "de beersteeg", "willem de beersteeg" ]
     },
     {
       "Name": "WOODROW WILSONPLEIN",
@@ -144,7 +144,7 @@
       "Lon": 3.7283689,
       "Lat": 51.0480501,
       "SearchCount": 4,
-      "Search": [ "woodrow", "wilson", "woodrow wilson", "woodrow wilsonplein" ]
+      "Search": [ "zuid", "woodrow wilson", "woodrow wilsonplein" ]
     },
     {
       "Name": "Charlatan",

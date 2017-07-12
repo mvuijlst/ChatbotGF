@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\help.html" />
     <Content Include="wwwroot\index.html" />
     <Content Include="wwwroot\info.html" />
   </ItemGroup>

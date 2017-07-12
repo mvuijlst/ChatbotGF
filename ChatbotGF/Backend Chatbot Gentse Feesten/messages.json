@@ -121,7 +121,7 @@
       "EN": "Pick a location on the map"
     },
     "Choose_Language": {
-      "NL": "Kies uw taal / Choose your language",
+      "NL": "Kies uw taal / Choose your language"
     },
     "Choose_list": {
       "NL": "Kies uit lijst",
@@ -183,7 +183,11 @@
       "NL": "Wil je weten hoe je met mij praat of wil je de hulpdiensten bellen?",
       "GENTS": "Wil je weten hoe je met mij praat of wil je de hulpdiensten bellen?",
       "EN": "Wil je weten hoe je met mij praat of wil je de hulpdiensten bellen?"
+    },
+    "HELPMESSAGE": {
+      "NL": "Dichts bijzijnde toilet",
+      "GENTS": "Dichtste toilet",
+      "EN": "Closest toilet"
     }
-
+    }
   }
-}
