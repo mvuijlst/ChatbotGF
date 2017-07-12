@@ -40,7 +40,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 var image = eve.image;
                 if (string.IsNullOrEmpty(image))
                 {
-                    image = "https://chatbot.lab9k.gent/images/default.png";
+                    image = "https://chatbot.lab9k.gent/images/default0.png";
                 }
 
                 string dates = " ";
