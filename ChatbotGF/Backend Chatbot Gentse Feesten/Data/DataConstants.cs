@@ -12,7 +12,7 @@ namespace Chatbot_GF.Data
 {
     public class DataConstants
     {
-        public const int numberLocations = 17;
+        public static int numberLocations = 17;
         private static IConfigurationRoot LocationsStore;
         private static IConfigurationRoot MessagesStore;
         private static IConfigurationRoot QueryStore;
@@ -126,6 +126,7 @@ namespace Chatbot_GF.Data
                                     .AddJsonFile("locations.json");
                 LocationsStore = builder.Build();
                 locations = new List<SearchableLocation>();
+                numberLocations = int.Parse(LocationsStore["LocationsCount"]);
                 for (int i = 0; i < numberLocations; i++)
                 {
                     locations.Add(new SearchableLocation
@@ -134,7 +135,7 @@ namespace Chatbot_GF.Data
                         PrettyName = LocationsStore[$"locations:{i}:PrettyName"],
                         Id = LocationsStore[$"locations:{i}:Id"],
                         Lat = double.Parse(LocationsStore[$"locations:{i}:Lat"]),
-                        Lon = double.Parse(LocationsStore[$"locations:{i}:lon"])
+                        Lon = double.Parse(LocationsStore[$"locations:{i}:Lon"])
                     });
                     locations[i].Search = new List<string>();
                     if (!string.IsNullOrWhiteSpace(LocationsStore[$"locations:{i}:SearchCount"]))

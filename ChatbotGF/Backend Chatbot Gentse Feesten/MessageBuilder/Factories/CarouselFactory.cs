@@ -86,7 +86,7 @@ namespace Chatbot_GF.MessageBuilder.Factories
                 {
                     wheelie = " | ♿";
                 }
-                string subtitle = (DataConstants.GetLocation(eve.location).PrettyName ?? "Gent") + " | " + dates + " | " + free + wheelie;
+                string subtitle = (DataConstants.GetLocation(eve.location)?.PrettyName ?? "Gent") + " | " + dates + " | " + free + wheelie;
                 elements.Add(new Element(eve.name.nl, image, subtitle, buttons, defaultAction));
             }
             IPayload payload = new PayloadMessage("generic", elements, true, "horizontal");
