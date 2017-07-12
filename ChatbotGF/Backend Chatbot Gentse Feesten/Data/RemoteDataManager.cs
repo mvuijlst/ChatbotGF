@@ -15,20 +15,15 @@ using VDS.RDF.Storage;
 
 namespace Chatbot_GF.Data
 {
-    public class RemoteDataManager
-    {
-        private string hmess;
-        public string Language_choice { get; set; }
+    public class RemoteDataManager { 
+
         private static RemoteDataManager instance;
-        private static string BASE_QUERY = "PREFIX schema: <http://schema.org/> SELECT * WHERE { ?sub a schema:Event . OPTIONAL {?sub schema:url ?url. } OPTIONAL {?sub schema:name ?name.} OPTIONAL {?sub schema:startDate ?startdate. } OPTIONAL {?sub schema:endDate ?enddate. } OPTIONAL {?sub schema:description ?description. } OPTIONAL {?sub schema:location ?location. } OPTIONAL {?sub schema:isAccessibleForFree ?isFree.} OPTIONAL {?sub schema:organizer ?organizer. } OPTIONAL { ?sub schema:image/schema:url ?image. } ";
-        //private static string BASE_IMG = "https://stad.gent/cultuur-sport-vrije-tijd/nieuws-evenementen/gentse-feestengangers-vormen-basis-van-gentse-feestencampagne-2017";
         private SparqlRemoteEndpoint endpoint;
         ReplyManager rm;
         public RemoteDataManager()
         {
             endpoint = new SparqlRemoteEndpoint(new Uri("https://stad.gent/sparql"), "http://stad.gent/gentse-feesten/");
-            rm = new ReplyManager();
-            Language_choice = "GENTS"; //default Gentse chatbot
+            rm = new ReplyManager();            
         }
 
         public static RemoteDataManager GetInstance()
@@ -129,7 +124,7 @@ namespace Chatbot_GF.Data
                         }
                     }
                     rm.SendTextMessage(user.Id, DataConstants.GetMessage("Found", user.Language));
-                    System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events,user.Language)));
+                    //System.Console.WriteLine(JsonConvert.SerializeObject(CarouselFactory.makeCarousel(user.Id, events, user.Language)));
                     String result = api.SendMessageToUser(CarouselFactory.makeCarousel(user.Id, events,user.Language)).Result;
                 }
                 else if(u is CallbackData)
@@ -142,7 +137,7 @@ namespace Chatbot_GF.Data
                 {
                     VDS.RDF.AsyncError error = (VDS.RDF.AsyncError)u;
                     CallbackData user = (CallbackData)error.State;
-                    hmess = DataConstants.GetMessage("Error", user.Language);
+                    string hmess = DataConstants.GetMessage("Error", user.Language);
                     rm.SendTextMessage(user.Id, hmess);
                 }
                 System.Console.WriteLine("End of query method");
