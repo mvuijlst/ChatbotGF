@@ -53,8 +53,19 @@
     "now": {
       "haschildren": false,
       "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN"
+    },
+    "hier": {
+      "haschildren": false,
+      "payload": "GET_USER_LOCATION°false°NL"
+    },
+    "here": {
+      "haschildren": false,
+      "payload": "GET_USER_LOCATION°false°EN"
+    },
+    "ier": {
+      "haschildren": false,
+      "payload": "GET_USER_LOCATION°false°GENTS"
     }
- 
   }
 }
   
