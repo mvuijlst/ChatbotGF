@@ -26,7 +26,7 @@ namespace Chatbot_GF.MessengerManager
 
         public static void CheckText(long id,string text)
         {
-            //Console.Write("INput?: " + text);
+            Console.Write("INput?: " + text);
             string res;
             if (!string.IsNullOrEmpty(DataConstants.GetLocationBySearchTag(text)?.Id))
             {
