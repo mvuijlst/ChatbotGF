@@ -74,7 +74,7 @@ namespace Chatbot_GF.Data
                 locationFilters += " || str(?location) = \"" + locations[i].Id + "\"";
             }
             string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("EventsNowHere"),locationFilters,startdatefilter,enddatefilter);
-            System.Console.WriteLine(query);
+            //System.Console.WriteLine(query);
             endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData {Id = id, Language = lang });
         }
         public  void GetNextEvents(string locationurl,string date, int count, long id,string lang)
@@ -89,7 +89,7 @@ namespace Chatbot_GF.Data
             {
                 string formattedTime = DataConstants.Now.ToString("yyyy-MM-ddTHH:mm:sszzz");
                 string query = DataConstants.GetQuery("base") + string.Format(DataConstants.GetQuery("SearchByName"), locationName.ToLower(), formattedTime);
-                System.Console.WriteLine(query);
+                //System.Console.WriteLine(query);
                 endpoint.QueryWithResultSet(query, new SparqlResultsCallback(callback), new CallbackData { Id = id, Language = lang });
             }catch(Exception ex)
             {
@@ -104,12 +104,12 @@ namespace Chatbot_GF.Data
             {
                 List<Event> events = new List<Event>();
                 IMessengerApi api = RestClientBuilder.GetMessengerApi();
-                System.Console.WriteLine("Query Callback");
+                //System.Console.WriteLine("Query Callback");
                 
                 if (results.Count > 0 && u is CallbackData)
                 {
                     CallbackData user = (CallbackData)u;
-                    System.Console.WriteLine("Found Results");
+                    //System.Console.WriteLine("Found Results");
                     foreach (SparqlResult res in results)
                     {
                         try
@@ -140,7 +140,7 @@ namespace Chatbot_GF.Data
                     string hmess = DataConstants.GetMessage("Error", user.Language);
                     rm.SendTextMessage(user.Id, hmess);
                 }
-                System.Console.WriteLine("End of query method");
+               // System.Console.WriteLine("End of query method");
             }
             catch (Exception ex)
             {
