@@ -6,6 +6,7 @@ using Chatbot_GF.BotData;
 using Chatbot_GF.MessengerManager;
 using Chatbot_GF.Data;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
 
 namespace Chatbot_GF.Controllers
 {
@@ -14,11 +15,13 @@ namespace Chatbot_GF.Controllers
     {
         private MessageHandler mhandler;
         private PayloadHandler phandler;
+        private readonly ILogger _logger;
 
-        public MessengerController()
+        public MessengerController(ILogger<MessengerController> logger)
         {
             mhandler = new MessageHandler();
             phandler = PayloadHandler.Instance;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -37,6 +40,7 @@ namespace Chatbot_GF.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] MessengerData data)
         {
+            _logger.LogInformation("Messenger data received");
             //System.Console.WriteLine(JsonConvert.SerializeObject(data));
 
             Task.Factory.StartNew(() =>
