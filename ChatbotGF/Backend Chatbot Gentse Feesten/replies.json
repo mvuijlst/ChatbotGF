@@ -53,11 +53,8 @@
     "now": {
       "haschildren": false,
       "payload": "DEVELOPER_DEFINED_LOCATION°ALL°EN"
-    },
-    "help": {
-      "haschildren": false,
-      "payload": "GET_HELP°°NL"
     }
+ 
   }
 }
   
