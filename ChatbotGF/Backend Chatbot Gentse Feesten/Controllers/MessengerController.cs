@@ -5,6 +5,7 @@ using static Chatbot_GF.BotData.MessengerData;
 using Chatbot_GF.BotData;
 using Chatbot_GF.MessengerManager;
 using Chatbot_GF.Data;
+using Newtonsoft.Json;
 
 namespace Chatbot_GF.Controllers
 {
@@ -36,6 +37,8 @@ namespace Chatbot_GF.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] MessengerData data)
         {
+            System.Console.WriteLine(JsonConvert.SerializeObject(data));
+
             Task.Factory.StartNew(() =>
             {
                 foreach (var entry in data.entry)
