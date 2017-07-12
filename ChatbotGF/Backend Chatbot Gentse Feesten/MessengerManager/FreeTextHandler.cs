@@ -44,11 +44,10 @@ namespace Chatbot_GF.MessengerManager
                 {
                     RMmanager.SendTextMessage(id, res);
                 }
-
-                //No way to know which language is prefered, default to dutch
-                /*RMmanager.SendTextMessage(id, DataConstants.GetMessage("Donot_understand", "NL"));
-                RMmanager.SendLocationQuery(id, 0, "NL");*/
-                //Console.WriteLine("Zoeken naar event: " + text);
+                if (res.Length < 4)
+                {
+                    RMmanager.SendTextMessage(id, DataConstants.GetMessage("INVALID_INPUT", "NL"));
+                }
                 RemoteDataManager.GetInstance().GetEventByName(text, id, "NL");
             }
         }

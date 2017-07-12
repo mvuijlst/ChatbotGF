@@ -188,6 +188,9 @@
       "NL": "Dichts bijzijnde toilet",
       "GENTS": "Dichtste toilet",
       "EN": "Closest toilet"
+    },
+    "INVALID_INPUT": {
+      "NL": "Geef tenminste één trefwoord met 4 of meer karakters op."
     }
-    }
+  }
   }
